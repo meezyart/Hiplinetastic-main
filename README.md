@@ -1,9 +1,7 @@
-# Eleventastic
+# Hiplinetastic
 
-A simple Eleventy Starter Kit, my base for all new 11ty projects. ([Demo Site](https://eleventastic.netlify.com))
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f78ec52d-8328-4e40-b6da-a0f9164e80d1/deploy-status)](https://app.netlify.com/sites/eleventastic/deploys)
-
+A site for the dancer in us all!
+Now using node v14.15.1 (npm v6.14.8)
 ## Features
 
 * CSS Pipeline (Sass, CleanCSS)
@@ -18,6 +16,7 @@ A simple Eleventy Starter Kit, my base for all new 11ty projects. ([Demo Site](h
 To install the necessary packages, run this command in the root folder of the site:
 
 ```sh
+nvm use 14
 npm install
 ```
 
@@ -51,7 +50,11 @@ Currently, critical CSS will only be inlined in the head of the homepage. This i
 ## Credits
 
 My heartfelt thanks to these people, whom I shamelessly copied ideas from:
-
+* Max brox: ([Demo Site](https://eleventastic.netlify.com))
 * Phil Hawksworth: [EleventyOne](https://github.com/philhawksworth/eleventyone)
 * Mike Riethmuller: [Supermaya](https://github.com/MadeByMike/supermaya)
 * Zach Leatherman: [zachleat.com](https://github.com/zachleat/zachleat.com)
+
+
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f78ec52d-8328-4e40-b6da-a0f9164e80d1/deploy-status)](https://app.netlify.com/sites/eleventastic/deploys)
