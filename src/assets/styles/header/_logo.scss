@@ -3,26 +3,19 @@
 .header-logo {
     & a {
         position: relative;
-
-        max-width: 158px;
-
+        max-width: 130px;
         & img {
             width: 100%;
-            padding: 15px 0;
-
+            padding: 10px 0;
             &.light-logo {
                 position: absolute;
                 top: 0;
                 left: 0;
-
                 opacity: 0;
             }
-
-            &.dark-logo {
-            }
+            &.dark-logo {}
         }
     }
-
     @media #{$extra-small-mobile} {
         & a {
             max-width: 120px;
@@ -37,7 +30,6 @@
                 &.light-logo {
                     opacity: 1;
                 }
-
                 &.dark-logo {
                     opacity: 0;
                 }

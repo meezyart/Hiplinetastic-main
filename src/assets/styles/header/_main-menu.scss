@@ -13,11 +13,11 @@
         &>li {
             position: relative;
             &>a {
-                font-size: 16px;
-                font-weight: 400;
+                font-size: 14px;
+                font-weight: 600;
                 line-height: 1.375;
                 // text-transform: uppercase;
-                font-family: $montserrat-font;
+                font-family: $topheadertextFont;
                 display: block;
                 padding: 29px 15px;
                 color: $topheadertextColor;

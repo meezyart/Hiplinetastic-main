@@ -14,7 +14,7 @@
     border-width: 1px;
     border-style: solid;
     border-color: transparent;
-    border-radius: 16px;
+    border-radius: 10px;
     outline: none;
     &:focus {
         box-shadow: none !important;
@@ -45,6 +45,11 @@
 .btn-md {
     font-size: 14px;
     padding: 10px 30px;
+}
+
+.btn-long {
+    font-size: 14px;
+    padding: 1em 3em;
 }
 
 .btn-lg {

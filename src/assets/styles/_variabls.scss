@@ -1,9 +1,11 @@
 // Font Family
+$roboto: 'Roboto',
+sans-serif;
 $gilroy: "Gilroy";
-$body-font: $gilroy;
-$heading-font: $gilroy;
 $montserrat-font: 'Montserrat',
-serif;
+sans-serif;
+$body-font: $gilroy;
+$heading-font: $montserrat-font;
 $playfair-font: 'Playfair Display',
 serif;
 $rossela-font: 'Conv_Rossela-Demo-2';
@@ -18,16 +20,39 @@ $grey: #F8F9FD;
 $body-color: #696969;
 // Heading Color
 $heading-color: #333333;
-$topheaderColor: #FFC6F7;
+$topheaderColor: #F1A2B8;
 $topheaderBkg: #FEFDFE;
-$topheadertextColor: #AD0084;
+$topheadertextColor: #b3526d;
+$topheadertextFont:$montserrat-font;
 // Border Color
 $border-color: #F3F3F3;
+// Hipline COlors
+$hipline-pink: #f9cfd0;
+//Website colors
+$purple: #968dff;
+$purple-light: #e9e8ff;
+$purple-dark: #48458a;
+$seafoam: #00f8f1;
+$seafoam-light: #c3ffe2;
+$orange: #ff8000;
+$orange-light: #fdc791;
+$ceren-orange: #fbaa62;
+$hot-pink: #ff0dcb;
+$hot-pink-light: #ff7be3;
+$pink-medium-light: #ffc9f4;
+$pink-extra-light: #ffecf8;
+$pink-alt: #fcd6ce;
+$yellow: #fffc00;
+$yellow-orange: #ffd400;
+$grey3: #9b9b9b;
+$grey5: #4a4a4a;
+$teal: #81f9fd;
+$blue: #a8ddfb;
 // Template Colors
-$primary: #FFC6F7;
+$primary: #FCD6CE;
 $primary-two: #3a7e69;
 $primary-three: #ef6f31;
-$secondary: #FF6FE8;
+$secondary: #773649;
 $secondary-light: #8C89A2;
 $secondary-three: #6ac5f1;
 $success: #4CAF50;
@@ -39,7 +64,7 @@ $off-white: #f6f2ed;
 $dark: $heading-color;
 $light-orange: rgba(239, 111, 49, .1);
 // All Template Color Map
-$templateColors: ("primary": $primary, "primary-two": $primary-two, "primary-three": $primary-three, "secondary": $secondary, "secondary-light": $secondary-light, "secondary-three": $secondary-three, "success": $success, "danger": $danger, "warning": $warning, "info": $info, "light": $light, "dark": $dark, "black": $black, "grey": $grey, "body": $body-color, "off-white": $off-white, "light-orange": $light-orange, );
+$templateColors: ( "primary": $primary, "primary-two": $primary-two, "primary-three": $primary-three, "secondary": $secondary, "secondary-light": $secondary-light, "secondary-three": $secondary-three, "success": $success, "danger": $danger, "warning": $warning, "info": $info, "light": $light, "dark": $dark, "black": $black, "grey": $grey, "body": $body-color, "off-white": $off-white, "light-orange": $light-orange, "purple":$purple, "purple-light":$purple-light, "purple-dark":$purple-dark, "seafoam":$seafoam, "seafoam-light":$seafoam-light, "orange":$orange, "orange-light":$orange-light, "ceren-orange":$ceren-orange, "hot-pink":$hot-pink, "hot-pink-light":$hot-pink-light, "pink-medium-light":$pink-medium-light, "pink-extra-light":$pink-extra-light, "pink-alt":$pink-alt, "yellow":$yellow, "yellow-orange":$yellow-orange, "grey3":$grey3, "grey5":$grey5, "teal":$teal, "blue":$blue);
 // Default Transition
 $transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 // Socail Color
@@ -105,6 +130,7 @@ $extraBig-device: "only screen and (min-width: 1600px)";
 $laptop-device: "only screen and (min-width: 1200px) and (max-width: 1599px)";
 $desktop-device: "only screen and (min-width: 992px) and (max-width: 1199px)";
 $tablet-device: "only screen and (min-width: 768px) and (max-width: 991px)";
+$large-tablet: "only screen and (max-width: 991px)";
 $large-mobile: "only screen and (max-width: 767px)";
 $small-mobile: "only screen and (max-width: 575px)";
 $extra-small-mobile: "only screen and (max-width: 479px)";
