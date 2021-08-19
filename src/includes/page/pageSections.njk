@@ -1,0 +1,23 @@
+{% for pageSection in thisPage.pageSections %}
+  {% if not pageSection.disabled %}
+
+    {% if pageSection._type == 'pageTitleSection' %}
+      {% set title = pageSection.title %}
+      {% include "page/page-title.njk" %}
+    {% elseif pageSection._type == 'heroSection' %}
+      {% include "hero/hero-plain.njk" %}
+    {% elseif pageSection._type == 'picContentSection' %}
+      {% include "pictext/pic-text.njk" %}
+    {% elseif pageSection._type == 'faqSection' %}
+      {% include 'partials/faq.njk' %}
+    {% elseif pageSection._type == 'classMenuSection' %}
+      {% include 'class/classMenu.njk' %}
+    {% elseif pageSection._type == 'classPassSection' %}
+      {% include 'class/classPass.njk' %}
+    {% elseif pageSection._type == 'classScheduleSection' %}
+      {% include 'class/classSchedule.njk' %}
+    {% endif %}
+
+    <p> pageSection._type:  {{pageSection._type}}</p>
+  {% endif %}
+{% endfor %}

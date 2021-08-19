@@ -1,10 +1,15 @@
-   <!-- Page Title Section Start -->
-        <div class="page-title-section section section-padding-top-0">
-            <div class="page-breadcrumb position-static">
+ <!-- Page Title Section Start -->
+        <div class="page-title-section section">
+            <div class="page-title">
+                <div class="container">
+                    <h1 class="title">{{title | safe}}</h1>
+                </div>
+            </div>
+            <div class="page-breadcrumb">
                 <div class="container">
                     <ul class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="current">Contact me</li>
+                        <li><a href="/">Home</a></li>
+                        <li class="current">{{title}}</li>
                     </ul>
                 </div>
             </div>
