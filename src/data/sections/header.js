@@ -3,7 +3,8 @@ const client = require('../../../utils/sanityClient.js')
 const filter = `
  *[_type == "sectionsHeader" && !(_id in path('drafts.**'))]{
   'menuTitle':headerMenu->menuTitle,
-  'menu': headerMenu->menuItems[]{
+  ...headerMenu->{
+    'menu':menuItems[]{
       'linkType': _type,
       'name': title,
       'externalUrl': url,
@@ -17,7 +18,7 @@ const filter = `
         openInNewTab,
         'slug': page->slug.current,
         'slugName': page->title,
-      },
+      }},
     },
   }[0]
 `

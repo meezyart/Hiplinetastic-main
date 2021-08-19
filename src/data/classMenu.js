@@ -1,4 +1,3 @@
-const groq = require('groq');
 const client = require('../../utils/sanityClient.js');
 
 const filter = `
@@ -6,11 +5,13 @@ const filter = `
 
   classDescription,
   classChoreographers[]->{
+
     fullName,
     nickname,
     'coverImage': coverImages[0].asset->,
 	'alt':coverImages[0].alt,
 	'coverVideo': coverVideos[0].asset->,
+
   },
   classLink,
   className,

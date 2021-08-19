@@ -43,13 +43,21 @@ const filter = `
           }
       },
       _type == "classMenuSection" => {
+
           classMenuSections[]->{
-              ...,
-              'choreographers':classChoreographers[]->{
-                  fullName,nickname
+            'classImage':classImage.asset->,
+                classDescription,
+                classChoreographers[]->{
+                  fullName,
+                  nickname,
+                  'coverImage': coverImages[0].asset->,
+                'alt':coverImages[0].alt,
+                'coverVideo': coverVideos[0].asset->,
+
                 },
-              'mainContent':classDescription,
-              classLink
+                classLink,
+                className,
+                updatedAt
             }
       },
       _type == "classPassSection" => {
