@@ -4,10 +4,10 @@
     Version: 1.0
 
 -----------------------------------------------------------------------------------
-    
+
     CSS INDEX
     ===================
-	
+
     01. Template default CSS
     02. Template Spacing CSS
     03. Plugin Custom CSS (Custom style to override plugin default style)
@@ -16,7 +16,7 @@
         03.03. Selectric Select Option
     04. Elements CSS
         04.01 Accordion CSS
-        04.02 Brand CSS 
+        04.02 Brand CSS
         04.03 Breadcrumb CSS
         04.04 Button CSS
         04.05 Call Out CSS
@@ -109,6 +109,8 @@
 
 -----------------------------------------------------------------------------------*/
 @import "variabls";
+@import 'normalize';
+@import 'reboot';
 @import "common";
 @import "spacing";
 @import "elements";

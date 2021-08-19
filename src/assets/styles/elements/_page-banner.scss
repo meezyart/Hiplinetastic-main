@@ -1,9 +1,9 @@
 /* 04.17 Page Banner CSS */
 
 .banner-slider {
-    .banner-slider-nav{
+    .banner-slider-nav {
         cursor: pointer;
-        background: rgba(0,0,0,.5);
+        background: rgba(0, 0, 0, .5);
         width: 70px;
         height: 70px;
         line-height: 70px;
@@ -14,51 +14,52 @@
         opacity: 0;
         visibility: hidden;
         transition: $transition;
-        &::after{
+        &::after {
             display: none;
         }
-        & i{
+        & i {
             font-size: 30px;
             line-height: 1;
             vertical-align: middle;
         }
         // Responsive
-        @media #{$tablet-device}{
+        @media #{$tablet-device} {
             width: 60px;
             height: 60px;
             line-height: 60px;
-            & i{
+            & i {
                 font-size: 18px;
             }
         }
-        @media #{$large-mobile}{
+        @media #{$large-mobile} {
             width: 50px;
             height: 50px;
             line-height: 50px;
-            & i{
+            & i {
                 font-size: 18px;
             }
         }
     }
-    .banner-slider-prev{
+    .banner-slider-prev {
         left: 30px;
-        
     }
-    .banner-slider-next{
+    .banner-slider-next {
         right: 30px;
-        &::after{
+        &::after {
             display: none;
         }
     }
-    &:hover{
-        .banner-slider-nav{
+    &:hover {
+        .banner-slider-nav {
             opacity: 1;
             visibility: visible;
         }
     }
 }
 
+
 /*-- Hero Item --*/
+
 .banner-slider-item {
     width: 100%;
     height: 700px;
@@ -67,24 +68,27 @@
     position: relative;
     z-index: 1;
     // Responsive
-    @media #{$laptop-device}{
+    @media #{$laptop-device} {
         height: 700px;
     }
-    @media #{$desktop-device}{
+    @media #{$desktop-device} {
         height: 500px;
     }
-    @media #{$tablet-device}{
+    @media #{$tablet-device} {
         height: 500px;
     }
-    @media #{$large-mobile}{
+    @media #{$large-mobile} {
         height: 450px;
     }
 }
 
+
 /*-- Hero Content Two For Hero Slider --*/
-.banner-content-area{
+
+.banner-content-area {
     padding-bottom: 50px;
 }
+
 .banner-slider-content-2 {
     &.left {
         text-align: left;
@@ -95,14 +99,14 @@
     &.right {
         text-align: right;
         // Responsive
-        @media #{$tablet-device}{
+        @media #{$tablet-device} {
             text-align: left;
         }
-        @media #{$large-mobile}{
+        @media #{$large-mobile} {
             text-align: left;
         }
     }
-    & > * {
+    &>* {
         animation-duration: 1s;
         animation-fill-mode: both;
         animation-name: fadeOutUp;
@@ -114,19 +118,18 @@
         color: $white;
         text-transform: uppercase;
         margin-bottom: 0;
-        
         // Responsive
-        @media #{$tablet-device}{
+        @media #{$tablet-device} {
             font-size: 36px;
             line-height: 44px;
             margin-bottom: 20px;
         }
-        @media #{$large-mobile}{
+        @media #{$large-mobile} {
             font-size: 36px;
             line-height: 44px;
             margin-bottom: 20px;
         }
-        @media #{$small-mobile}{
+        @media #{$small-mobile} {
             font-size: 32px;
             line-height: 38px;
         }
@@ -139,12 +142,12 @@
         font-weight: 700;
         text-transform: uppercase;
         margin-bottom: 25px;
-        .number{
+        .number {
             font-size: 34px;
             line-height: 34px;
             vertical-align: middle;
         }
-        .line{
+        .line {
             display: inline-block;
             width: 60px;
             height: 1px;
@@ -153,40 +156,40 @@
             margin-right: 30px;
             margin-left: 15px;
             // Responsive
-            @media #{$extra-small-mobile}{
+            @media #{$extra-small-mobile} {
                 display: none;
             }
         }
     }
-    & p{
+    & p {
         font-size: 24px;
         line-height: 36px;
         font-weight: 500;
         color: $white;
         // Responsive
-        @media #{$tablet-device}{
+        @media #{$tablet-device} {
             font-size: 20px;
             line-height: 30px;
         }
-        @media #{$large-mobile}{
+        @media #{$large-mobile} {
             font-size: 20px;
             line-height: 30px;
         }
-        @media #{$extra-small-mobile}{
+        @media #{$extra-small-mobile} {
             font-size: 16px;
             line-height: 26px;
         }
     }
-   
 }
-/*-- Slide Content In Animation --*/
-.swiper-slide-active{
-    & .banner-slider-content-2 {
 
+
+/*-- Slide Content In Animation --*/
+
+.swiper-slide-active {
+    & .banner-slider-content-2 {
         // All Element Selector
-        & > * {
+        &>* {
             animation-name: fadeInUp;
-            
             // Child Selector
             &:nth-child(1) {
                 animation-delay: 0.5s;
@@ -206,62 +209,59 @@
             &:nth-child(6) {
                 animation-delay: 3s;
             }
-            
         }
     }
 }
 
-
-.page-banner-slider{
-    .swiper-slide{
+.page-banner-slider {
+    .swiper-slide {
         transform: scale(1.35);
-        transform:scale(1.35);
+        transform: scale(1.35);
         backface-visibility: hidden;
     }
 }
 
-
 .swiper-slide-active {
-    .swiper-slide{
+    .swiper-slide {
         transform: scale(1);
-        transition: transform 11s cubic-bezier(.1,.2,.7,1);
+        transition: transform 11s cubic-bezier(.1, .2, .7, 1);
     }
 }
 
-.page-banner-title{
-    max-width: 770px;
+.page-banner-title {
+    max-width: 1150px;
     margin: 0 auto;
-    text-align: center;
-    .title{
+    // text-align: center;
+    .title {
         font-size: 34px;
         line-height: 48px;
         color: $white;
         margin-bottom: 0;
         // Responsive
-        @media #{$tablet-device}{
+        @media #{$tablet-device} {
             font-size: 32px;
             line-height: 46px;
         }
-        @media #{$large-mobile}{
+        @media #{$large-mobile} {
             font-size: 24px;
             line-height: 36px;
         }
     }
-    &.course-banner-title{
+    &.course-banner-title {
         max-width: 100%;
-        .title{
+        .title {
             font-size: 48px;
             font-weight: 700;
             line-height: 1.17;
             color: $white;
             // Responsive
-            @media #{$desktop-device}{
+            @media #{$desktop-device} {
                 font-size: 42px;
             }
-            @media #{$tablet-device}{
+            @media #{$tablet-device} {
                 font-size: 36px;
             }
-            @media #{$large-mobile}{
+            @media #{$large-mobile} {
                 font-size: 28px;
             }
         }
@@ -269,20 +269,20 @@
 }
 
 .page-title-bar-meta {
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 1.67;
-	text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.67;
+    text-transform: capitalize;
     color: $white;
     margin-top: 15px;
     text-align: center;
-    & > div{
+    &>div {
         display: inline-block;
         padding: 5px 10px;
-        .meta-icon{
+        .meta-icon {
             font-size: 14px;
             margin-right: 7px;
-            img{
+            img {
                 width: 32px;
                 vertical-align: middle;
                 border-radius: 50%;
