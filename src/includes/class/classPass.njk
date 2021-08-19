@@ -1,0 +1,168 @@
+
+
+{% macro passBlock(imageClass='',passName='',contentClass='',circleClass='',passPrice=0,color='',mainContent='',passBullets, healcodeClass='',bulletClass='', buttonClass='btn btn-lg mt-30', healcodeType='gift-card-link',buttonTitle='Buy Now',passLink,dataId,mbo={}) %}
+    <div class="price-image bg-{{color}}  text-white">
+        <h4>{{passName}}</h4>
+    </div>
+    <div class="pricing-content {{contentClass}} ">
+        <div class="price-circle {{circleClass}} ">
+            {% if passPrice == 0 or passPrice == null %}
+                <div class="icon">
+                    <i class="fas fa-heart fa-4x"></i>
+                </div>
+
+            {% else %}
+                <h3>${{passPrice }}</h3>
+            {% endif %}
+        </div>
+        <div class="price-description text-{{color}}-d50">
+            {% if mainContent %}
+                {{mainContent | blocksToHtml | safe }}
+            {% endif %}
+        </div>
+        <div >
+            {% if passBullets %}
+                <ul class="{{bulletClass}}">
+                    {% for bullet in passBullets %}
+                        <li>{{bullet}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        {% if mbo %}
+            <healcode-widget data-version="0.2" data-link-class="{{healcodeClass}} {{buttonClass}}" data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="{{healcodeType}}" data-inner-html="{{buttonTitle}}" data-service-id="{{dataId}}"/>
+
+        {% elseif passLink %}
+               <a href={{passLink.link}} class="btn {{buttonClass}} btn-lg mt-30">{{passLink.title}}</a>
+
+        {% endif %}
+    </div>
+
+{% endmacro %}
+
+
+<!-- Pass Section Start -->
+<div class="section ">
+    <div class="container">
+        {% if pageSection.dataType == 'classPassSection' %}
+            {# INsert reapting element here #}
+            <!-- Pass Heaader -->
+            <div class="section-title text-center mb-95">
+                <h2>{{pageSection.passHeadline}}</h2>
+                {% if pageSection.passIntro %}
+                    <p>{{pageSection.passIntro | blocksToHtml | safe }}</p>
+                {% endif %}
+
+            </div>
+            <!-- Pass Wrapper Start -->
+            <div class="row row-cols-xl-3 row-cols-lg-3 row-cols-md-1 row-cols-1 max-mb-n30 justify-content-center ">
+                {% for pass in pageSection.passes %}
+
+                    <div class="col section-padding-bottom-70">
+                        <div class="price-item mb-30">
+
+                            {# pink prime #}
+                            {% if pageSection.passColor.title == "pink-prime" %}
+                            {{ passBlock(
+                                passName=pass.passName,
+                                contentClass='bg-pink-prime-l50',
+                                circleClass='text-pink-prime-d30',
+                                passPrice=pass.passPrice,
+                                color='pink-prime',
+                                mainContent=pass.mainContent,
+                                passBullets=pass.passBullets,
+                                passLink=pass.passLink,
+                                bulletClass='text-pink-prime-d30',
+                                buttonClass='btn btn-pink-prime btn-hover-pink-prime-d50 btn-lg mt-30',
+                                mbo=pass.mbo,
+                                dataId=pass.mbo.dataId,
+                                healcodeClass=pass.mbo.dataLinkClass,
+                                healcodeClass=pass.mbo.dataLinkClass,
+                                healcodeType=pass.mbo.dataType,
+                                buttonTitle=pass.mbo.buttonTitle
+                                )}}
+
+                            {% endif %}
+                            {# Purple #}
+                            {% if pageSection.passColor.title == "purple" %}
+                             {{ passBlock(
+                                passName=pass.passName,
+                                contentClass='bg-purple-light ',
+                                circleClass='text-purple-d50',
+                                passPrice=pass.passPrice,
+                                color='purple',
+                                mainContent=pass.mainContent,
+                                passBullets=pass.passBullets,
+                                passLink=pass.passLink,
+                                bulletClass='text-purple-d50',
+                                buttonClass='btn btn-purple btn-hover-purple-d50 btn-lg mt-30',
+                                mbo=pass.mbo,
+                                dataId=pass.mbo.dataId,
+                                healcodeClass=pass.mbo.dataLinkClass,
+                                healcodeClass=pass.mbo.dataLinkClass,
+                                healcodeType=pass.mbo.dataType,
+                                buttonTitle=pass.mbo.buttonTitle
+                                )}}
+
+                            {% endif %}
+                            {# Blue #}
+                            {% if pageSection.passColor.title == "blue" %}
+                             {{ passBlock(
+                                passName=pass.passName,
+                                contentClass='bg-blue-l50',
+                                circleClass='text-blue-d10',
+                                passPrice=pass.passPrice,
+                                color='blue',
+                                mainContent=pass.mainContent,
+                                passBullets=pass.passBullets,
+                                passLink=pass.passLink,
+                                bulletClass='text-blue-d50',
+                                buttonClass='btn btn-blue btn-hover-blue-d50 btn-lg mt-30',
+                                mbo=pass.mbo,
+                                dataId=pass.mbo.dataId,
+                                healcodeClass=pass.mbo.dataLinkClass,
+                                healcodeClass=pass.mbo.dataLinkClass,
+                                healcodeType=pass.mbo.dataType,
+                                buttonTitle=pass.mbo.buttonTitle
+                                )}}
+
+                            {% endif %}
+                            {# orange section #}
+                            {% if pageSection.passColor.title == "ceren-orange" %}
+                               {{ passBlock(
+                                passName=pass.passName,
+                                contentClass='bg-ceren-orange-l20',
+                                circleClass='text-ceren-orange-d10',
+                                passPrice=pass.passPrice,
+                                color='ceren-orange',
+                                mainContent=pass.mainContent,
+                                passBullets=pass.passBullets,
+                                passLink=pass.passLink,
+                                bulletClass='text-ceren-orange-d50',
+                                buttonClass='btn btn-ceren-orange btn-hover-ceren-orange-d50 btn-lg mt-30',
+                                mbo=pass.mbo,
+                                dataId=pass.mbo.dataId,
+                                healcodeClass=pass.mbo.dataLinkClass,
+                                healcodeClass=pass.mbo.dataLinkClass,
+                                healcodeType=pass.mbo.dataType,
+                                buttonTitle=pass.mbo.buttonTitle
+                                )}}
+                                
+                            {% endif %}
+
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+            <!-- Pass Wrapper End -->
+        </div>
+    {% else %}
+        <p>No pass available.</p>
+
+    {% endif %}
+
+</div>
+</div>
+<!-- Course Section End -->
