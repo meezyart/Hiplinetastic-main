@@ -164,7 +164,8 @@
                 font-size: 20px;
                 font-weight: 700;
                 padding: 20px;
-                a:hover {
+                a:hover,
+                a.active {
                     color: $hot-pink-light
                 }
                 @media #{$large-tablet} {
@@ -191,15 +192,23 @@
             min-width: 240px;
             transform: translateY(20%);
             .videoWrapper {
+                position: relative;
                 width: 240px;
-                min-width: 240px;
+                min-height: 240px;
                 height: 240px;
                 min-width: 240px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 border-radius: 50%;
                 overflow: hidden;
                 video {
-                    height: 240px;
-                    width: auto;
+                    min-height: 250px;
+                    height: 250px;
+                    top: 0;
+                    // width: 250px;
+                    border-radius: 50%;
+                    // overflow: hidden;
                 }
             }
             @media #{$large-tablet} {

@@ -2,15 +2,14 @@
 
 .page-title-section {
     position: relative;
-
     padding-top: 100px;
     padding-bottom: 80px;
     // Responsive
-    @media #{$tablet-device}{
+    @media #{$tablet-device} {
         padding-top: 80px;
         padding-bottom: 60px;
     }
-    @media #{$large-mobile}{
+    @media #{$large-mobile} {
         padding-top: 60px;
         padding-bottom: 40px;
     }
@@ -19,24 +18,19 @@
 .page-title {
     & .title {
         font-size: 48px;
-
         margin: 0;
-
         text-align: center;
     }
-
     @media #{$desktop-device} {
         & .title {
             font-size: 42px;
         }
     }
-
     @media #{$tablet-device} {
         & .title {
             font-size: 36px;
         }
     }
-
     @media #{$large-mobile} {
         & .title {
             font-size: 30px;
@@ -44,10 +38,24 @@
     }
 }
 
+.page-banner-section {
+    position: relative;
+    overflow: visible !important;
+}
+
 .page-breadcrumb {
     position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
+    bottom: -11rem;
+    z-index: 5;
+    left: 1rem;
+    width: max-content;
+    color: white;
+    border-radius: 14px;
+    background: $primary;
+    @media #{$desktop-device} {
+        bottom: -6rem;
+    }
+    @media #{$tablet-device} {
+        bottom: -5rem;
+    }
 }

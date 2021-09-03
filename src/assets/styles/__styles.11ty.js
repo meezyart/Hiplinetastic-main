@@ -1,7 +1,7 @@
 // This file handles the CSS build.
 // It will run Sass and compile all styles defined in the main entry file.
-
-// main entry point name
+const postcss = require('postcss')
+    // main entry point name
 const ENTRY_FILE_NAME = 'style.scss'
 
 const path = require('path')
@@ -36,6 +36,24 @@ module.exports = class {
                 resolve(result.css.toString())
             })
         })
+    }
+
+    // Minify & Optimize with CleanCSS in Production
+    async postCss(css) {
+        return postcss([
+                // require('postcss-import'), // combine imports into one file
+                // require('postcss-css-variables'), // replace variables by their values
+                require('autoprefixer'), // vendor prefix for older browsers
+                // require('cssnano') // minify css
+            ])
+            .process(css, {
+                // from: inputFilename,
+                // to: outputFilename.substr(outputDir.length), // file path relative to output dir
+                map: { inline: false }
+            })
+            .then((result) => {
+                return result.css
+            })
     }
 
     // Minify & Optimize with CleanCSS in Production
@@ -101,7 +119,9 @@ module.exports = class {
     async render({ entryPath }) {
         try {
             const css = await this.compile({ file: entryPath })
-            const result = await this.minify(css)
+            const post = await this.postCss(css)
+            console.log(post)
+            const result = await this.minify(post)
             return result
         } catch (err) {
             // if things go wrong

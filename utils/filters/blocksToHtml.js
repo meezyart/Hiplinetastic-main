@@ -12,44 +12,62 @@ const getInternalUrl = require('../getInternalUrl.js');
 const h = blocksToHtml.h;
 
 const serializers = {
+    // list: (props, b, c) => {
+    //     return h(
+    //         'ul', {
+    //             className: 'maxcoach-list'
+    //         },
+    //         props.children
+    //     )
+
+    // },
+    // listItem: (props, b, c) => {
+    //     return h(
+    //         'li', {
+    //             className: 'icon'
+    //         },
+    //         props.children
+    //     )
+    // },
+
     types: {
-        imageBlock: props => (
-            h('figure', { className: 'u-my30 u-my40' }, [
+        mainImage: (props) =>
+            h('figure', { className: '' }, [
                 h('img', {
-                    dataset: {
-                        srcset: imageSrcset(props.node.asset),
-                        sizes: 'auto'
-                    },
-                    alt: props.node.alternativeText
-                }),
-                h('figcaption', { class: 'u-mt10 u-font12 u-font14-md' }, props.node.caption)
-            ])
-        ),
-        youtubeBlock: props => (
-            h('iframe', { src: `https://www.youtube.com/embed/${getYouTubeID(props.node.youtubeUrl)}` })
-        ),
-        vimeoBlock: props => (
-            h('iframe', { src: `https://player.vimeo.com/video/${getVideoId(props.node.vimeoUrl).id}` })
-        )
+                    // dataset: {
+                    //     srcset: imageSrcset(props.node.asset),
+                    //     sizes: 'auto'
+                    // },
+                    src: imageUrl(props.node.asset),
+                    alt: props.node.alt
+                })
+                // h('figcaption', { class: '' }, props.node.caption)
+            ]),
+        youtubeBlock: (props) => h('iframe', { src: `https://www.youtube.com/embed/${getYouTubeID(props.node.youtubeUrl)}` }),
+        vimeoBlock: (props) => h('iframe', { src: `https://player.vimeo.com/video/${getVideoId(props.node.vimeoUrl).id}` })
     },
     marks: {
-        internalLink: props => (
-            h('a', {
-                href: getInternalUrl(props.mark.slug, props.mark.dataType),
-                class: props.mark.linkButton ? 'o-button' : ''
-            }, props.children)
+        internalLink: (props) => (
+            h(
+                'a', {
+                    href: getInternalUrl(props.mark.slug, props.mark.dataType),
+                    class: props.mark.isButton ? 'btn btn-primary btn-hover-secondary' : ''
+                },
+                props.children
+            )
         ),
-        link: props => (
-            h('a', {
+        link: (props) =>
+            h(
+                'a', {
                     href: props.mark.href,
                     target: '_blank',
                     rel: 'noopener',
-                    class: props.mark.linkButton ? 'o-button' : ''
+                    class: props.mark.isButton ? 'btn btn-primary btn-hover-secondary' : ''
                 },
-                props.children)
-        )
+                props.children
+            )
     }
-};
+}
 
 module.exports = value => {
     const html = blocksToHtml({

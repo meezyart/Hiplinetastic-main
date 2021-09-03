@@ -22,6 +22,7 @@ const rssDate = require('./utils/filters/rssDate.js');
 const articleUrl = require('./utils/filters/articleUrl.js');
 const articleCategoryUrl = require('./utils/filters/articleCategoryUrl.js');
 const blocksToHtml = require('./utils/filters/blocksToHtml.js');
+const allBlocksToHtml = require('./utils/allBlocksToHtml.js');
 
 // Import shortcodes
 const imageUrl = require('./utils/shortcodes/imageUrl.js');
@@ -73,6 +74,7 @@ module.exports = function(config) {
     config.addFilter('articleUrl', articleUrl);
     config.addFilter('articleCategoryUrl', articleCategoryUrl);
     config.addFilter('blocksToHtml', blocksToHtml);
+    config.addFilter('allBlocksToHtml', allBlocksToHtml)
 
     // Shortcodes
     config.addShortcode('imageUrl', imageUrl);
@@ -82,13 +84,24 @@ module.exports = function(config) {
     config.addShortcode('currentYear', currentYear);
 
     // Layout aliases
-    config.addLayoutAlias('base', 'layouts/base.njk');
-    config.addLayoutAlias('default', 'layouts/default.njk');
-    config.addLayoutAlias('page', 'layouts/page.njk');
+    // config.addLayoutAlias('base', 'layouts/base.njk');
+    // config.addLayoutAlias('home', 'layouts/home.njk');
+    // config.addLayoutAlias('page', 'layouts/page.njk');
 
 
     // Icon Sprite
     config.addNunjucksAsyncShortcode('iconsprite', iconsprite)
+
+
+    config.addShortcode(
+        'debug',
+        (value) =>
+        `<pre style="padding: 100px 0; font-size: 14px; font-family: monospace;">${JSON.stringify(
+                value,
+                null,
+                2
+            )}</pre>`
+    )
 
     // Asset Watch Targets
     config.addWatchTarget('./src/assets')
@@ -106,6 +119,8 @@ module.exports = function(config) {
 
     // Layouts
     config.addLayoutAlias('base', 'base.njk')
+    config.addLayoutAlias('page', 'page.njk')
+    config.addLayoutAlias('home', 'home.njk')
     config.addLayoutAlias('post', 'post.njk')
 
     // Pass-through files
@@ -117,7 +132,9 @@ module.exports = function(config) {
     config.addPassthroughCopy('src/assets/js')
 
     // Deep-Merge
-    config.setDataDeepMerge(true)
+    // config.setDataDeepMerge(true)
+
+    config.setQuietMode(true)
 
     // Base Config
     return {

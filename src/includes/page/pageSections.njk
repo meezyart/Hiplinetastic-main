@@ -8,6 +8,12 @@
       {% include "hero/hero-plain.njk" %}
     {% elseif pageSection._type == 'picContentSection' %}
       {% include "pictext/pic-text.njk" %}
+    {% elseif pageSection._type == 'richTextSection' %}
+      {% include "partials/richText.njk" %}
+    {% elseif pageSection._type == 'timelineSection' %}
+      {% include 'partials/timeline.njk' %}
+    {% elseif pageSection._type == 'loveClubSection' %}
+      {% include 'partials/blogPost.njk' %}
     {% elseif pageSection._type == 'faqSection' %}
       {% include 'partials/faq.njk' %}
     {% elseif pageSection._type == 'classMenuSection' %}
@@ -17,7 +23,6 @@
     {% elseif pageSection._type == 'classScheduleSection' %}
       {% include 'class/classSchedule.njk' %}
     {% endif %}
-
-    <p> pageSection._type:  {{pageSection._type}}</p>
+    {# <p> pageSection._type:  {{pageSection._type}}</p> #}
   {% endif %}
 {% endfor %}

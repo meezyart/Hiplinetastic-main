@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ meta.lang }}"  {%- if htmlClass %} class="{{ htmlClass }}"{% endif  -%}>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ meta.title }}</title>
-
 
     {% include "meta.njk" %}
     {% include "theme-style.njk" -%}
 </head>
 <body  {%- if bodyClass %} class="{{ bodyClass }}"{% endif  -%}>
     <div hidden>{% iconsprite %}</div>
-    {# <a href="#main" class="sr-skip-link">skip to main content</a> #}
 
     <div id="page" role="document">
     {%- block headerNav -%}
@@ -20,7 +15,9 @@
         <main id="main" class="main" tabindex="-1">
             {{ content | safe }}
         </main>
-        {% include "footer.njk" %}
+    {% include "footer.njk" %}
+    {% include "page/upArrow.njk" %}
+
     </div>
 
      {%- include "mobile-menu.njk" %}
@@ -29,14 +26,14 @@
     <script src="{{ script | url }}"></script>
     {%- endfor %}
     {%- block addtionaljs %}{% endblock %}
-    {%- if GA_ID %}
+    {# {%- if GA_ID %}
     <script src="{{ '/assets/js/cached.js' | url }}"></script>
     <script src="{{ '/assets/js/web-vitals.js' | url }}"></script>
-    {% endif -%}
-    <script type="text/javascript">
+    {% endif -%} #}
+    {# <script type="text/javascript">
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/serviceworker.js')
         }
-    </script>
+    </script> #}
 </body>
 </html>

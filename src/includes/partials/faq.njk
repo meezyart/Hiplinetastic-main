@@ -1,113 +1,51 @@
+<!-- Faq Section Start -->
+<div class="faq-section section section-padding">
+    <div class="container">
+        <!-- Section Title Start -->
+        <div class="section-title text-center" >
 
-        <!-- Faq Section Start -->
-        <div class="faq-section section section-padding">
-            <div class="container">
-                <!-- Section Title Start -->
-                <div class="section-title text-center" data-aos="fade-up">
-                    <span class="sub-title secondary-color">Four major Steps to Success</span>
-                    <h2 class="title heading-color">Best chances for expanding your <br> success to the max</h2>
-                </div>
-                <!-- Section Title End -->
-                <div class="row">
-                    <!-- Start Single Accordion -->
-                    <div class="col-lg-6">
-                        <div class="mx-accordion max-mb-n30 mb-sm-30 mb-xs-30" id="accordionExample">
-                            <div class="card">
-                                <div class="card-header" id="headingOne">
-                                    <h5 class="mb-0">
-                                        <a href="#" class="acc-btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            How to register online?
+            <h2 class="title heading-color">{{pageSection.heading}}</h2>
+        </div>
+        <!-- Section Title End -->
+        <div class="row">
+            <!-- Start Single Accordion -->
+            <div class="col-lg-12">
+                <div class="mx-accordion max-mb-n30 mb-sm-30 mb-xs-30" id="accordionExample">
+                    {% for card in pageSection.faqItems %}
+                        <div class="card">
+                            <div class="card-header" id="heading{{loop.index}}">
+                                <h5 class="mb-0">
+                                    <a href="#" class="acc-btn {% if loop.first -%}
+
+                                     {%- else -%}
+                                     collapsed
+                                    {%- endif -%}" data-toggle="collapse" data-target="#collapse{{loop.index}}"
+                                    {% if loop.first %}
+                                     aria-expanded="true"
+                                     {% else %}
+                                     aria-expanded="false"
+                                    {% endif %}
+                                    aria-controls="collapse{{loop.index}}">
+                                            {{card.heading}}
                                         </a>
-                                    </h5>
-                                </div>
-
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                    <div class="card-body">Enrolling in an online class is easy. At MaxCoach, we serve several categories of online learners. Select the student category that you identify with to get started.
-                                    </div>
-                                </div>
+                                </h5>
                             </div>
 
-                            <div class="card">
-                                <div class="card-header" id="headingTwo">
-                                    <h5 class="mb-0">
-                                        <a href="#" class="acc-btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            How do I customize my account?
-                                        </a>
-                                    </h5>
-                                </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                    <div class="card-body">In order to customize your account’s information, just log in with the provided passcode and change the info.
+                            <div id="collapse{{loop.index}}" class="collapse {% if loop.first -%}
+                                    show
+                                    {%- endif -%}" aria-labelledby="heading{{loop.index}}" data-parent="#accordionExample">
+                                <div class="card-body">{{card.mainContent | blocksToHtml | safe }}
                                     </div>
-                                </div>
                             </div>
-
-                            <div class="card">
-                                <div class="card-header" id="headingThree">
-                                    <h5 class="mb-0">
-                                        <a href="#" class="acc-btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            How do you process my information?
-                                        </a>
-                                    </h5>
-                                </div>
-                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                    <div class="card-body">Your data will be kept private and secure on our database. No illegal use without prior notice.
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
-                    </div>
-                    <!-- End Single Accordion -->
+                    {% endfor %}
 
-                    <!-- Start Single Accordion -->
-                    <div class="col-lg-6">
-                        <div class="mx-accordion max-mb-n30" id="accordionExample2">
-                            <div class="card">
-                                <div class="card-header" id="headingfour">
-                                    <h5 class="mb-0">
-                                        <a href="#" class="acc-btn" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
-                                            How do I contact support?
-                                        </a>
-                                    </h5>
-                                </div>
-
-                                <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#accordionExample2">
-                                    <div class="card-body">You can contact our help center or any contact method (phone call, email or appear at our office) to get help. </div>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-header" id="headingfive">
-                                    <h5 class="mb-0">
-                                        <a href="#" class="acc-btn collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
-                                            How to cancel my membership?
-                                        </a>
-                                    </h5>
-                                </div>
-                                <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#accordionExample2">
-                                    <div class="card-body">You just need to submit a membership termination request, we’ll proceed within 24 hours.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-header" id="headingsix">
-                                    <h5 class="mb-0">
-                                        <a href="#" class="acc-btn collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
-                                            How can I get a discount?
-                                        </a>
-                                    </h5>
-                                </div>
-                                <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#accordionExample2">
-                                    <div class="card-body">Learners can get a discount by coupon or voucher. If you have one, fill in the code box before making any payment.
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- End Single Accordion -->
+                   
                 </div>
             </div>
+            <!-- End Single Accordion -->
+
         </div>
-        <!-- Faq Section End -->
+    </div>
+</div>
+<!-- Faq Section End -->

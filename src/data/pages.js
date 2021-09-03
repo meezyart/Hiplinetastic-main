@@ -15,6 +15,7 @@ const filter = `
       _type == "picContentSection" => {
         'backgroundColor': bkgrdOpts.backgroundColor,
         picImages[]{
+          'key':_key,
           'url':asset->url,
           alt
         },
@@ -50,9 +51,9 @@ const filter = `
                 classChoreographers[]->{
                   fullName,
                   nickname,
-                  'coverImage': coverImages[0].asset->,
-                'alt':coverImages[0].alt,
-                'coverVideo': coverVideos[0].asset->,
+                  'coverImage': coverImages.asset->,
+                'alt':coverImages.alt,
+                'coverVideo': coverVideoMain,
 
                 },
                 classLink,

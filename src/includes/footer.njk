@@ -8,7 +8,16 @@
                     <!-- Footer Widget Start -->
                     <div class="col-xl-6 col-md-5 col-12 max-mb-50">
                         <div class="footer-widget">
-                            <h4 class="footer-widget-title">Address</h4>
+                        <div class="footer-logo">
+                           <a href="{{ '/' | absoluteUrl }}">
+
+                            {% set lightLogo %}{% imageUrl settings.logo.lightLogo.url %}{% endset %}
+
+
+                            <img srcset="{% imageSrcset lightLogo %}" class="light-logo" data-sizes="auto" alt="Logo">
+
+                        </a></div>
+                           
                             <div class="footer-widget-content">
                                 <div class="content">
                                     <p>382 NE 191st St # 87394 Miami, FL 33179-3899</p>
@@ -66,7 +75,7 @@
                 <!-- Footer Copyright Start -->
                 <div class="row max-mt-20">
                     <div class="col">
-                        <p class="copyright">&copy; 2020 Maxcoach. <a href="https://hasthemes.com/">All Rights Reserved</a></p>
+                        <p class="copyright">&copy; {% currentYear %} Hipline. <a href="https://hasthemes.com/">All Rights Reserved</a></p>
                     </div>
                 </div>
                 <!-- Footer Copyright End -->

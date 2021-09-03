@@ -1,14 +1,29 @@
 <!-- Page Banner Section Start -->
-        <div class="page-banner-section section section-padding-200" style="background-image:url({% imageUrl pageSection.heroImage, 1920 ,700%})" data-bg-image="{% imageUrl pageSection.heroImage, 1920, 700 %}">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="page-banner-title text-{{pageSection.headingTextPos}}">
-                            <h1 class="title">{{pageSection.heading}}</h1>
-                        </div>
-                    </div>
+<div class="page-banner-section section section-padding-200 " style="background-image:url({% imageUrl pageSection.heroImage, 1920 ,700 %})" data-bg-image="{% imageUrl pageSection.heroImage, 1920, 700 %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-banner-title text-{{pageSection.headingTextPos}}">
+                    <h1 class="title">{{pageSection.heading}}</h1>
                 </div>
+
             </div>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="page-breadcrumb">
+                    <div class="container">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
+                            <li class="current">{{title}}</li>
+                        </ul>
+                    </div>
+                </div>
 
-        <!-- Page Banner Section End -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->

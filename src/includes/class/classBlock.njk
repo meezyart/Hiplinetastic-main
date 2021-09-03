@@ -14,28 +14,29 @@
             {# <span class="date">Dec 23, 2019</span> #}
             {% if class.className %}
                 <h2 class="title text-color-purple-light ">
-                    <a href="course-details-standard-sidebar.html">{{class.className}}</a>
+                    <a href="/schedule/">{{class.className}}</a>
                 </h2>
             {% endif %}
+            {% if class.classDescription %}
+                <div class="class-decription">
+                    {{class.classDescription | blocksToHtml | safe }}
+                </div>
 
-            <div class="class-decription">
-                {{class.classDescription | blocksToHtml | safe }}
-            </div>
+            {% endif %}
 
-            <div class="teacher-wrapper">
+            <div class="teacher-wrapper" x-data="dancerLoop({{class.classChoreographers.length}})" x-init="loop">
                 {# {{class.classVideo  }} #}
                 <div class="teacher">
 
-                    <div class="videoWrapper">
-                        {% if class
-                            .classChoreographers[0]
-                            .coverVideo %}
-                            <video autoplay>
-                                <source src="{{class.classChoreographers[0].coverVideo.url}}" type="video/mp4">
-                                <source src="media/shuttle.ogv" type="video/ogg">
+                    <div class="videoWrapper"  >
+                        {% for dancer in class.classChoreographers %}
+                            <video autoplay x-show="activeDancer == {{loop.index}}"  x-ref="dancer-{{loop.index}}">
+                                <source src="{{dancer.coverVideo.url}}" type="video/mp4">
+                                {# <source src="media/shuttle.ogv" type="video/ogg"> #}
                                 Your browser does not support the HTML5 Video element.
                             </video>
-                        {% endif %}
+
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="choeargrapher-block">
@@ -49,9 +50,10 @@
 
                             {% if class.classChoreographers %}
                                 {% for dancer in class.classChoreographers %}
-
                                     <li>
-                                        <a href="{{'#'}}">
+                                        <a href="{{'#'}}"
+                                        @mouseover="hoverMe({{loop.index}})" @mouseout="loop"
+                                        :class="activeDancer == {{loop.index}} ? 'active' : ''">
                                             {% if dancer.nickname %}
                                                 {{dancer.nickname}}
                                                 {%else%}
@@ -74,7 +76,7 @@
             <a class="btn btn-blue btn-hover-blue-50 btn-long" href="#">Learn More</a>
             {% if class.classLink %}
                 <a class="btn btn-hot-pink-light btn-hover-hot-pink-light-50 btn-long" href="{% if class.classLink.link %}{{class.classLink.link}}{% endif %}" {% if class.classLink.link %}target="_blank"{% endif %}>{{class.classLink.title}}
-                        </a>
+                </a>
             {% endif %}
         </div>
     </div>
