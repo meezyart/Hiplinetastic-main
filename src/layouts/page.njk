@@ -8,8 +8,8 @@ viewName: page
 
   {% if thisPage.pageSections %}
     {% include 'page/pageSections.njk' %}
-  {# {% else %}
-    {{ content | safe }} #}
+  {% else %}
+    {{ content | safe }}
   {% endif %}
 
 

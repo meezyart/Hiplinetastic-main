@@ -9,14 +9,14 @@
     <div hidden>{% iconsprite %}</div>
 
     <div id="page" role="document">
-    {%- block headerNav -%}
-    {% include "header.njk" -%}
-    {%- endblock %}
-        <main id="main" class="main" tabindex="-1">
-            {{ content | safe }}
-        </main>
-    {% include "footer.njk" %}
-    {% include "page/upArrow.njk" %}
+        {%- block headerNav -%}
+        {% include "header.njk" -%}
+        {%- endblock %}
+            <main id="main" class="main" tabindex="-1">
+                {{ content | safe }}
+            </main>
+        {% include "footer.njk" %}
+        {% include "page/upArrow.njk" %}
 
     </div>
 
@@ -32,7 +32,7 @@
     {% endif -%} #}
     {# <script type="text/javascript">
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/serviceworker.js')
+            navigator.serviceWorker.register('/service-worker.js')
         }
     </script> #}
 </body>
