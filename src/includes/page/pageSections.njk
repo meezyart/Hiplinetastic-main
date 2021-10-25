@@ -14,14 +14,29 @@
       {% include 'partials/timeline.njk' %}
     {% elseif pageSection._type == 'loveClubSection' %}
       {% include 'partials/blogPost.njk' %}
+    {% elseif pageSection._type == 'dancerSection' %}
+      {% include 'partials/cheographer.njk' %}
+    {% elseif pageSection._type == 'pressSection' %}
+    {% debug pageSection %}
+      {% include 'press/pressList.njk' %}
+
+    {% elseif pageSection._type == 'testimonialSection' %}
+      {% include "testimonials/testimonals-2.njk" %}
     {% elseif pageSection._type == 'faqSection' %}
       {% include 'partials/faq.njk' %}
+    {% elseif pageSection._type == 'infoBoxSection' %}
+
+      {% include "partials/infoBoxes.njk" %}
     {% elseif pageSection._type == 'classMenuSection' %}
       {% include 'class/classMenu.njk' %}
     {% elseif pageSection._type == 'classPassSection' %}
       {% include 'class/classPass.njk' %}
     {% elseif pageSection._type == 'classScheduleSection' %}
+
       {% include 'class/classSchedule.njk' %}
+
+    {% elseif pageSection._type == 'contactSection' %}
+      {% include 'contact/contact-sec.njk' %}
     {% endif %}
     {# <p> pageSection._type:  {{pageSection._type}}</p> #}
   {% endif %}
