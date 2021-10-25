@@ -33,15 +33,28 @@ const filter = `
       },
       _type == "testimonialSection" => {
           version,
-          testimonials[]{
-            ...,
-            testimonials,
+          testimonials[]->{
+            author,
+            title,
             'authorImage':authorImage{
                 'url':asset->url,
                 alt
             },
             mainContent
           }
+      },
+      _type == "article" => {
+          cta,
+          excerpt,
+          mainContent,
+          publishedAt,
+          'featuredImage': featuredImage{
+                'url':asset->url,
+                alt
+              },
+          'slug': slug.current,
+          title,
+          'updatedAt': _updatedAt
       },
       _type == "classMenuSection" => {
 
@@ -56,7 +69,13 @@ const filter = `
                 'coverVideo': coverVideoMain,
 
                 },
-                classLink,
+                    'classLink': classLink{
+                    link,
+                      route,
+                      title,
+                      _type,
+                      'internal': landingPageRoute->slug.current
+                },
                 className,
                 updatedAt
             }
@@ -75,6 +94,18 @@ const filter = `
               'mainContent':loveClubIntro,
             },
       },
+      _type == "dancerSection" => {
+        ...,
+        headline,
+        'mainContent':dancerIntro,
+
+      },
+      _type == "infoBoxSection" => {
+        ...,
+        headline
+
+      },
+      contactSection,
       classSchedule,
       mainContent[]{
         ...,

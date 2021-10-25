@@ -3,34 +3,37 @@ const client = require('../../../utils/sanityClient.js')
 const filter = `
  *[_type == "sectionsFooter" && !(_id in path('drafts.**'))]{
    addressSection,
-  footerSection1{
+  footerSection1 {
    'title':footerMenuTitle1,
    'showFooter': showFooterMenu1,
    'menu':footerMenu1->{
    menuItems[]{
-     'slug':page->slug.current,
+    'slug':page->slug.current,
      title,
      _type,
      url,
      openInNewTab,
+      'externalUrl': url,
    }
-}
+ }
  },
-  footerSection2{
+  footerSection2 {
 
    'title':footerMenuTitle2,
    'showFooter': showFooterMenu2,
    'menu':footerMenu2->{
    menuItems[]{
-     'slug':page->slug.current,
-     title,
-     _type,
-     url,
-     openInNewTab,
+    'slug':page->slug.current,
+    title,
+    _type,
+    url,
+    openInNewTab,
+    'externalUrl': url,
    }
+
 }
  },
-
+'contactInfo':*[_type == "settingsContactInfo" && !(_id in path('drafts.**'))]{...contactInfo}[0]
 
   }[0]
 
