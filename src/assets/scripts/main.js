@@ -2,12 +2,12 @@
 /* ***** Main JS
 /* ***** ----------------------------------------------- ***** */
 
-import Highway from '@dogstudio/highway';
-// import { setActiveLink, updateBodyClasses, trackGA } from './components/highway.js';
-import Fade from './transitions/Fade'
+// import Highway from '@dogstudio/highway';
+// // import { setActiveLink, updateBodyClasses, trackGA } from './components/highway.js';
+// import Fade from './transitions/Fade'
 
 import { init as globalInit } from './components/global.js';
-import Scroll2Reveal from './vendors/Scroll2Reveal.js';
+// import Scroll2Reveal from './vendors/Scroll2Reveal.js';
 
 // Init on first load
 globalInit();
@@ -19,6 +19,10 @@ globalInit();
 //         default: Fade
 //     }
 // });
+
+// /* ----------------------------
+//     AOS Scroll Animation
+
 
 // // Executed at the start of every page load
 // H.on('NAVIGATE_IN', ({ to, location }) => {
