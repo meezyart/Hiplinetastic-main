@@ -1,0 +1,46 @@
+<!-- Course Section Start -->
+<div class="section section-padding-bottom">
+    <div class="container">
+
+{#
+        <!-- Course Top Bar Start -->
+        <div class="row justify-content-between align-items-center max-mb-20">
+            <div class="col-sm-auto col-12 max-mb-10">
+                <p class="result-count">We found <span>22</span> courses available for you</p>
+            </div>
+            <div class="col-sm-auto col-12 max-mb-10">
+                <select class="sort-by">
+                    <option selected="selected">Default</option>
+                    <option value="popularity">Popularity</option>
+                    <option value="date">Latest</option>
+                    <option value="price">Price: low to high</option>
+                    <option value="price-desc">Price: high to low</option>
+                </select>
+            </div>
+        </div>
+        <!-- Course Top Bar End --> #}
+
+        <!-- Courses Wrapper Start -->
+        <div class="row row-cols-xl-1 row-cols-lg-1 row-cols-md-1 row-cols-1 max-mb-n30">
+
+         {% if pageSection.classMenuSections %}
+            {% for class in pageSection.classMenuSections %}
+                {% include './classBlock.njk' %}
+            {% endfor %}
+            {% else %}
+                <p>No Classes available.</p>
+            {% endif %}
+
+        </div>
+        <!-- Courses Wrapper End -->
+{#
+        <div class="row max-mt-50">
+            <div class="col text-center">
+                <a href="JavaScript:Void(0);" class="btn btn-outline-primary load-more-btn">Load More <i class="fal fa-redo ml-3"></i>
+                </a>
+            </div>
+        </div> #}
+
+    </div>
+</div>
+<!-- Course Section End -->

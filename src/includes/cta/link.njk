@@ -1,0 +1,2 @@
+ <a {% if externalUrl %} href="{{ externalUrl | url }}" {% else %} href="{{('/'+slug) | absoluteUrl }}" {% endif %} {% if menuItem.openInNewTab %} target="_blank" {% endif %}>
+                                            <span  >{{ name }}</span></a>

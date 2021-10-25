@@ -18,19 +18,17 @@ module.exports = class {
         const outputPath = path.resolve(__dirname, '../../memory-fs/js/')
 
         // Transform .js files, run through Babel
-        const rules = [
-            {
-                test: /\.m?js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env'],
-                        plugins: ['@babel/plugin-transform-runtime']
-                    }
+        const rules = [{
+            test: /\.m?js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env'],
+                    plugins: ['@babel/plugin-transform-runtime']
                 }
             }
-        ]
+        }]
 
         // pass environment down to scripts
         const envPlugin = new webpack.EnvironmentPlugin({

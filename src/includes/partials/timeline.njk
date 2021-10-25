@@ -1,0 +1,152 @@
+<!-- Success Section Start  -->
+<div class="success-section section section-padding">
+    <div class="container">
+        <!-- Section Title Start -->
+        <div class="section-title text-center" >
+            {# <span class="sub-title secondary-color">Four major Steps to Success</span> #}
+            {% if pageSection.heading %}
+                <h2 class="title heading-color">{{pageSection.heading}}</h2>
+            {% endif %}
+        </div>
+        <!-- Section Title End -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="mx-timeline">
+                    {# {%debug pageSection.heading %} #}
+                    <ul class="mx-timeline-list mx-animation-queue">
+                        <li class="line"></li>
+                        {% for tl in pageSection.timelineSections %}
+                            <li class="item animate">
+                                <div class="dots">
+                                    <div class="middle-dot"></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 timeline-col left timeline-feature">
+
+                                        <div class="inner">
+                                            <div class="title-wrap">
+                                                <h5 class="title">{{tl.bulletHeading}}</h5>
+                                            </div>
+
+                                            <div class="timeline-image">
+                                                <img src="{% imageUrl tl.mainImage.asset , 500,450 %}" alt="{{tl.mainImage.alt}}" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 timeline-col right timeline-info">
+
+                                        <div class="inner">
+                                            <div class="timeline-content-wrap">
+                                                <div class="timeline-content-body">
+                                                    <h4 class="title">{{tl.heading}}</h4>
+
+                                                    <p>
+                                                        {{tl.mainContent | blocksToHtml | safe }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+
+                        {#
+                                <li class="item animate">
+                                    <div class="dots">
+                                        <div class="middle-dot"></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 timeline-col left timeline-feature">
+                                            <div class="inner">
+                                                <div class="title-wrap">
+                                                    <h5 class="title"> Scheduling </h5>
+                                                </div>
+
+                                                <div class="timeline-image">
+                                                    <img src="/assets/images/timeline/start-here-timeline-photo-02.jpg" alt="timeline-image-02" class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 timeline-col right timeline-info">
+                                            <div class="inner">
+                                                <div class="timeline-content-wrap">
+                                                    <div class="timeline-content-body">
+                                                        <h4 class="title">#2 Flexible schedule & environment</h4>
+
+                                                        <p>Taking an online course also means that you don’t have to commute to class, which means less time spent on the bus and more study time sitting on your couch, the sound of a crackling fireplace in the background. You no longer have to worry about missing an important class!</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item animate">
+                                    <div class="dots">
+                                        <div class="middle-dot"></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 timeline-col left timeline-feature">
+                                            <div class="inner">
+                                                <div class="title-wrap">
+                                                    <h5 class="title"> Self-discipline </h5>
+                                                </div>
+
+                                                <div class="timeline-image">
+                                                    <img src="/assets/images/timeline/start-here-timeline-photo-03.jpg" alt="timeline-image-03" class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 timeline-col right timeline-info">
+                                            <div class="inner">
+                                                <div class="timeline-content-wrap">
+                                                    <div class="timeline-content-body">
+                                                        <h4 class="title">#3 Self-discipline & responsibility</h4>
+
+                                                        <p>Who says that having to be more self-disciplined is a disadvantage? It is true that studying online requires more time-management skills, because you will spend a lot of time on your own without someone physically close to keep you focused on deadlines.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item animate">
+                                    <div class="dots">
+                                        <div class="middle-dot"></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 timeline-col left timeline-feature">
+                                            <div class="inner">
+                                                <div class="title-wrap">
+                                                    <h5 class="title"> Investment </h5>
+                                                </div>
+
+                                                <div class="timeline-image">
+                                                    <img src="/assets/images/timeline/start-here-timeline-photo-04.jpg" alt="timeline-image-04" class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 timeline-col right timeline-info">
+                                            <div class="inner">
+                                                <div class="timeline-content-wrap">
+                                                    <div class="timeline-content-body">
+                                                        <h4 class="title">#4 Investment</h4>
+
+                                                        <p>Studying online means that you pay the tuition fee, possibly book supplies, an online application fee, and few other items. You don’t, however, incur the costs of housing (which can range up to $12,000 per year) and transportation, which translates to lower debts and more savings.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li> #}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Success Section End  -->

@@ -1,0 +1,51 @@
+<!-- Faq Section Start -->
+<div class="faq-section section section-padding">
+    <div class="container">
+        <!-- Section Title Start -->
+        <div class="section-title text-center" >
+
+            <h2 class="title heading-color">{{pageSection.heading}}</h2>
+        </div>
+        <!-- Section Title End -->
+        <div class="row">
+            <!-- Start Single Accordion -->
+            <div class="col-lg-12">
+                <div class="mx-accordion max-mb-n30 mb-sm-30 mb-xs-30" id="accordionExample">
+                    {% for card in pageSection.faqItems %}
+                        <div class="card">
+                            <div class="card-header" id="heading{{loop.index}}">
+                                <h5 class="mb-0">
+                                    <a href="#" class="acc-btn {% if loop.first -%}
+
+                                     {%- else -%}
+                                     collapsed
+                                    {%- endif -%}" data-toggle="collapse" data-target="#collapse{{loop.index}}"
+                                    {% if loop.first %}
+                                     aria-expanded="true"
+                                     {% else %}
+                                     aria-expanded="false"
+                                    {% endif %}
+                                    aria-controls="collapse{{loop.index}}">
+                                            {{card.heading}}
+                                        </a>
+                                </h5>
+                            </div>
+
+                            <div id="collapse{{loop.index}}" class="collapse {% if loop.first -%}
+                                    show
+                                    {%- endif -%}" aria-labelledby="heading{{loop.index}}" data-parent="#accordionExample">
+                                <div class="card-body">{{card.mainContent | blocksToHtml | safe }}
+                                    </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                   
+                </div>
+            </div>
+            <!-- End Single Accordion -->
+
+        </div>
+    </div>
+</div>
+<!-- Faq Section End -->

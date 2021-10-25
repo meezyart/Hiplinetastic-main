@@ -1,0 +1,23 @@
+---
+layout: base
+templateClass: tmpl-page
+viewName: page
+
+---
+
+
+  {% if thisPage.pageSections %}
+    {% include 'page/pageSections.njk' %}
+  {% else %}
+    {{ content | safe }}
+  {% endif %}
+
+
+{# {% include "../includes/home/about-sec.njk" %} #}
+{# {% include "../includes/course/courseList.njk" %}
+{% include "../includes/pictext/pic-text.njk" %}
+{% include "../includes/pictext/video-text.njk" %} #}
+{# {% include "../includes/home/clients-sec.njk" %}
+{% include "../includes/home/testimonal-sec.njk" %} #}
+{# {% include "../includes/contact/contact-sec.njk" %}
+{% include "../includes/media/where-to-listen-sec.njk" %} #}

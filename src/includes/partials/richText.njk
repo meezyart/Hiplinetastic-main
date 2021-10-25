@@ -1,0 +1,20 @@
+<div class="section  {% if pageSection.padBottom %}section-padding-bottom {% endif %} {% if pageSection.padTop %}section-padding-top {% endif %} " {% if  pageSection.bkgrdColor %} data-bg-color="{% if pageSection.bkgrdColor.customColor %}{{ pageSection.bkgrdColor.customColor  }}{% else  %}{{ pageSection.bkgrdColor.backgroundColor.value }}{% endif %}" {% endif %}>
+    <div class="container">
+        <div class="row ">
+
+            <div class="col-12 max-mb-50">
+                <div >
+                    {% if pageSection.heading %}
+                        <h2 class="title">{{pageSection.heading}}</h2>
+                    {% endif %}
+                    {% if pageSection.mainContent %}
+                        <p>{{pageSection.mainContent | blocksToHtml | safe }}
+                        </p>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

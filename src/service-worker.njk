@@ -1,0 +1,6 @@
+---
+eleventyExcludeFromCollections: true
+permalink: '/service-worker.js'
+---
+const VERSION = '{{ build.timestamp|dateToISO }}';
+{% include "./service-worker.js" %}

@@ -1,0 +1,20 @@
+
+
+{% macro pageTitle(title="") %}
+ {% include 'page/page-title.njk'  %}
+{% endmacro %}
+
+{{ pageTitle(pageSection.heading) }}
+
+<!-- Scedule Section Start -->
+<div class="section section-padding-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="htmlHolder">
+
+            <healcode-widget data-type={{pageSection.mbo.dataType}} data-widget-partner="object" data-widget-id={{pageSection.mbo.dataWidgetId}} data-widget-version={{pageSection.mbo.dataWidgetVer}} ></healcode-widget>
+
+            </div>
+        </div>
+    </div>
+</div>

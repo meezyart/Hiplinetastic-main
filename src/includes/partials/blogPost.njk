@@ -1,0 +1,86 @@
+<!-- Blog Section Start -->
+<div class="section section-padding fix">
+    <div class="container">
+        <!-- Section Title Start -->
+        <div class="section-title text-center" >
+     
+            {% if pageSection.headline %}
+                <h2 class="title heading-color">{{pageSection.headline}}</h2>
+            {% endif %}
+            {% if pageSection.loveClubIntro %}
+                <p>{{pageSection.loveClubIntro | blocksToHtml | safe }}
+                </p>
+            {% endif %}
+        </div>
+        <!-- Section Title End -->
+
+        <!-- Blog Wrapper Start -->
+        <div class="row row-cols-1 no-gutters">
+            {% for loveForm in pageSection.loveClubForm %}
+
+                <!-- Blog Start -->
+                <div class="blog-3 col" >
+                    <div class="row row-cols-lg-2 row-cols-1 max-mb-n30">
+                        <div class="col max-mb-30">
+                            <div class="thumbnail">
+                                <a href="{{loveForm.formLink.link}}" target="_blank" class="image">
+                                    <img src="{% imageUrl loveForm.mainImage.asset , 500 %}" alt="{{loveForm.mainImage.alt}}" class="img-fluid"></a>
+                            </div>
+                        </div>
+                        <div class="col max-mb-30">
+                            <div class="info pt-0">
+                                {% if loveForm.headline %}
+                                    <a href="{{loveForm.formLink.link}}" target="_blank">
+                                        <h2 class="title heading-color">{{loveForm.headline}}</h2>
+                                    </a>
+                                {% endif %}
+
+                                {# <ul class="meta">
+                                        <li><a href="blog-details.html"><img src="/assets/images/blog/blog-avatar.jpg" alt="" class="avatar">Owen Christ</a></li>
+                                        <li><i class="far fa-calendar"></i>Apr 06, 2020</li>
+                                        <li><i class="far fa-eye"></i>70 views</li>
+                                    </ul> #}
+                                <div class="desc">
+                                    {% if loveForm.mainContent %}
+                                        <p>{{loveForm.mainContent | blocksToHtml | safe }}
+                                        </p>
+                                    {% endif %}
+
+                                </div>
+                                <div class="row justify-content-between max-mt-30">
+                                    <div class="col-auto">
+                                        {% if loveForm.formLink %}
+                                            <a href="{{loveForm.formLink.link}}"  target="_blank"  class="btn btn-primary btn-hover-secondary">{{loveForm.formLink.title}}</a>
+                                        {% endif %}
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog End -->
+            {% endfor %}
+
+        </div>
+        <!-- Blog Wrapper End -->
+
+        {# <!-- Pagination Start -->
+                <div class="row">
+                    <div class="col">
+
+                        <ul class="pagination center">
+                            <li><a href="#" class="prev">PREV</a></li>
+                            <li><a href="#" class="active">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#" class="next">NEXT</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+                <!-- Pagination End --> #}
+
+    </div>
+</div>
+<!-- Blog Section End -->

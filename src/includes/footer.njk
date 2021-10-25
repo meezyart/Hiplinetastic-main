@@ -1,8 +1,107 @@
-<footer class="footer" role="contentinfo">
-    <div class="footer__inner container">
-        <span>&copy; copyright {{ build.timestamp | dateToFormat('yyyy') }}</span>
-        <a href="http://github.com/maxboeck/eleventastic">
-            {% icon "github" %}Eleventastic
-        </a>
-    </div>
-</footer>
+
+   <div class="footer-section section">
+            <div class="container">
+            {%set ci =  sections.footer.contactInfo %}
+            {%set fS1 =  sections.footer.footerSection1 %}
+            {%set fS2 =  sections.footer.footerSection2 %}
+{# {%debug settings.social %} #}
+                <!-- Footer Top Widgets Start -->
+                <div class="row">
+
+                    <!-- Footer Widget Start -->
+                    <div class="col-xl-6 col-md-5 col-12 max-mb-50">
+                        <div class="footer-widget">
+                        <div class="footer-logo">
+                           <a href="{{ '/' | absoluteUrl }}">
+
+                            {% set lightLogo %}{% imageUrl settings.logo.lightLogo.url %}{% endset %}
+
+
+                            <img srcset="{% imageSrcset lightLogo %}" class="light-logo" data-sizes="auto" alt="Logo">
+
+                        </a></div>
+
+                            <div class="footer-widget-content">
+                            {% if sections.footer.addressSection.showAddress %}
+                            <div class="content">
+                                    <p>{{ci.companyAddress}} </p>
+                                    <p>{{ci.companyPhone}} {{ci.companyHours}} </p>
+                                    <p><a href="mailTo:{{ci.companyEmail}}">{{ci.companyEmail}}</a></p>
+                                </div>
+
+                            {% endif %}
+
+                            {% if sections.footer.addressSection.showSocial%}
+                                <div class="footer-social-inline">
+                                 {% for itm in settings.social.socialSites %}
+
+                                    {% if itm.facebookUrl %}
+                                        <a href="{{itm.instagramUrl}}" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                                    {% endif %}
+                                    {% if itm.instagramUrl %}
+                                        <a href="{{itm.instagramUrl}}" target="_blank"><i class="fab fa-instagram"></i></a>
+                                    {% endif %}
+                                    {% if itm.twitterUrl %}
+                                            <a href="{{itm.twitterUrl}}" target="_blank"><i class="fab fa-twitter"></i></a>
+                                    {% endif %}
+                                    {% if itm.youtubeUrl %}
+                                            <a href="{{itm.youtubeUrl}}" target="_blank"><i class="fab fa-youtube"></i></a>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Footer Widget End -->
+
+                    <!-- Footer Widget Start -->
+                    <div class="col-xl-3 col-md-4 col-sm-7 col-12 max-mb-50">
+                     {% if fS1.showFooter %}
+                        <div class="footer-widget">
+                            <h4 class="footer-widget-title">{{fS1.title}}</h4>
+                            <div class="footer-widget-content">
+                                <ul class="column-2">
+                                {% for menuItem in fS1.menu.menuItems %}
+                                    <li>  <a {% if menuItem.externalUrl %} href="{{  menuItem.externalUrl | url }}" {% else %} href="{{('/'+menuItem.slug) | absoluteUrl }}" {% endif %} {% if menuItem.openInNewTab %} target="_blank" {% endif %}>{{menuItem.title}}</a></li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <!-- Footer Widget End -->
+
+                    <!-- Footer Widget Start -->
+                    <div class="col-xl-3 col-md-3 col-sm-5 col-12 max-mb-50">
+                    {% if fS2.showFooter %}
+                        <div class="footer-widget">
+
+                            <h4 class="footer-widget-title">{{fS2.title}}</h4>
+                            <div class="footer-widget-content">
+                                <ul>
+                                 {% for menuItem in fS2.menu.menuItems %}
+                                    <li>  <a {% if menuItem.externalUrl %} href="{{  menuItem.externalUrl | url }}" {% else %} href="{{('/'+menuItem.slug) | absoluteUrl }}" {% endif %} {% if menuItem.openInNewTab %} target="_blank" {% endif %}>{{menuItem.title}}</a></li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    </div>
+                    <!-- Footer Widget End -->
+
+                </div>
+                <!-- Footer Top Widgets End -->
+
+                <!-- Footer Copyright Start -->
+                <div class="row max-mt-20">
+                    <div class="col">
+                        <p class="copyright"><span>{{ci.statement}}</span><br>&copy; {% currentYear %} Hipline. All Rights Reserved</p>
+                    </div>
+                </div>
+                <!-- Footer Copyright End -->
+
+            </div>
+        </div>
+{# </footer> #}

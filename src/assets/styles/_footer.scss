@@ -1,0 +1,23 @@
+/*----------------------------------------*/
+
+
+/*  18. Footer CSS
+/*----------------------------------------*/
+
+.footer-section {
+    padding: 70px 0 50px;
+    background-color: #FFFAFC;
+    overflow: hidden;
+    border-bottom: .5rem solid $primary;
+    .footer-logo {
+        width: 8rem;
+        margin-bottom: 10px;
+        margin-top: -36px;
+    }
+}
+
+.copyright {
+    font-size: 14px;
+    text-align: center;
+    color: $secondary;
+}

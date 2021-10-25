@@ -1,0 +1,48 @@
+
+        <!-- Learners Section Start -->
+        <div class="learners-section {% if pageSection.padBottom %}section-padding-bottom {% endif %} {% if pageSection.padTop %}section-padding-top {% endif %}" {% if  pageSection.bkgrdColor %} data-bg-color="{% if pageSection.bkgrdColor.customColor %}{{ pageSection.bkgrdColor.customColor  }}{% else  %}{{ pageSection.bkgrdColor.backgroundColor.value }}{% endif %}" {% endif %}>
+            <div class="container ">
+                <div class="row max-mb-40">
+                    <div class="about-content col-lg-11 mx-auto">
+                    <h1 class="title">{{pageSection.headline | safe }}</h1>
+
+                     {% if pageSection.mainContent %}
+                        <p>{{pageSection.mainContent | blocksToHtml | safe }}
+                        </p>
+                    {% endif %}
+                    </div>
+                </div>
+
+                <!-- Feature Wrapper Start -->
+                <div class="row row-cols-lg-{% if pageSection.boxCount %}{{pageSection.boxCount}}{%else%}3{% endif %} row-cols-md-2 row-cols-sm-1 row-cols-1 max-mb-n30">
+{% for box in pageSection.infoBoxes %}
+<!-- Feature Start (Icon Box) -->
+                    <div class="col max-mb-30" >
+                        <a href="courses-grid-2.html" class="icon-box text-center" data-bg-color="#fff">
+                            <div class="icon">
+                                <img src="{{box.pic}}" alt="">
+                            </div>
+                            <div class="content">
+                                <h3 class="title fz-20">{{box.headline}}</h3>
+                                <div class="desc">
+                                    <p>{{box.text | blocksToHtml | safe }}
+                        </p>
+                                </div>
+                                {% if box.cta %}
+                                    <span class="link">Start here <i class="far fa-long-arrow-right"></i></span>
+                                {% endif %}
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Feature Start (Icon Box) -->
+
+{% endfor %}
+
+
+
+                </div>
+                <!-- Feature Wrapper End -->
+
+
+        </div>
+        <!-- Learners Section End -->

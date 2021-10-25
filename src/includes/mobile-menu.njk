@@ -1,0 +1,54 @@
+<div id="site-main-mobile-menu" class="site-main-mobile-menu">
+    <div class="site-main-mobile-menu-inner" data-bg-image="">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo">
+                <a href="index.html">
+                    {% set darkLogo %}{% imageUrl settings.logo.darkLogo.url %}{% endset %}
+
+                    <img srcset="{% imageSrcset darkLogo %}" class="dark-logo" data-sizes="auto" alt="Logo">
+
+                </a>
+            </div>
+            <div class="mobile-menu-close">
+                <button class="toggle">
+                    <i class="icon-top"></i>
+                    <i class="icon-bottom"></i>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu-content">
+            {% if sections.header.menu %}
+                <nav class="site-mobile-menu">
+                    <ul>
+                        <li class="has-children position-static">
+                            <a href="/">
+                                <span class="menu-text">Home</span></a>
+                        </li>
+                        {% for menuItem in sections.header.menu %}
+                            <li {% if menuItem.dropdownItems %} class="has-children"  {% endif %}>
+                                <a {% if menuItem.externalUrl %} href="{{  menuItem.externalUrl | url }}" {% else %} href="{{('/'+menuItem.slug) | absoluteUrl }}" {% endif %} {% if menuItem.openInNewTab %} target="_blank" {% endif %}>
+                                    <span class="menu-text" >{{ menuItem.name }}</span></a>
+
+                               {% if menuItem.dropdownItems %}  <span class="menu-toggle">
+                                    <i class="far fa-angle-down"></i>
+                                </span>  {% endif %}
+                                {% if menuItem.dropdownItems%}
+                                    <ul class="sub-menu">
+                                        {% for dropMenuItem in menuItem.dropdownItems %}
+                                            <li>
+                                                <a {% if dropMenuItem.externalUrl %} href="{{  dropMenuItem.externalUrl | url }}" {% else %} href="{{  ('/'+dropMenuItem.slug) | absoluteUrl }}" {% endif %} {% if dropMenuItem.openInNewTab %} target="_blank" {% endif %}>
+                                                    <span class="menu-tex">{{ dropMenuItem.name }}</span></a>
+
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
