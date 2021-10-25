@@ -11,18 +11,19 @@ const isHomePage = (outputPath) => outputPath === `${buildDir}/index.html`
 
 process.setMaxListeners(Infinity)
 module.exports = {
-    htmlmin: function (content, outputPath) {
+    htmlmin: function(content, outputPath) {
         if (shouldTransformHTML(outputPath)) {
             return htmlmin.minify(content, {
                 useShortDoctype: true,
                 removeComments: true,
-                collapseWhitespace: true
+                collapseWhitespace: true,
+                ignoreCustomFragments: [/<heal\s*.*>\s*.*<\/heal\s*.*>/]
             })
         }
         return content
     },
 
-    critical: async function (content, outputPath) {
+    critical: async function(content, outputPath) {
         if (shouldTransformHTML(outputPath) && isHomePage(outputPath)) {
             try {
                 const config = {

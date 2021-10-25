@@ -1,7 +1,7 @@
 {
-    "name": "eleventastic",
+    "name": "Hiplinetastic-main",
     "version": "1.0.0",
-    "description": "A boilerplate for eleventy websites",
+    "description": "Hipline Oakland Base Dance Studio",
     "browserslist": [
         "defaults"
     ],
@@ -16,9 +16,9 @@
     },
     "repository": {
         "type": "git",
-        "url": "http://github.com/maxboeck/eleventastic"
+        "url": "https://github.com/meezyart/Hiplinetastic-main"
     },
-    "author": "Max Böck",
+    "author": "MEEZY",
     "license": "MIT",
     "dependencies": {
         "@11ty/eleventy": "^0.12.1",

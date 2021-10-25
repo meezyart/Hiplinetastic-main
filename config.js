@@ -7,7 +7,7 @@ module.exports = {
     },
     envUrls: {
         development: 'http://localhost:8080',
-        staging: 'http://dev.bymattlee.com',
-        production: 'https://bymattlee-11ty-starter.netlify.app'
+        staging: 'https://hipline.netlify.app',
+        production: 'https://hipline.netlify.app'
     }
 }
