@@ -1,11 +1,13 @@
     <!-- Contact Information Section Start -->
-        <div class="contact-information-section section section-padding-bottom">
+       {%set ci =  sections.footer.contactInfo %}
+       {%set cp =  thisPage.pageSections[0] %}
+        <div class="contact-information-section section section-padding">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="contact-title">
-                            <span class="sub-title">Get excited already?</span>
-                            <h2 class="title">Reach me!</h2>
+                            <span class="sub-title">{{cp.contactSubTitle}}</span>
+                            <h2 class="title">{{cp.contactTitle}}</h2>
                         </div>
 
                         <div class="contact-info-wrap max-mb-n50">
@@ -16,7 +18,8 @@
                                 </div>
                                 <div class="info">
                                     <h4 class="title"> Address</h4>
-                                    <span class="info-text"> 1800 Abbot Kinney Blvd. Unit D & E Venice</span>
+                                    <span class="info-text">
+                                    {{ci.companyAddress}}  </span>
                                 </div>
                             </div>
                             <!-- Single Contact Info End -->
@@ -28,11 +31,29 @@
                                 </div>
                                 <div class="info">
                                     <h4 class="title"> Contact</h4>
-                                    <span class="info-text"> Mobile: <strong>(+88) - 1990 - 6886</strong>
-                                        <br>
-                                        Hotline: <strong>1800 – 1102</strong>
-                                        <br>
-                                        Mail: <a href="mailto:hello@hasthemes.com">hello@hasthemes.com</a>
+                                    <span class="info-text"> Phone: <strong>{{ci.companyPhone}}</strong><br>
+                                        Mail: <a href="mailTo:{{ci.companyEmail}}">{{ci.companyEmail}}</a>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- Single Contact Info End -->
+                            <!-- Single Contact Info Start -->
+                            <div class="contact-info max-mb-50">
+                                <div class="icon">
+                                    <i class="fal fa-envelope"></i>
+                                </div>
+                                <div class="info">
+                                    <h4 class="title">Additonal Contact</h4>
+                                    <span class="info-text">
+
+                                        {% for contact in ci.additionalContacts %}
+
+                                            <strong>{{contact.name | safe }}</strong><br>
+                                           <a href="{{contact.email.link}}" target="_blank">
+                                            {{contact.email.title}}</a> <br>
+
+                                        {% endfor %}
+
                                     </span>
                                 </div>
                             </div>
@@ -45,7 +66,12 @@
                                 </div>
                                 <div class="info">
                                     <h4 class="title"> Hour of operation</h4>
-                                    <span class="info-text"> Monday – Friday : 09:00 – 20:00 <br> Sunday &amp; Saturday: 10:30 – 22:00</span>
+                                    <span class="info-text">
+                                    {% for day in cp.contactHoursFull %}
+                                    <strong class="title">{{day.day}}:</strong> {{day.time}}
+                                    {% endfor %}
+
+                                    </span>
                                 </div>
                             </div>
                             <!-- Single Contact Info End -->
@@ -53,26 +79,26 @@
 
                     </div>
                     <div class="col-lg-8">
-                        <div class="contact-image mt-sm-50 mt-xs-50">
-                            <img src="assets/images/contact/contact.jpg" alt="">
+                        <div class="contact-image mt-50 mt-sm-50 mt-xs-50">
+                            <img src="{% if cp.contactPhoto %}{% imageUrl cp.contactPhoto , 770 , 770 %}{% else %}/assets/images/contact/contact.jpg{% endif %}" class="lazyload" data-sizes="auto">
 
                             <!-- Animation Shape Start -->
                             <div class="shape shape-1 scene">
                                 <span data-depth="3">
-                                    <img src="assets/images/shape-animation/about-shape-1.png" alt="">
+                                    <img src="/assets/images/shape-animation/about-shape-1.png" alt="">
                                 </span>
                             </div>
                             <div class="shape shape-2 scene">
-                                <span data-depth="-3"><img src="assets/images/shape-animation/about-shape-1.png" alt=""></span>
+                                <span data-depth="-3"><img src="/assets/images/shape-animation/about-shape-1.png" alt=""></span>
                             </div>
                             <div class="shape shape-3 scene">
                                 <span data-depth="4">shape 3</span>
                             </div>
                             <div class="shape shape-4 scene">
-                                <span data-depth="4"><img src="assets/images/shape-animation/shape-1.png" alt=""></span>
+                                <span data-depth="4"><img src="/assets/images/shape-animation/shape-1.png" alt=""></span>
                             </div>
                             <div class="shape shape-5 scene">
-                                <span data-depth="4"><img src="assets/images/shape-animation/nwesletter-shape-2.png" alt=""></span>
+                                <span data-depth="4"><img src="/assets/images/shape-animation/nwesletter-shape-2.png" alt=""></span>
                             </div>
                             <!-- Animation Shape End -->
                         </div>

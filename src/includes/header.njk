@@ -10,7 +10,6 @@
                         <a href="{{ '/' | absoluteUrl }}">
                             {% set darkLogo %}{% imageUrl settings.logo.darkLogo.url %}{% endset %}
                             {% set lightLogo %}{% imageUrl settings.logo.lightLogo.url %}{% endset %}
-
                             <img srcset="{% imageSrcset darkLogo %}" class="dark-logo" data-sizes="auto" alt="Logo">
                             <img srcset="{% imageSrcset lightLogo %}" class="light-logo" data-sizes="auto" alt="Logo">
 
@@ -31,7 +30,7 @@
 
                                 {% for menuItem in sections.header.menu %}
                                     <li {% if menuItem.dropdownItems %} class="has-children"  {% endif %}>
-                                        <a {% if menuItem.externalUrl %} href="{{  menuItem.externalUrl | url }}" {% else %} href="{{('/'+menuItem.slug) | absoluteUrl }}" {% endif %} {% if menuItem.openInNewTab %} target="_blank" {% endif %}>
+                                        <a {% if menuItem.externalUrl %} href="{{ menuItem.externalUrl | url }}" {% else %} href="{{('/'+menuItem.slug) | absoluteUrl }}" {% endif %} {% if menuItem.openInNewTab %} target="_blank" {% endif %}>
                                             <span class="menu-text" >{{ menuItem.name }}</span></a>
                                         <span class="menu-toggle">
                                             <i class="far fa-angle-down"></i>

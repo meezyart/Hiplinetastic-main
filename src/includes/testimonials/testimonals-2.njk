@@ -1,0 +1,203 @@
+{% macro testimonals(subTitle, secTitle, bckgrdColor, testBlock, version) %}
+    <!-- Testimonial Section Start -->
+    <div class="testimonial-section section section-padding" {% if bckgrdColor %}
+            data-bg-color="{{bckgrdColor}}" {% endif %} >
+        {% if version == "version1" %}
+
+            <div class="container">
+                <!-- Section Title Start -->
+                <div class="section-title  text-center"  >
+                    {% if subTitle %}
+                        <span class="sub-title">{{subTitle}}</span>
+                    {% endif %}
+                    {% if secTitle %}
+                        <h2 class="title fz-48">{{secTitle}}</h2>
+                    {% endif %}
+                </div>
+                <!-- Section Title End -->
+
+                <div class="row" >
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="testimonial-slider-wrap">
+                            <div class="testimonial-slider-8 swiper-container" >
+                                <div class="swiper-wrapper">
+                                    {% for slide in testBlock %}
+
+                                        <div class="swiper-slide">
+                                            <!-- Static Testimonial Start -->
+                                            <div class="static-testimonial testimonial-home-8">
+                                                <div class="testimonial-image">
+                                                    <img src="{% if slide.authorImage %}{% imageUrl slide.authorImage.url, 200 , 200 %}{% else %}/assets/images/testimonial/200/testimonial-avata-01.jpg{% endif %}" class="lazyload" data-sizes="auto"  alt="{{ slide.authorImage.alt }}">
+
+                                                </div>
+                                                <div class="testimonial-content">
+                                                    {% if slide.mainContent %}
+                                                        <p>{{slide.mainContent | blocksToHtml | safe }}
+                                                        </p>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="author-info">
+                                                    <div class="cite">
+                                                        <h6 class="name">{{ slide.author }}</h6>
+                                                        {% if slide.position %}
+                                                            <span class="position">/ {{ slide.position }}</span>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Static Testimonial End -->
+                                        </div>
+                                    {% endfor %}
+
+                                </div>
+                                <div class="swiper-pagination theme-color"></div>
+                            </div>
+
+                            <!-- Animation Shape Start -->
+                            <div class="shape shape-1 scene fill-primary">
+                                <span data-depth="3">
+                                    <img src="/assets/images/shape-animation/shape-2.svg" alt="" class="svgInject">
+                                </span>
+                            </div>
+                            <div class="shape shape-2 scene fill-secondary">
+                                <span data-depth="4"><img src="/assets/images/shape-animation/shape-1.png" alt=""></span>
+                            </div>
+                            <!-- Animation Shape End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% elseif version == "version2" %}
+
+            <div class="container-fluid pl-80 pl-lg-15 pl-md-15 pl-sm-15 pl-xs-15 pr-80 pr-lg-15 pr-md-15 pr-sm-15 pr-xs-15">
+                <!-- Section Title Start -->
+                <div class="section-title  text-center">
+                    {% if subTitle %}
+                        <span class="sub-title">{{subTitle}}</span>
+                    {% endif %}
+                    {% if secTitle %}
+                        <h2 class="title fz-48">{{secTitle}}</h2>
+                    {% endif %}
+                </div>
+                <!-- Section Title End -->
+                <!--Testimonial Slider Start -->
+                <div class="testimonial-slider-two swiper-container" >
+                    <div class="swiper-wrapper">
+                        {% for slide in testBlock %}
+
+                            <div class="swiper-slide">
+                                <div class="testimonial-two testimonial-three">
+                                    <div class="content">
+                                        {% if slide.title %}
+                                            <h4 class="title">{{ slide.title }}</h4>
+                                        {% endif %}
+                                        {% if slide.mainContent %}
+                                            <p>{{slide.mainContent | blocksToHtml | safe }}
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="author-info">
+                                        <div class="image">
+                                            <img src="{% if slide.authorImage %}{% imageUrl slide.authorImage.url, 70 , 70 %}{% else %}/assets/images/testimonial/70/testimonial-1.jpg{% endif %}" class="lazyload" data-sizes="auto"  alt="{{ slide.authorImage.alt }}">
+
+                                        </div>
+                                        <div class="cite">
+                                            <h6 class="name">{{ slide.author }}</h6>
+                                            {% if slide.position %}
+                                                <span class="position">/ {{ slide.position }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <!--Testimonial Slider End -->
+
+            </div>
+
+        {% elseif version == "version3" %}
+
+            <div class="container">
+                <!-- Section Title Start -->
+                <div class="section-title  text-center max-mb-150">
+                    {% if subTitle %}
+                        <span class="sub-title">{{subTitle}}</span>
+                    {% endif %}
+                    {% if secTitle %}
+                        <h2 class="title fz-48">{{secTitle}}</h2>
+                    {% endif %}
+                </div>
+                <!-- Section Title End -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!--Testimonial Slider Start -->
+                        <div class="testimonial-slider-three swiper-container" >
+                            <div class="swiper-wrapper">
+                                {% for slide in testBlock %}
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-five">
+
+                                            <div class="author-image">
+                                                <img src="{% if slide.authorImage %}{% imageUrl slide.authorImage.url, 200 , 200 %}{% else %}/assets/images/testimonial/200/testimonial-avata-01.jpg{% endif %}" class="lazyload" data-sizes="auto"  alt="{{ slide.authorImage.alt }}">
+
+                                            </div>
+                                            <div class="author-content">
+                                                <div class="content">
+                                                    <h3 class="title">{{slide.mainContent | blocksToHtml | safe }}</h3>
+                                                </div>
+                                                <div class="author-info">
+                                                    <div class="cite">
+                                                        <h6 class="name">{{ slide.author }}</h6>
+                                                        {% if slide.position %}
+                                                            <span class="position">/ {{ slide.position }}</span>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Animation Shape Start -->
+                                            <div class="shape shape-1 scene">
+                                                <span data-depth="3">
+                                                    <img src="/assets/images/shape-animation/shape-2.svg" alt="" class="svgInject">
+                                                </span>
+                                            </div>
+                                            <div class="shape shape-2 scene">
+                                                <span data-depth="-3"><img src="/assets/images/shape-animation/shape-3.png" alt=""></span>
+                                            </div>
+                                            <!-- Animation Shape End -->
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                        <!--Testimonial Slider End -->
+                    </div>
+                </div>
+
+            </div>
+
+        {% endif %}
+    </div>
+    <!-- Testimonial Section End -->
+{%endmacro%}
+
+
+{% if pageSection.bkgrdColor %}
+{% if pageSection.bkgrdColor.customColor %}
+{% set bckgrd = pageSection.bkgrdColor.customColor %}{% else  %}{% set bckgrd = pageSection.bkgrdColor.backgroundColor.value %}{% endif %}
+
+{% else  %}
+    {% set bckgrd = '#f5f5f5' %}
+{% endif %}
+
+{{ testimonals(subTitle=pageSection.subTitle, secTitle=pageSection.heading, bckgrdColor=pageSection.bkgrdColor.backgroundColor.value , testBlock=pageSection.testimonials, version=pageSection.version) }}
+
+
+{# {{ testimonals(subTitle='pageSection.subTitle', secTitle='pageSection.secTitle', bckgrdColor="#f5f5f5", testBlock=pageSection.testimonials, version=pageSection.version) }} #}

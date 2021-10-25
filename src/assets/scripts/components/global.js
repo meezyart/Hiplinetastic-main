@@ -59,7 +59,7 @@ const choreographerBoxes = () => ({
     videoPlaying: false,
     currentVid: null,
     stopVideo(id) {
-        if (!id && this.$refs[id] && this.$refs[id].pause() !== undefined) return
+        if (!id && this.$refs[id]) return
             // let pausePromise = this.$refs[id].pause()
             // if (pausePromise !== undefined) {
             //     pausePromise
@@ -78,7 +78,7 @@ const choreographerBoxes = () => ({
         this.currentVid = null
     },
     playVideo(id) {
-        if (!id && this.$refs[id] && this.$refs[id].play() !== undefined) return
+        if (!id && this.$refs[id]) return
             // let playPromise = this.$refs[id].play()
 
         // if (playPromise !== undefined) {

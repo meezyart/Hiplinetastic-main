@@ -34,7 +34,7 @@
             <healcode-widget data-version="0.2" data-link-class="{{healcodeClass}} {{buttonClass}}" data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="{{healcodeType}}" data-inner-html="{{buttonTitle}}" data-service-id="{{dataId}}"/>
 
         {% elseif passLink %}
-               <a href={{passLink.link}} class="btn {{buttonClass}} btn-lg mt-30">{{passLink.title}}</a>
+            <a href={{passLink.link}} class="btn {{buttonClass}} btn-lg mt-30">{{passLink.title}}</a>
 
         {% endif %}
     </div>
@@ -43,7 +43,7 @@
 
 
 <!-- Pass Section Start -->
-<div class="section ">
+<div class="section section-padding-top">
     <div class="container">
         {% if pageSection.dataType == 'classPassSection' %}
             {# INsert reapting element here #}
@@ -56,11 +56,11 @@
 
             </div>
             <!-- Pass Wrapper Start -->
-            <div class="row row-cols-xl-3 row-cols-lg-3 row-cols-md-1 row-cols-1 max-mb-n30 justify-content-center ">
+            <div class="row row-cols-xl-3 row-cols-lg-3 row-cols-md-1 row-cols-1 max-mb-30 justify-content-center ">
                 {% for pass in pageSection.passes %}
 
-                    <div class="col section-padding-bottom-70">
-                        <div class="price-item mb-30">
+                    <div class="col">
+                        <div class="price-item ">
 
                             {# pink prime #}
                             {% if pageSection.passColor.title == "pink-prime" %}

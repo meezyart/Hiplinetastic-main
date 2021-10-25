@@ -30,7 +30,10 @@
 
                     <div class="videoWrapper"  >
                         {% for dancer in class.classChoreographers %}
-                            <video autoplay x-show="activeDancer == {{loop.index}}"  x-ref="dancer-{{loop.index}}">
+                            <video autoplay x-show="activeDancer == {{loop.index}}"  x-ref="dancer-{{loop.index}}"    playsInline
+                                webkit-playsinline="true"
+                                muted
+                                loop>
                                 <source src="{{dancer.coverVideo.url}}" type="video/mp4">
                                 {# <source src="media/shuttle.ogv" type="video/ogg"> #}
                                 Your browser does not support the HTML5 Video element.
@@ -69,13 +72,13 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
         <div class="pass-footer">
             <a class="btn btn-blue btn-hover-blue-50 btn-long" href="#">Learn More</a>
+
             {% if class.classLink %}
-                <a class="btn btn-hot-pink-light btn-hover-hot-pink-light-50 btn-long" href="{% if class.classLink.link %}{{class.classLink.link}}{% endif %}" {% if class.classLink.link %}target="_blank"{% endif %}>{{class.classLink.title}}
+
+                <a class="btn btn-hot-pink-light btn-hover-hot-pink-light-50 btn-long" href="{% if class.classLink.link %}{{class.classLink.link | url }}{%elseif class.classLink.internal%}/{{class.classLink.internal  }}{%elseif class.classLink.route%}/{{class.classLink.route}}{% endif %}" {% if class.classLink.openInNewTab %}target="_blank"{% endif %}>{{class.classLink.title}}
                 </a>
             {% endif %}
         </div>
