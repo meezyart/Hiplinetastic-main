@@ -58,4 +58,7 @@
     @media #{$tablet-device} {
         bottom: -5rem;
     }
+    @media #{$large-mobile,$extra-small-mobile,$small-mobile} {
+        display: none;
+    }
 }

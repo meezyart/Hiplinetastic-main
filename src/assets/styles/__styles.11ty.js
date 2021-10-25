@@ -115,13 +115,13 @@ module.exports = class {
         }`
     }
 
-    // render the CSS file
+    //  render the CSS file
     async render({ entryPath }) {
         try {
             const css = await this.compile({ file: entryPath })
             const post = await this.postCss(css)
-            console.log(post)
             const result = await this.minify(post)
+                // console.log(result)
             return result
         } catch (err) {
             // if things go wrong

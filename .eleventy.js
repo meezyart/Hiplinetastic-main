@@ -20,6 +20,7 @@ const readableDate = require('./utils/filters/readableDate.js');
 const rssLastUpdatedDate = require('./utils/filters/rssLastUpdatedDate.js');
 const rssDate = require('./utils/filters/rssDate.js');
 const articleUrl = require('./utils/filters/articleUrl.js');
+const randomize = require('./utils/filters/randomize.js');
 const articleCategoryUrl = require('./utils/filters/articleCategoryUrl.js');
 const blocksToHtml = require('./utils/filters/blocksToHtml.js');
 const allBlocksToHtml = require('./utils/allBlocksToHtml.js');
@@ -72,6 +73,7 @@ module.exports = function(config) {
     config.addFilter('rssLastUpdatedDate', rssLastUpdatedDate);
     config.addFilter('rssDate', rssDate);
     config.addFilter('articleUrl', articleUrl);
+    config.addFilter('randomize', randomize);
     config.addFilter('articleCategoryUrl', articleCategoryUrl);
     config.addFilter('blocksToHtml', blocksToHtml);
     config.addFilter('allBlocksToHtml', allBlocksToHtml)
