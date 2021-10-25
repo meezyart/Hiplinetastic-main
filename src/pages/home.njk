@@ -1,14 +1,28 @@
 ---
+
 layout: base.njk
 templateClass: tmpl-home
 viewName: home
+
+
+permalink: "home.html"
 ---
 
+
+{% include "../includes/partials/headerTop.njk" %}
+{# {% include "../includes/partials/infoBoxes.njk" %} #}
+
+
+{# {% include "../includes/partials/cheographer.njk" %} #}
+
+{#
 {% include "../includes/hero/hero-plain.njk" %}
-{% include "../includes/hero/hero-static.njk" %}
- {% include "../includes/home/about-sec.njk" %}
-{# {% include "../includes/home/services-sec.njk" %}
-{% include "../includes/home/clients-sec.njk" %}
-{% include "../includes/home/testimonal-sec.njk" %}
-{% include "../includes/contact/contact-sec.njk" %}
-{% include "../includes/media/where-to-listen-sec.njk" %} #}
+{% include "../includes/home/about-sec.njk" %}
+
+{# {% include "../includes/testimonials/testimonals-1.njk" %} #}
+{# {% include "../includes/testimonials/testimonals-2.njk" %} #}
+{# {% include "../includes/press/pressList.njk" %} #}
+{# {% include "../includes/contact/contact-sec.njk" %}
+{% include "../includes/contact/contact-form.njk" %}
+{% include "../includes/contact/newsletter.njk" %}
+{% include "../includes/cta/cta-mid.njk" %} #}
