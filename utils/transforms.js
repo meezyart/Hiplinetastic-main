@@ -7,7 +7,7 @@ const shouldTransformHTML = (outputPath) =>
     outputPath.endsWith('.html') &&
     process.env.ELEVENTY_ENV === 'production'
 
-const isHomePage = (outputPath) => outputPath === `${buildDir}/index.html`
+// const isHomePage = (outputPath) => outputPath === `${buildDir}/index.html`
 
 process.setMaxListeners(Infinity)
 module.exports = {
@@ -15,30 +15,41 @@ module.exports = {
         if (shouldTransformHTML(outputPath)) {
             return htmlmin.minify(content, {
                 useShortDoctype: true,
-                removeComments: true,
                 collapseWhitespace: true,
+                collapseBooleanAttributes: true,
+                collapseInlineTagWhitespace: true,
+                collapseWhitespace: true,
+                conservativeCollapse: true,
+                minifyCSS: true,
+                minifyJS: true,
+                processScripts: ['application/ld+json'],
+                removeComments: true,
+                removeEmptyAttributes: true,
+                removeRedundantAttributes: true,
+                removeScriptTypeAttributes: true,
+                removeStyleLinkTypeAttributes: true,
                 ignoreCustomFragments: [/<heal\s*.*>\s*.*<\/heal\s*.*>/]
             })
         }
         return content
     },
 
-    critical: async function(content, outputPath) {
-        if (shouldTransformHTML(outputPath) && isHomePage(outputPath)) {
-            try {
-                const config = {
-                    base: `${buildDir}/`,
-                    html: content,
-                    inline: true,
-                    width: 1280,
-                    height: 800
-                }
-                const { html } = await critical.generate(config)
-                return html
-            } catch (err) {
-                console.error(err)
-            }
-        }
-        return content
-    }
+    // critical: async function(content, outputPath) {
+    //     if (shouldTransformHTML(outputPath) && isHomePage(outputPath)) {
+    //         try {
+    //             const config = {
+    //                 base: `${buildDir}/`,
+    //                 html: content,
+    //                 inline: true,
+    //                 width: 1280,
+    //                 height: 800
+    //             }
+    //             const { html } = await critical.generate(config)
+    //             return html
+    //         } catch (err) {
+    //             console.error(err)
+    //         }
+    //     }
+    //     return content
+    // }
 }
