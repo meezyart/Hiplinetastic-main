@@ -12,7 +12,90 @@ const filter = `
       disabled,
       'dataType':_type,
       heading,
+       _type == "timelineSection" => {
+      ...,
+      timelineSections[]{
+        ...,
+        mainContent[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug.current,
+            "dataType": @.reference->_type
+          }
+        }
+      }
+
+      },
+
+           pressIntro[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug.current,
+            "dataType": @.reference->_type
+          }
+        }
+      }	,
+
+      },
+        _type == "richTextSection" => {
+      ...,
+           mainContent[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug.current,
+            "dataType": @.reference->_type
+          }
+        }
+      }	,
+
+      },
+       _type == "pressSection" => {
+      ...,
+           pressIntro[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug.current,
+            "dataType": @.reference->_type
+          }
+        }
+      }	,
+
+      },
+      _type == "heroSliderSection" => {
+      ...,
+            heroSliders[]->{
+              ...,
+
+              headline,
+              heroColor,
+              mainContent[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug.current,
+            "dataType": @.reference->_type
+          }
+        }
+      }	,
+              subTitle,
+           heroImage{
+          'key':_key,
+          'url':asset->url,
+          alt
+        },
+            }
+      },
       _type == "picContentSection" => {
+        ...,
         'backgroundColor': bkgrdOpts.backgroundColor,
         picImages[]{
           'key':_key,
@@ -23,12 +106,30 @@ const filter = `
           'url':asset->url,
           alt
         },
-        'picLocation': picType.picLocation
+        'picLocation': picType.picLocation,
+          mainContent[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug.current,
+            "dataType": @.reference->_type
+          }
+        }
+          }
       },
       _type == "faqSection" => {
           faqItems[]{
             heading,
-            mainContent
+            mainContent[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug.current,
+            "dataType": @.reference->_type
+          }
+        }}
           }
       },
       _type == "testimonialSection" => {
@@ -40,13 +141,29 @@ const filter = `
                 'url':asset->url,
                 alt
             },
-            mainContent
+            mainContent[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug.current,
+            "dataType": @.reference->_type
+          }
+        }}
           }
       },
       _type == "article" => {
           cta,
           excerpt,
-          mainContent,
+          mainContent[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug.current,
+            "dataType": @.reference->_type
+          }
+        }},
           publishedAt,
           'featuredImage': featuredImage{
                 'url':asset->url,
@@ -83,7 +200,15 @@ const filter = `
       _type == "classPassSection" => {
             passes[]->{
               ...,
-              'mainContent':passDescription,
+              'mainContent':passDescription[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug.current,
+            "dataType": @.reference->_type
+          }
+        }},
             }
       },
       _type == "loveClubSection" => {
@@ -91,18 +216,53 @@ const filter = `
               ...,
               formLink,
               headline,
-              'mainContent':loveClubIntro,
+              'mainContent':loveClubIntro[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug.current,
+            "dataType": @.reference->_type
+          }
+        }},
             },
       },
       _type == "dancerSection" => {
         ...,
         headline,
-        'mainContent':dancerIntro,
+        'mainContent':dancerIntro[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug.current,
+            "dataType": @.reference->_type
+          }
+        }},
 
       },
       _type == "infoBoxSection" => {
         ...,
-        headline
+       infoBoxes[]{
+         ...,
+          headline,
+          text[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug.current,
+            "dataType": @.reference->_type
+          }
+        }},
+          'cta': cta{
+                    link,
+                      route,
+                      title,
+                      _type,
+                      'internal': landingPageRoute->slug.current
+                },
+       }
 
       },
       contactSection,
@@ -124,6 +284,6 @@ const filter = `
   }
 `
 
-module.exports = async() => {
-    return await client.fetch(filter).catch((err) => console.error(err))
+module.exports = async () => {
+  return await client.fetch(filter).catch((err) => console.error(err))
 }
