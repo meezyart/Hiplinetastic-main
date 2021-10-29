@@ -1,0 +1,61 @@
+{% macro heroSlider(heroImage, headline, heroColor, subTitle, mainContent, themeColor) %}
+    <div class="swiper-slide">
+        <!--Banner Slider Item start-->
+        {# {% imageUrl heroImage, 1920, 700 %} #}
+        <div class="banner-slider-item" data-bg-image="{{ heroImage }}">
+            <div class="container">
+                <div class="row row-25 banner-content-area {% if heroColor %}
+{{heroColor}}{% endif %}">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-9">
+
+                            <!--Banner Slider Content start-->
+                            <div class="banner-slider-content-2 left">
+                                {% if subTitle %}
+                                    <h3>
+                                        {{ subTitle }}
+                                    </h3>
+                                {% endif %}
+                                {% if headline %}
+
+                                    <h1>{{ headline }}</h1>
+                                {% endif %}
+                                {% if mainContent %}
+
+                                    <p>{{ mainContent | blocksToHtml | safe  }}</p>
+                                {% endif %}
+                            </div>
+                            <!--Banner Slider Content end-->
+
+                        </div>
+
+                </div>
+            </div>
+        </div>
+        <!--Banner Slider Item end-->
+    </div>
+{% endmacro %}
+<!-- Page Banner Slider Start -->
+<div class="page-banner-slider section">
+    <div class="banner-slider swiper-container">
+
+        <div class="swiper-wrapper">
+
+            {# insert marco here #}
+            {% for slide in pageSection.heroSliders %}
+                {{ heroSlider(
+                            heroImage=slide.heroImage.url,alt=slide.heroImage.alt ,headline=slide.headline, heroColor=slide.heroColor ,subTitle=slide.subTitle, mainContent=slide.mainContent) }}
+            {% endfor %}
+
+
+
+            <div class="banner-slider-prev swiper-button-prev banner-slider-nav">
+                <i class="fal fa-angle-left"></i>
+            </div>
+            <div class="banner-slider-next swiper-button-next banner-slider-nav">
+                <i class="fal fa-angle-right"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Banner Slider End -->
