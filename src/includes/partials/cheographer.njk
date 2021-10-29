@@ -76,23 +76,25 @@
                                 <blockquote>
                                     <i>
                                         <b>{{item.quote.body | blocksToHtml | safe }}</b>
-                                        <span>-  {{item.quote.author | safe }}</span></i>
+                                        <span >-  {{item.quote.author | safe }}</span></i>
                                 </blockquote>
 
                             </div>
                         {% endif %}
                         <div class="content" >
-                            <h2>{{item.nickname }}</h2>
+                            <h2 class="text-yellow">{{item.nickname }}</h2>
                             {% set social = item.social %}
                             {% set spotifyUrl = item.spotifyUrl %}
                             {% include "partials/social-inline.njk" %}
-
+                            {# <div class="svg-arrows">
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.54 19.59"><path d="M70.75,10.15,59.09,17.73,62.52,20l15.11-9.8L62.52.36,59.09,2.59Z" transform="translate(0 -0.36)" fill="#c3ffe2"/><path d="M41.21,10.15,29.54,17.73,33,20l15.11-9.8L33,.36,29.54,2.59Z" transform="translate(0 -0.36)" fill="#c3ffe2"/><path d="M11.68,10.15,0,17.73,3.45,20l15.09-9.8L3.45.36,0,2.59Z" transform="translate(0 -0.36)" fill="#c3ffe2"/><path d="M100.29,10.15,88.63,17.73,92.06,20l15.11-9.8L92.06.36,88.63,2.59Z" transform="translate(0 -0.36)" fill="#c3ffe2"/></svg></div> #}
                             {{ item.bio | blocksToHtml | safe }}
                             <div class="dancer-bottom">
                                 {% if item.dancerClass.length > 0%}
 
                                     <div class="classes">
-                                        <strong class="text-primary">Current Classes</strong><br>
+                                      <svg class="svg-sqilly" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.12 15.28"><path d="M3,13.37,8,7.89A11.19,11.19,0,0,1,24.3,7.63h0a11.25,11.25,0,0,0,16.17-.06h0A11.44,11.44,0,0,1,56.9,7.5h0a11.35,11.35,0,0,0,16.36,0h0a11.35,11.35,0,0,1,16.36,0h0A11.37,11.37,0,0,0,106,7.5h0a11.35,11.35,0,0,1,16.36,0L128,13.37" transform="translate(-0.4 -0.52)" fill="none" stroke="#ffc9f4" stroke-width="7"/></svg>
+                                        <strong class="title text-yellow">Current Classes</strong><br>
 
                                         <ul>
                                             {% for class in item.dancerClass %}
@@ -107,7 +109,8 @@
                                 {% if item.bands %}
 
                                     <div class="bands">
-                                        <strong class="text-primary">Favorite Bands</strong><br>
+                                    <svg class="svg-sqilly" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.12 15.28"><path d="M3,13.37,8,7.89A11.19,11.19,0,0,1,24.3,7.63h0a11.25,11.25,0,0,0,16.17-.06h0A11.44,11.44,0,0,1,56.9,7.5h0a11.35,11.35,0,0,0,16.36,0h0a11.35,11.35,0,0,1,16.36,0h0A11.37,11.37,0,0,0,106,7.5h0a11.35,11.35,0,0,1,16.36,0L128,13.37" transform="translate(-0.4 -0.52)" fill="none" stroke="#ffc9f4" stroke-width="7"/></svg>
+                                        <strong class="title text-yellow">Favorite Bands</strong><br>
                                         <ul>
                                             {% for band in item.bands %}
                                                 <li>{{band}}</li>

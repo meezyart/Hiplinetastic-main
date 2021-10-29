@@ -18,18 +18,18 @@
 {% for box in pageSection.infoBoxes %}
 <!-- Feature Start (Icon Box) -->
                     <div class="col max-mb-30" >
-                        <a href="courses-grid-2.html" class="icon-box text-center" data-bg-color="#fff">
+                    <a class="icon-box text-center"  href="{% if box.cta.link %}{{box.cta.link | url }}{%elseif box.cta.internal%}/{{box.cta.internal  }}{%elseif box.cta.route%}{{box.cta.route}}{% endif %}" {% if box.cta.openInNewTab %}target="_blank"{% endif %} data-bg-color="#fff">
                             <div class="icon">
                                 <img src="{{box.pic}}" alt="">
                             </div>
                             <div class="content">
                                 <h3 class="title fz-20">{{box.headline}}</h3>
                                 <div class="desc">
-                                    <p>{{box.text | blocksToHtml | safe }}
-                        </p>
+                                    <p>{{box.text | blocksToHtml | safe }}</p>
                                 </div>
                                 {% if box.cta %}
-                                    <span class="link">Start here <i class="far fa-long-arrow-right"></i></span>
+                                    <span class="link">{{box.cta.title}}
+                <i class="far fa-long-arrow-right"></i></span>
                                 {% endif %}
                             </div>
                         </a>
