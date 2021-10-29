@@ -78,7 +78,7 @@
         // transition-duration: 150ms;
         position: relative;
         border-radius: 10px;
-        overflow: hidden;
+        // overflow: hidden;
         .dancer-name {
             position: absolute;
             display: flex;
@@ -197,6 +197,15 @@
         }
     }
     .dancer-bottom {
+
+        .title{
+            display: inline-block;
+            padding-bottom:.2rem;
+        }
+
+        .svg-sqilly{
+            max-width: 6rem;
+        }
         width: 63%;
         display: flex;
         ul {
