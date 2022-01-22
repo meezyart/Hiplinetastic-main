@@ -251,6 +251,8 @@
         font-size: 34px;
         line-height: 48px;
         color: $white;
+            text-shadow: 4px 3px 0px #7A7A7A;
+
         margin-bottom: 0;
         // Responsive
         @media #{$tablet-device} {
