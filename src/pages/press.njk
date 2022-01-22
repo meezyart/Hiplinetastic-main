@@ -1,0 +1,15 @@
+---
+layout: page
+templateClass: tmpl-page
+viewName: page
+pagination:
+  data: press
+  size: 1
+  alias: thisPage
+permalink: /press/{{ thisPage.slug }}/
+eleventyComputed:
+  title: "{{ thisPage.title | safe }}"
+  metaTitle: "{{ thisPage.pageMetaData.pageTitle | safe }}"
+  metaDescription: "{{ thisPage.pageMetaData.pageDescription | safe }}"
+  metaShareImage: "{% if thisPage.pageMetaData.pageShareImage %}{% imageUrl thisPage.pageMetaData.pageShareImage, 1200 %}{% else %}{% endif %}"
+---

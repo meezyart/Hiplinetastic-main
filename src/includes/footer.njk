@@ -23,7 +23,7 @@
 
                             <div class="footer-widget-content">
                             {% if sections.footer.addressSection.showAddress %}
-                            <div class="content">
+                            <div class="content text-purple ">
                                     <p>{{ci.companyAddress}} </p>
                                     <p>{{ci.companyPhone}} {{ci.companyHours}} </p>
                                     <p><a href="mailTo:{{ci.companyEmail}}">{{ci.companyEmail}}</a></p>
@@ -59,11 +59,11 @@
                     <div class="col-xl-3 col-md-4 col-sm-7 col-12 max-mb-50">
                      {% if fS1.showFooter %}
                         <div class="footer-widget">
-                            <h4 class="footer-widget-title">{{fS1.title}}</h4>
-                            <div class="footer-widget-content">
+                            <h4 class="footer-widget-title text-purple-dark">{{fS1.title}}</h4>
+                            <div class="footer-widget-content ">
                                 <ul class="column-2">
                                 {% for menuItem in fS1.menu.menuItems %}
-                                    <li>  <a {% if menuItem.externalUrl %} href="{{  menuItem.externalUrl | url }}" {% else %} href="{{('/'+menuItem.slug) | absoluteUrl }}" {% endif %} {% if menuItem.openInNewTab %} target="_blank" {% endif %}>{{menuItem.title}}</a></li>
+                                    <li>  <a class="text-purple btn-hover-purple-light"  {% if menuItem.externalUrl %} href="{{  menuItem.externalUrl | url }}" {% else %} href="{{('/'+menuItem.slug) | absoluteUrl }}" {% endif %} {% if menuItem.openInNewTab %} target="_blank" {% endif %}>{{menuItem.title}}</a></li>
                                 {% endfor %}
                                 </ul>
                             </div>
@@ -77,11 +77,11 @@
                     {% if fS2.showFooter %}
                         <div class="footer-widget">
 
-                            <h4 class="footer-widget-title">{{fS2.title}}</h4>
+                            <h4 class="footer-widget-title text-purple-dark">{{fS2.title}}</h4>
                             <div class="footer-widget-content">
                                 <ul>
                                  {% for menuItem in fS2.menu.menuItems %}
-                                    <li>  <a {% if menuItem.externalUrl %} href="{{  menuItem.externalUrl | url }}" {% else %} href="{{('/'+menuItem.slug) | absoluteUrl }}" {% endif %} {% if menuItem.openInNewTab %} target="_blank" {% endif %}>{{menuItem.title}}</a></li>
+                                    <li>  <a class="text-purple btn-hover-purple-light" {% if menuItem.externalUrl %} href="{{  menuItem.externalUrl | url }}" {% else %} href="{{('/'+menuItem.slug) | absoluteUrl }}" {% endif %} {% if menuItem.openInNewTab %} target="_blank" {% endif %}>{{menuItem.title}}</a></li>
                                 {% endfor %}
                                 </ul>
                             </div>
@@ -97,7 +97,7 @@
                 <!-- Footer Copyright Start -->
                 <div class="row max-mt-20">
                     <div class="col">
-                        <p class="copyright"><span>{{ci.statement}}</span><br>&copy; {% currentYear %} Hipline. All Rights Reserved</p>
+                        <p class="copyright "><span>{{ci.statement}}</span><br>&copy; {% currentYear %} Hipline. All Rights Reserved</p>
                     </div>
                 </div>
                 <!-- Footer Copyright End -->

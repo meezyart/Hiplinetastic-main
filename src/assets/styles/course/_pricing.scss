@@ -10,8 +10,8 @@
     .price-image {
         display: flex;
         justify-content: center;
-        align-items: center;
-        padding: 1rem 1rem 3rem;
+        align-items: start;
+        padding: 3rem 1rem 6rem;
         margin-bottom: 10px;
         min-height: 10rem;
         @media #{$large-tablet} {

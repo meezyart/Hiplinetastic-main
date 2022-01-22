@@ -1,7 +1,7 @@
 
 
-{% macro passBlock(imageClass='',passName='',contentClass='',circleClass='',passPrice=0,color='',mainContent='',passBullets, healcodeClass='',bulletClass='', buttonClass='btn btn-lg mt-30', healcodeType='gift-card-link',buttonTitle='Buy Now',passLink,dataId,mbo={}) %}
-    <div class="price-image bg-{{color}}  text-white">
+{% macro passBlock(imageClass='',passName='',contentClass='',circleClass='',passPrice=0,bgColor='',color='',mainContent='',passBullets, healcodeClass='',bulletClass='', buttonClass='btn btn-lg mt-30', healcodeType='gift-card-link',buttonTitle='Buy Now',passLink,dataId,mbo={}) %}
+    <div class="price-image {{bgColor}} text-white">
         <h4>{{passName}}</h4>
     </div>
     <div class="pricing-content {{contentClass}} ">
@@ -15,7 +15,7 @@
                 <h3>${{passPrice }}</h3>
             {% endif %}
         </div>
-        <div class="price-description text-{{color}}-d50">
+        <div class="price-description {{bulletClass}}">
             {% if mainContent %}
                 {{mainContent | blocksToHtml | safe }}
             {% endif %}
@@ -62,18 +62,44 @@
                     <div class="col">
                         <div class="price-item ">
 
+                            {# hot pink #}
+                            {% if pageSection.passColor.title == "hotpink" %}
+                            {{ passBlock(
+                                passName=pass.passName,
+                                circleClass='text-hot-pink',
+                                contentClass='bg-pink-extra-light',
+                                passPrice=pass.passPrice,
+                                color='hot-pink',
+                                bgColor='bg-grad-hotpink',
+                                mainContent=pass.mainContent,
+                                passBullets=pass.passBullets,
+                                passLink=pass.passLink,
+                                bulletClass='text-hot-pink',
+                                buttonClass='btn btn-hot-pink btn-hover-hot-pink-d50 btn-lg mt-30',
+                                mbo=pass.mbo,
+                                dataId=pass.mbo.dataId,
+                                healcodeClass=pass.mbo.dataLinkClass,
+                                healcodeClass=pass.mbo.dataLinkClass,
+                                healcodeType=pass.mbo.dataType,
+                                buttonTitle=pass.mbo.buttonTitle
+                                )}}
+
+
+
+                            {% endif %}
                             {# pink prime #}
                             {% if pageSection.passColor.title == "pink-prime" %}
                             {{ passBlock(
                                 passName=pass.passName,
-                                contentClass='bg-pink-prime-l50',
-                                circleClass='text-pink-prime-d30',
+                                circleClass='text-pink-prime',
+                                contentClass='bg-pink-extra-light',
                                 passPrice=pass.passPrice,
                                 color='pink-prime',
+                                bgColor='bg-grad-pink',
                                 mainContent=pass.mainContent,
                                 passBullets=pass.passBullets,
                                 passLink=pass.passLink,
-                                bulletClass='text-pink-prime-d30',
+                                bulletClass='text-pink-prime',
                                 buttonClass='btn btn-pink-prime btn-hover-pink-prime-d50 btn-lg mt-30',
                                 mbo=pass.mbo,
                                 dataId=pass.mbo.dataId,
@@ -91,11 +117,12 @@
                                 contentClass='bg-purple-light ',
                                 circleClass='text-purple-d50',
                                 passPrice=pass.passPrice,
+                                bgColor='bg-grad-purple',
                                 color='purple',
                                 mainContent=pass.mainContent,
                                 passBullets=pass.passBullets,
                                 passLink=pass.passLink,
-                                bulletClass='text-purple-d50',
+                                bulletClass='text-purple',
                                 buttonClass='btn btn-purple btn-hover-purple-d50 btn-lg mt-30',
                                 mbo=pass.mbo,
                                 dataId=pass.mbo.dataId,
@@ -110,15 +137,39 @@
                             {% if pageSection.passColor.title == "blue" %}
                              {{ passBlock(
                                 passName=pass.passName,
-                                contentClass='bg-blue-l50',
-                                circleClass='text-blue-d10',
+                                contentClass='bg-seafoam-extra-light',
+                                circleClass='text-seafoam-light',
                                 passPrice=pass.passPrice,
-                                color='blue',
+                                bgColor='bg-grad-green',
+                                color='seafoam-light',
                                 mainContent=pass.mainContent,
                                 passBullets=pass.passBullets,
                                 passLink=pass.passLink,
-                                bulletClass='text-blue-d50',
-                                buttonClass='btn btn-blue btn-hover-blue-d50 btn-lg mt-30',
+                                bulletClass='text-seafoam-light-d50',
+                                buttonClass='btn btn-seafoam-light btn-hover-seafoam-light-d50 btn-lg mt-30',
+                                mbo=pass.mbo,
+                                dataId=pass.mbo.dataId,
+                                healcodeClass=pass.mbo.dataLinkClass,
+                                healcodeClass=pass.mbo.dataLinkClass,
+                                healcodeType=pass.mbo.dataType,
+                                buttonTitle=pass.mbo.buttonTitle
+                                )}}
+
+                            {% endif %}
+                            {#  Teal #}
+                            {% if pageSection.passColor.title == "teal" %}
+                             {{ passBlock(
+                                passName=pass.passName,
+                                contentClass='bg-teal-light',
+                                circleClass='text-teal-d30',
+                                passPrice=pass.passPrice,
+                                bgColor='bg-grad-teal',
+                                color='teal',
+                                mainContent=pass.mainContent,
+                                passBullets=pass.passBullets,
+                                passLink=pass.passLink,
+                                bulletClass='text-teal-d50',
+                                buttonClass='btn btn-teal btn-hover-teal-d50 btn-lg mt-30',
                                 mbo=pass.mbo,
                                 dataId=pass.mbo.dataId,
                                 healcodeClass=pass.mbo.dataLinkClass,
@@ -135,6 +186,7 @@
                                 contentClass='bg-ceren-orange-l20',
                                 circleClass='text-ceren-orange-d10',
                                 passPrice=pass.passPrice,
+                                bgColor='bg-grad-orange',
                                 color='ceren-orange',
                                 mainContent=pass.mainContent,
                                 passBullets=pass.passBullets,

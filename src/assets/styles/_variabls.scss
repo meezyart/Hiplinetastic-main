@@ -1,138 +1,238 @@
 // Font Family
-$roboto: 'Roboto',
-sans-serif;
-$gilroy: "Gilroy";
-$montserrat-font: 'Montserrat',
-sans-serif;
+$roboto: 'Roboto', sans-serif;
+$gilroy: 'Gilroy';
+$montserrat-font: 'Montserrat', sans-serif;
 $body-font: $gilroy;
 $heading-font: $montserrat-font;
-$playfair-font: 'Playfair Display',
-serif;
+$playfair-font: 'Playfair Display', serif;
 $rossela-font: 'Conv_Rossela-Demo-2';
 // Icon Font
-$fontAwesome5Brands: "Font Awesome 5 Brands";
-$fontAwesome5Pro: "Font Awesome 5 Pro";
+$fontAwesome5Brands: 'Font Awesome 5 Brands';
+$fontAwesome5Pro: 'Font Awesome 5 Pro';
 // Colors ---------------
-$white: #FFFFFF;
+$white: #ffffff;
 $black: #000000;
-$grey: #F8F9FD;
+$grey: #f8f9fd;
 // Body Color
 $body-color: #696969;
 // Border Color
-$border-color: #F3F3F3;
+$border-color: #f3f3f3;
 // Hipline COlors
 $pink: #f9cfd0;
 //Website colors
-$pink-prime: #F1A2B8;
-$purple: #968dff;
+$pink-prime: #FF8AE2; // updated
+// $pink-prime: #F1A2B8;
+$purple: #ae96ee;
 $purple-light: #e9e8ff;
-$purple-dark: #48458a;
+$purple-dark: #411ba5; // updated
 $seafoam: #00f8f1;
-$seafoam-light: #c3ffe2;
+
+$seafoam-light: #6FD9B4;
+$seaform-dark: #2cbc8a;
+$seafoam-extra-light: #E1FFF5;
 $orange: #ff8000;
-$orange-p: #FFC263;
+$orange-p: #f6ae65;
 $orange-light: #fdc791;
 $ceren-orange: #fbaa62;
-$hot-pink: #ff0dcb;
+$hot-pink: #f600a5;
 $hot-pink-light: #ff7be3;
+$hot-pink-extra-light: #FFF8FD;
 $pink-medium-light: #ffc9f4;
-$pink-extra-light: #ffecf8;
+$pink-extra-light: #FFF4FC;
 $pink-alt: #fcd6ce;
-$yellow: #fffc00;
+$yellow: #f6f665;
 $yellow-orange: #ffd400;
 $grey3: #9b9b9b;
 $grey5: #4a4a4a;
-$teal: #81f9fd;
-$blue: #a8ddfb;
+$teal-blue: #81f9fd;
+$teal-light: #F1FAFF;
+$teal: #A8EBF3;
+
+// New Colors
+$purple-light-mid: #9e7cf6;
+
 // Heading Color
 $heading-color: #333333;
-$topheaderColor: $pink-prime;
-$topheaderBkg: #FEFDFE;
-$topheadertextColor: #b3526d;
-$topheadertextFont:$montserrat-font;
+$topheaderColor: $purple-light-mid;
+$topheaderBkg: #fefdfe;
+$topheadertextColor: $purple-dark;
+$topheadertextFont: $montserrat-font;
+
+$headerTextColor: $purple-dark;
+$footerBkgColor: #fefdfe;
+
 // Template Colors
 $primary: pink;
 $primary-two: #3a7e69;
 $primary-three: #ef6f31;
 $secondary: #773649;
-$secondary-light: #8C89A2;
+$secondary-light: #8c89a2;
 $secondary-three: #6ac5f1;
-$success: #4CAF50;
-$danger: #F44336;
-$warning: #FFC107;
-$info: #17A2B8;
-$light: #F8F9FA;
+$success: #4caf50;
+$danger: #f44336;
+$warning: #ffc107;
+$info: #17a2b8;
+$light: #f8f9fa;
 $off-white: #f6f2ed;
 $dark: $heading-color;
-$light-orange: rgba(239, 111, 49, .1);
+$light-orange: rgba(239, 111, 49, 0.1);
 // All Template Color Map
-$templateColors: ( "primary": $primary, "primary-two": $primary-two, "primary-three": $primary-three, "secondary": $secondary, "secondary-light": $secondary-light, "secondary-three": $secondary-three, "success": $success, "danger": $danger, "warning": $warning, "info": $info, "light": $light, "dark": $dark, "black": $black, "grey": $grey, "body": $body-color, "off-white": $off-white, "light-orange": $light-orange, "orange-p": $orange-p, "purple":$purple, "purple-light":$purple-light, "purple-dark":$purple-dark, "seafoam":$seafoam, "seafoam-light":$seafoam-light, "orange":$orange, "orange-light":$orange-light, "ceren-orange":$ceren-orange, "pink-prime":$pink-prime, "pink":$pink, "hot-pink":$hot-pink, "hot-pink-light":$hot-pink-light, "pink-medium-light":$pink-medium-light, "pink-extra-light":$pink-extra-light, "pink-alt":$pink-alt, "yellow":$yellow, "yellow-orange":$yellow-orange, "grey3":$grey3, "grey5":$grey5, "teal":$teal, "blue":$blue);
+$templateColors: (
+  'primary': $primary,
+  'primary-two': $primary-two,
+  'primary-three': $primary-three,
+  'secondary': $secondary,
+  'secondary-light': $secondary-light,
+  'secondary-three': $secondary-three,
+  'success': $success,
+  'danger': $danger,
+  'warning': $warning,
+  'info': $info,
+  'light': $light,
+  'dark': $dark,
+  'black': $black,
+  'grey': $grey,
+  'body': $body-color,
+  'off-white': $off-white,
+  'light-orange': $light-orange,
+  'orange-p': $orange-p,
+  'purple': $purple,
+  'purple-light': $purple-light,
+  'purple-dark': $purple-dark,
+  'seafoam': $seafoam,
+  'seafoam-light': $seafoam-light,
+  'seafoam-extra-light': $seafoam-extra-light,
+  'seafoam-dark': $seaform-dark,
+  'orange': $orange,
+  'orange-light': $orange-light,
+  'ceren-orange': $ceren-orange,
+  'pink-prime': $pink-prime,
+  'pink': $pink,
+  'hot-pink': $hot-pink,
+  'hot-pink-light': $hot-pink-light,
+  'hot-pink-extra-light': $hot-pink-extra-light,
+  'pink-medium-light': $pink-medium-light,
+  'pink-extra-light': $pink-extra-light,
+  'pink-alt': $pink-alt,
+  'yellow': $yellow,
+  'yellow-orange': $yellow-orange,
+  'purple-light-mid': $purple-light-mid,
+  'grey3': $grey3,
+  'grey5': $grey5,
+  'teal': $teal,
+  'teal-light': $teal-light,
+  'teal-blue': $teal-blue
+);
 // Default Transition
 $transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 // Socail Color
-$android: #7AC157;
-$apple: #B8B8B8;
-$behance: #1869FF;
+$android: #7ac157;
+$apple: #b8b8b8;
+$behance: #1869ff;
 $codepen: $black;
-$dribbble: #EA4C8A;
-$dropbox: #007EE5;
-$evernote: #78D525;
-$facebook: #4867AA;
+$dribbble: #ea4c8a;
+$dropbox: #007ee5;
+$evernote: #78d525;
+$facebook: #4867aa;
 $github: #313131;
-$google-drive: #1DA462;
-$google-earth: #4285F4;
-$google-glass: #EA4335;
-$google-maps: #5083C3;
-$google-play: #01B9FD;
-$google-plus: #DD5144;
-$google: #4285F4;
-$instagram: #B23A94;
-$css3: #0277BD;
-$html5: #E44D26;
-$javascript: #F9DC3D;
-$python: #0C9DBF;
-$lastfm: #E31B23;
-$linkedin: #007BB6;
-$paypal: #002F86;
-$pinterest: #BD081B;
-$pocket: #EF3E56;
-$polymer: #F87292;
-$rss: #F99C3A;
-$share: #2C9CFF;
-$stackoverflow: #F38024;
-$steam: #15497B;
-$twitter: #1DA1F2;
-$vk: #5181B8;
-$wikipedia: #E9E9E9;
-$windows: #0078D6;
+$google-drive: #1da462;
+$google-earth: #4285f4;
+$google-glass: #ea4335;
+$google-maps: #5083c3;
+$google-play: #01b9fd;
+$google-plus: #dd5144;
+$google: #4285f4;
+$instagram: #b23a94;
+$css3: #0277bd;
+$html5: #e44d26;
+$javascript: #f9dc3d;
+$python: #0c9dbf;
+$lastfm: #e31b23;
+$linkedin: #007bb6;
+$paypal: #002f86;
+$pinterest: #bd081b;
+$pocket: #ef3e56;
+$polymer: #f87292;
+$rss: #f99c3a;
+$share: #2c9cff;
+$stackoverflow: #f38024;
+$steam: #15497b;
+$twitter: #1da1f2;
+$vk: #5181b8;
+$wikipedia: #e9e9e9;
+$windows: #0078d6;
 $s500px: $black;
-$s8tracks: #122D4B;
-$amazon: #F79B34;
-$blogger: #F06A35;
-$delicious: #0000FE;
-$disqus: #2E9EFE;
-$flattr: #7AB831;
-$flickr: #FE0084;
-$odnoklassniki: #F58220;
-$outlook: #0072C6;
-$playstation: #07418E;
-$reddit: #FF4500;
-$skype: #00A9F0;
-$slideshare: #0077B5;
-$soundcloud: #FE4900;
-$tumblr: #36465D;
-$twitch: #6441A4;
-$vimeo: #1AB7EA;
-$whatsapp: #189D0E;
-$xbox: #107C0F;
-$yahoo: #4101AF;
-$youtube: #FE0000;
+$s8tracks: #122d4b;
+$amazon: #f79b34;
+$blogger: #f06a35;
+$delicious: #0000fe;
+$disqus: #2e9efe;
+$flattr: #7ab831;
+$flickr: #fe0084;
+$odnoklassniki: #f58220;
+$outlook: #0072c6;
+$playstation: #07418e;
+$reddit: #ff4500;
+$skype: #00a9f0;
+$slideshare: #0077b5;
+$soundcloud: #fe4900;
+$tumblr: #36465d;
+$twitch: #6441a4;
+$vimeo: #1ab7ea;
+$whatsapp: #189d0e;
+$xbox: #107c0f;
+$yahoo: #4101af;
+$youtube: #fe0000;
+
+// Gradients
+$gradients: () !default;
+$gradients: map-merge(
+  (
+    pink: linear-gradient(180deg, #FF8AE2 0%, #FFE8F9 100%),
+    teal: linear-gradient(180deg, #40dbee 0%, #d5feff 100%),
+    green: linear-gradient(180deg,  #2CBC8A 7.87%, #E1FFF5 102.54%),
+    hotpink: linear-gradient(180deg, #f600a5 15.61%, rgba(255, 214, 241, 0.67) 101.05%),
+    orange: linear-gradient(180deg, #f6ae65 7.87%, rgba(246, 176, 105, 0.963542) 12.93%, rgba(255, 229, 203, 0) 146.7%),
+    purple: linear-gradient(180deg, #8a5ffd 7.87%, #ccc1e9 113.44%, #f8f5ff 146.7%)
+  ),
+  $gradients
+);
+
+/* Gradient code paste */
+
+
+
+// Gradient backgrounds
+@mixin bg-gradient($parent, $gradient) {
+  #{$parent} {
+    background: $gradient;
+  }
+}
+// Gradient text
+@mixin text-gradient($parent, $gradient) {
+  #{$parent} {
+    background-image: $gradient;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
+// Gradient Classes
+@each $gradient, $value in $gradients {
+  @include bg-gradient('.bg-grad-#{$gradient}', $value);
+}
+// Gradient Classes
+@each $gradient, $value in $gradients {
+  @include text-gradient('.txt-grad-#{$gradient}', $value);
+}
+
 // Responsive Variables
-$extraBig-device: "only screen and (min-width: 1600px)";
-$laptop-device: "only screen and (min-width: 1200px) and (max-width: 1599px)";
-$desktop-device: "only screen and (min-width: 992px) and (max-width: 1199px)";
-$tablet-device: "only screen and (min-width: 768px) and (max-width: 991px)";
-$large-tablet: "only screen and (max-width: 991px)";
-$large-mobile: "only screen and (max-width: 767px)";
-$small-mobile: "only screen and (max-width: 575px)";
-$extra-small-mobile: "only screen and (max-width: 479px)";
+$extraBig-device: 'only screen and (min-width: 1600px)';
+$laptop-device: 'only screen and (min-width: 1200px) and (max-width: 1599px)';
+$desktop-device: 'only screen and (min-width: 992px) and (max-width: 1199px)';
+$tablet-device: 'only screen and (min-width: 768px) and (max-width: 991px)';
+$large-tablet: 'only screen and (max-width: 991px)';
+$large-mobile: 'only screen and (max-width: 767px)';
+$small-mobile: 'only screen and (max-width: 575px)';
+$extra-small-mobile: 'only screen and (max-width: 479px)';

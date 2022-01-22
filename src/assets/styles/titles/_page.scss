@@ -16,6 +16,7 @@
 }
 
 .page-title {
+    color: $headerTextColor;
     & .title {
         font-size: 48px;
         margin: 0;
@@ -45,7 +46,7 @@
 
 .page-breadcrumb {
     position: absolute;
-    bottom: -11rem;
+    bottom: -221px;
     z-index: 5;
     left: 1rem;
     width: max-content;
@@ -53,10 +54,10 @@
     border-radius: 14px;
     background: $primary;
     @media #{$desktop-device} {
-        bottom: -6rem;
+        bottom: -110px;
     }
     @media #{$tablet-device} {
-        bottom: -5rem;
+        bottom: -100px;
     }
     @media #{$large-mobile,$extra-small-mobile,$small-mobile} {
         display: none;

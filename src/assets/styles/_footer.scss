@@ -6,9 +6,9 @@
 
 .footer-section {
     padding: 70px 0 50px;
-    background-color: #FFFAFC;
+    background-color: $footerBkgColor;
     overflow: hidden;
-    border-bottom: .5rem solid $primary;
+    border-bottom: .5rem solid $topheadertextColor;
     .footer-logo {
         width: 8rem;
         margin-bottom: 10px;
@@ -19,5 +19,5 @@
 .copyright {
     font-size: 14px;
     text-align: center;
-    color: $secondary;
+    color: $topheadertextColor;
 }

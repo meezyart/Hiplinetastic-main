@@ -3,7 +3,7 @@
 .section-title {
     position: relative;
     z-index: 99;
-
+color: $headerTextColor;
     margin-bottom: 60px;
     // Responsive
     @media #{$large-mobile}{
@@ -30,7 +30,7 @@
 
         margin: 0;
 
-        color: $secondary;
+
         &.fz-48{
             font-size: 48px !important;
             // Responsive
@@ -128,7 +128,7 @@
         line-height: 1.42;
         margin: 0;
         color: $heading-color;
-        
+
         &.fz-48{
             font-size: 48px;
             // Responsive
@@ -218,7 +218,7 @@
         line-height: 1.42;
         margin: 0;
         color: $heading-color;
-        
+
         &.fz-48{
             font-size: 48px;
             // Responsive
