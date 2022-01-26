@@ -32,6 +32,10 @@ body,
     height: 100%;
 }
 
+html {
+overflow-x: hidden
+}
+
 body {
     font-family: $body-font;
     font-size: 17px;
@@ -174,6 +178,10 @@ svg:not(:root) {
 
 
 /* Common Classes */
+
+.no-shadow{
+    text-shadow: none !important;
+}
 
 .playfair-font {
     font-family: $playfair-font;
