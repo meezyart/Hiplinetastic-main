@@ -17,7 +17,7 @@
                 <div class="row row-cols-lg-{% if pageSection.boxCount %}{{pageSection.boxCount}}{%else%}3{% endif %} row-cols-md-2 row-cols-sm-1 row-cols-1 max-mb-n30">
 {% for box in pageSection.infoBoxes %}
 <!-- Feature Start (Icon Box) -->
-                    <div class="col max-mb-30 animate__animated animate__fadeInUp animate__delay-1000ms" >
+                    <div class="col max-mb-30 animate__animated animate__fadeInUp animate__delay-1000ms animate__slow" >
                     <a class="icon-box text-center"  href="{% if box.cta.link %}{{box.cta.link | url }}{%elseif box.cta.internal%}/{{box.cta.internal  }}{%elseif box.cta.route%}{{box.cta.route}}{% endif %}" {% if box.cta.openInNewTab %}target="_blank"{% endif %} data-bg-color="#fff">
                             <div class="icon">
                                 <img src="{{box.pic}}" alt="">

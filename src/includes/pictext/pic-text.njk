@@ -7,7 +7,7 @@
             {%elseif  pageSection.picLocation == 'rightPic'%}
                 {% set picOrder1 = 'order-lg-1' %}
             {% endif %}
-            <div class="col-lg-6 col-md-12 {{picOrder1}} order-2 animate__animated animate__bounceInUp animate__delay-200ms">
+            <div class="col-lg-6 col-md-12 {{picOrder1}} order-2 animate__animated animate__fadeInUp animate__slow animate__delay-{{loop.index + 1}}00ms">
                 <div class="about-content mt-sm-50 mt-xs-50">
                     {# <span class="sub-title">Get to know about <strong>MaxCoach</strong></span> #}
                     {% if pageSection.heading %}
@@ -28,7 +28,7 @@
             {% endif %}
             <div class="col-lg-6 col-md-12 {{picOrder2}} order-1">
 
-                <div class="about-image animate__animated animate__bounceInUp animate__delay-1000ms">
+                <div class="about-image animate__animated animate__fadeInUp animate__slow animate__delay-{{loop.index + 1}}00ms">
                     {% if pageSection.picImages %}
                         {% for pic in pageSection.picImages %}
                             {% if loop.first %}

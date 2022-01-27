@@ -17,7 +17,7 @@
                     <ul class="mx-timeline-list mx-animation-queue">
                         <li class="line "></li>
                         {% for tl in pageSection.timelineSections %}
-                            <li class="item animate__animated animate__bounceInUp">
+                            <li class="item animate__animated animate__fadeInUp animate__slow">
                                 <div class="dots ">
                                     <div class="middle-dot"></div>
                                 </div>
@@ -30,12 +30,12 @@
                                                 <h5 class="title">{{tl.bulletHeading}}</h5>
                                             </div>
 
-                                            <div class="timeline-image animate__animated animate__bounceInUp ">
+                                            <div class="timeline-image animate__animated animate__fadeInUp animate__slow">
                                                 <img src="{% imageUrl tl.mainImage.asset , 500,450 %}" alt="{{tl.mainImage.alt}}" class="img-fluid">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 timeline-col right timeline-info timeline-image animate__animated animate__bounceInUp animate__delay-900ms">
+                                    <div class="col-md-6 timeline-col right timeline-info timeline-image animate__animated animate__fadInUp animate__delay-900ms animate__slow">
 
                                         <div class="inner">
                                             <div class="timeline-content-wrap">

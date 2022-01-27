@@ -178,6 +178,9 @@ svg:not(:root) {
 
 
 /* Common Classes */
+:root {
+  --animate-duration: 1s;
+}
 
 .no-shadow{
     text-shadow: none !important;
