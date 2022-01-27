@@ -1,13 +1,13 @@
-{% macro infoColBox(mainImage = '', slug = '', category = '', title = '', excerpt = '', publishedAt = '', cta = '', slide) %}
+{% macro infoColBox(mainImage = '', slug = '', category = '', title = '', excerpt = '', publishedAt = '', cta = '', slide , delay='1') %}
 
-    <div class="{% if slide %}swiper-slide {% else %}col {% endif -%} max-mb-30" >
+    <div class="{% if slide %}swiper-slide {% else %}col {% endif -%} max-mb-30 max-mb-n30 animate__animated animate__fadeInUp animate__delay-{{delay+1}}00ms" >
         <div class="blog">
-            <div class="thumbnail">
+            <div class="thumbnail ">
                 <a  {% if cta %} href="{{ cta.link }}" {% if cta.openInNewTab %} target="_blank" {% endif %} {% endif %}    class="image">
                     <img src="{% if mainImage %}{% imageUrl mainImage.url, 350 , 250 %}{% else %}/assets/images/blog/370/blog-1.jpg{% endif %}" class="lazyload" alt="{{mainImage.alt}}" data-sizes="auto">
                 </a>
             </div>
-            <div class="info">
+            <div class="info animate__animated animate__fadeInUp animate__delay-{{delay+2}}00ms">
 
                 {% if category %}
                     <span class="category">{{category}}</span>
@@ -73,6 +73,7 @@
                         mainImage=artcle.featuredImage,
                         slug=artcle.slug,
                         category=artcle.category,
+                        delay=loop.index+3,
                         title=artcle.title,
                         excerpt=artcle.excerpt,
                         publishedAt=artcle.publishedAt,
@@ -87,6 +88,7 @@
                         slug=artcle.slug,
                         category=artcle.category,
                         title=artcle.title,
+                         delay=loop.index+3,
                         excerpt=artcle.excerpt,
                         publishedAt=artcle.publishedAt,
                         cta=artcle.cta)

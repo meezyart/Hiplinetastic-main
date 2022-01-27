@@ -15,10 +15,10 @@
                 <div class="mx-timeline">
                     {# {%debug pageSection.heading %} #}
                     <ul class="mx-timeline-list mx-animation-queue">
-                        <li class="line"></li>
+                        <li class="line "></li>
                         {% for tl in pageSection.timelineSections %}
-                            <li class="item animate">
-                                <div class="dots">
+                            <li class="item animate__animated animate__bounceInUp">
+                                <div class="dots ">
                                     <div class="middle-dot"></div>
                                 </div>
 
@@ -26,16 +26,16 @@
                                     <div class="col-md-6 timeline-col left timeline-feature">
 
                                         <div class="inner">
-                                            <div class="title-wrap">
+                                            <div class="title-wrap ">
                                                 <h5 class="title">{{tl.bulletHeading}}</h5>
                                             </div>
 
-                                            <div class="timeline-image">
+                                            <div class="timeline-image animate__animated animate__bounceInUp ">
                                                 <img src="{% imageUrl tl.mainImage.asset , 500,450 %}" alt="{{tl.mainImage.alt}}" class="img-fluid">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 timeline-col right timeline-info">
+                                    <div class="col-md-6 timeline-col right timeline-info timeline-image animate__animated animate__bounceInUp animate__delay-900ms">
 
                                         <div class="inner">
                                             <div class="timeline-content-wrap">
