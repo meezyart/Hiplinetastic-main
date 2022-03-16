@@ -44,7 +44,7 @@
             }
             &:hover {
                 &>a {
-                    color: $secondary;
+                    color: $pink-prime;
                 }
                 &>.sub-menu,
                 .mega-menu {
@@ -288,7 +288,7 @@
                     &>a {
                         & .menu-text {
                             &::before {
-                                background-color: $primary-three;
+                                background-color: $pink-prime;
                             }
                         }
                     }
