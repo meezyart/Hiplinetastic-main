@@ -32,7 +32,7 @@
         font-size: 45px;
         line-height: 56px;
         margin-bottom: 15px;
-        color: $purple-dark;
+        color: $headerTextColor;
         // Responsive
         @media #{$tablet-device} {
             font-size: 42px;
