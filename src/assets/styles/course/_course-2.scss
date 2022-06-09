@@ -18,9 +18,15 @@
                         position: absolute;
                         width: 100%;
                         height: 13em;
-                        background: -moz-linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 83%);
-                        background: -webkit-linear-gradient( 0deg, #000 0%, #0000 83%);
-                        background: linear-gradient( 0deg, #000 0%, #0000 83%);
+                        background: -moz-linear-gradient(0deg, #503c41b3 0%, #503c4100 63%);
+                        background: -webkit-linear-gradient( 0deg, #503c41b3 0%, #503c4100 63%);
+                        background: linear-gradient( 0deg, #503c41b3 0%, #503c4100 63%);
+                    }
+                    @media #{$small-mobile} {
+
+                         &::before {
+background: none;
+                         }
                     }
                     & .image {
                         display: block;
@@ -42,7 +48,10 @@
                         left: 40px;
                         color: $secondary;
                         z-index: 5;
-                        & a {}
+
+                        & a {
+
+                        }
                     }
                 }
                 & .info {
@@ -95,9 +104,10 @@
                         // left: 40px;
                         color: $white;
                         z-index: 5;
-                        & a {}
+
+                        & a {text-shadow: 4px 3px 0px #444141;}
                         @media #{$large-tablet} {
-                            top: -5.5rem;
+                            top: -5.25rem;
                         }
                         @media #{$small-mobile} {
                             font-size: 2em;
@@ -105,6 +115,7 @@
                             color: $secondary;
                             padding: 0;
                             position: relative;
+                             & a {text-shadow: none;}
                         }
                     }
                     & .desc {
