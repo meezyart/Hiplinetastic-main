@@ -205,16 +205,19 @@
 
     // Banner Slider
     var bannerSlider = new Swiper('.banner-slider', {
-        loop: true,
-        speed: 750,
-        spaceBetween: 30,
-        effect: 'fade',
-        navigation: {
-            nextEl: '.banner-slider-next',
-            prevEl: '.banner-slider-prev',
-        },
-        //autoplay: {},
-    });
+      loop: true,
+      speed: 750,
+      spaceBetween: 30,
+      effect: 'fade',
+      navigation: {
+        nextEl: '.banner-slider-next',
+        prevEl: '.banner-slider-prev'
+      },
+      pauseOnMouseEnter: true,
+      autoplay: {
+        delay: 9000
+      }
+    })
 
     // Health Testimonial Slider
     var testimonialSlider = new Swiper('.health-testimonial-slider', {

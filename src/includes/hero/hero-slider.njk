@@ -1,5 +1,6 @@
-{% macro heroSlider(heroImage, headline, heroColor, subTitle, mainContent, themeColor) %}
-    <div class="swiper-slide">
+{% macro heroSlider(heroImage, headline, heroColor, subTitle, mainContent, themeColor, sliderDelay) %}
+    <div class="swiper-slide"
+    data-swiper-autoplay="{{sliderDelay}}">
         <!--Banner Slider Item start-->
         {# {% imageUrl heroImage, 1920, 700 %} #}
         <div class="banner-slider-item" data-bg-image="{{ heroImage }}">
