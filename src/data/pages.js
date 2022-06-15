@@ -183,6 +183,7 @@ const filter = `
                 classChoreographers[]->{
                   fullName,
                   nickname,
+                  pronoun,
                   'coverImage': coverImages.asset->,
                 'alt':coverImages.alt,
                 'coverVideo': coverVideoMain,

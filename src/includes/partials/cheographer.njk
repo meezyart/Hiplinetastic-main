@@ -23,7 +23,7 @@
                         </figure>
                         {% if item.coverVideo.url %}
                             <div class="dancer-name" x-show="currentVid == 'vid-{{dcnID}}' ">
-                                <h6>{{item.nickname }}</h6>
+                                <h6>{{item.nickname }} {{item.pronoun }}</h6>
                             </div>
                             <div class="video" x-show="currentVid == 'vid-{{dcnID}}' ">
                                 <video
@@ -82,7 +82,7 @@
                             </div>
                         {% endif %}
                         <div class="content" >
-                            <h2 class="text-yellow">{{item.nickname }}</h2>
+                            <h2 class="text-yellow">{{item.nickname }}  {{item.pronoun }}</h2>
                             {% set social = item.social %}
                             {% set spotifyUrl = item.spotifyUrl %}
                             {% include "partials/social-inline.njk" %}
