@@ -30,20 +30,15 @@ module.exports = (image,  width = null, height = null,hotspot = null) => {
     let urlStr = new URL(url);
     // console.log('\n---888888888888888888888--\n',urlStr,'\n-----\n')
     let urlParams = new URLSearchParams(urlStr.search)
-      console.log('hotspot:', hotspot, '\n-----\n')
+    //   console.log('hotspot:', hotspot, '\n-----\n')
     let rect = urlParams.get('rect')
 
     // if (rect) {
     //   builderUrl = builderUrl.width(width).height(height).rect(rect)
     // }
 
-    console.log('\n---------------------------\n',rect,'\n-----\n',  builderUrl.url(), '\n-----\n')
+    // console.log('\n---------------------------\n',rect,'\n-----\n',  builderUrl.url(), '\n-----\n')
 return builderUrl.url()
-} else {
-        console.log('\n------------no image---------------\n')
-
-
-    // return builderUrl.url()
 }
 
 
