@@ -3,7 +3,7 @@
     <div class="course-2" >
         <div class="thumbnail">
             <a href="/schedule/" class="image">
-                <img src="{% if class.classImage %}{% imageUrl class.classImage, 1170 , 400 %}{% else %}/assets/images/page-banner/artist-event.jpg{% endif %}" class="lazyload" data-sizes="auto">
+                <img src="{% if class.classImage %}{% imageUrl class.classImage, 1170 , 400 ,  class.classImageHotSpot %}{% else %}/assets/images/page-banner/artist-event.jpg{% endif %}" class="lazyload" data-sizes="auto">
             </a>
         </div>
         <div class="info">

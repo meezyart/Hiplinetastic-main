@@ -18,15 +18,15 @@
 {% for box in pageSection.infoBoxes %}
 <!-- Feature Start (Icon Box) -->
                     <div class="col max-mb-30 animate__animated animate__fadeInUp animate__delay-1000ms animate__slow" >
-                    <a class="icon-box text-center"  href="{% if box.cta.link %}{{box.cta.link | url }}{%elseif box.cta.internal%}/{{box.cta.internal  }}{%elseif box.cta.route%}{{box.cta.route}}{% endif %}" {% if box.cta.openInNewTab %}target="_blank"{% endif %} data-bg-color="#fff">
-                            <div class="icon">
+                    <a class="icon-box text-center"  {% if box.cta%} href="{% if box.cta.link %}{{box.cta.link | url }}{%elseif box.cta.internal%}/{{box.cta.internal  }}{%elseif box.cta.route%}{{box.cta.route}}{% endif %}" {% if box.cta.openInNewTab %}target="_blank"{% endif %} {% endif %}data-bg-color="#fff">
+                            {% if box.pic %}<div class="icon">
                                 <img src="{{box.pic}}" alt="">
-                            </div>
+                            </div>{% endif %}
                             <div class="content">
-                                <h3 class="title fz-20">{{box.headline}}</h3>
-                                <div class="desc">
+                                {% if box.headline %}<h3 class="title fz-20">{{box.headline}}</h3>{% endif %}
+                                 {% if box.text %}<div class="desc">
                                     <p>{{box.text | blocksToHtml | safe }}</p>
-                                </div>
+                                </div>{% endif %}
                                 {% if box.cta %}
                                     <span class="link">{{box.cta.title}}
                 <i class="far fa-long-arrow-right"></i></span>

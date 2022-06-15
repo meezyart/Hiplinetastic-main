@@ -177,6 +177,8 @@ const filter = `
 
           classMenuSections[]->{
             'classImage':classImage.asset->,
+              'classImageCrop':classImage.crop,
+   'classImageHotSpot':classImage.hotspot,
                 classDescription,
                 classChoreographers[]->{
                   fullName,
