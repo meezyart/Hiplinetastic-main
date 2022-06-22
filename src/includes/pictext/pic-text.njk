@@ -32,12 +32,12 @@
                     {% if pageSection.picImages %}
                         {% for pic in pageSection.picImages %}
                             {% if loop.first %}
-                                <div class="about-image-{{loop.index}}">
-                                    <img src="{% imageUrl pic.url , 570 %}" alt="{{pic.alt}}">
+                                <div class="about-image-1">
+                                    <img src="{% imageUrl pic.url , 1000 %}" alt="{{pic.alt}}">
                                 </div>
                             {% endif %}
                             {% if loop.last and loop.length > 1 %}
-                                <div class="about-image-{{loop.index}}">
+                                <div class="about-image-2">
                                     <img src="{% imageUrl pic.url , 215,250 %}" alt="{{pic.alt}}">
                                 </div>
                             {% endif %}

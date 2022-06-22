@@ -71,6 +71,7 @@
         position: absolute;
         top: -90px;
         right: -73px;
+        z-index: 2;
         // Responsive
         @media #{$laptop-device} {
             right: -20px;
