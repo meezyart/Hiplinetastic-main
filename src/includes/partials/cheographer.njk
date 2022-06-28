@@ -17,7 +17,7 @@
                 {% for item in dancer %}
                     {% set dcnID = item._id | truncate(7, false, '') %}
                     <div class=" but item{{loop.index }}" :class="openedIndex == {{rowloop }} ? 'selected ' : ''"
-                    @mouseLeave="stopVideo(`vid-{{dcnID}}`);" @mouseenter="playVideo(`vid-{{dcnID}}`);" @click="openedIndex == {{rowloop }} ? openedIndex = -1 : openedIndex = {{rowloop }}; scrollToContent(d{{dcnID}});" x-ref="d{{dcnID}}">
+                     {% if item.coverVideo.url %} @mouseLeave="stopVideo(`vid-{{dcnID}}`);"  @mouseenter="playVideo(`vid-{{dcnID}}`);"      {% endif %} @click="openedIndex == {{rowloop }} ? openedIndex = -1 : openedIndex = {{rowloop }}; scrollToContent(d{{dcnID}});" x-ref="d{{dcnID}}">
  <figure x-show=" currentVid != 'vid-{{dcnID}}'">
                             <img src="{% if item.coverImage %}{% imageUrl item.coverImage , 400 , 400 %}{% else %}/assets/images/page-banner/artist-event.jpg{% endif %}" class="lazyload" data-sizes="auto">
                         </figure>
@@ -48,7 +48,7 @@
                 {% endfor %}
                 {% for item2 in dancer %} #}
                     <div class="item cont cont{{loop.index }} item5" x-transition:enter="expanded"
-      x-transition:leave="closed" x-show="openedIndex == {{rowloop}}"  id="d{{dcnID}}">
+      x-transition:leave="closed" x-show="openedIndex == {{rowloop}}"  id="d{{dcnID}}" x-ref="do{{dcnID}}">
                         {% if item.coverVideo.url %}
                             {# <div class="inline-video" x-show="openedIndex == {{rowloop}};"  @mouseLeave="stopVideo(`in-vid-{{dcnID}}`);" @mouseenter="playVideo(`in-vid-{{dcnID}}`);" > #}
                             <div class="inline-video" x-show="openedIndex == {{rowloop}};" >
