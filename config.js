@@ -8,6 +8,6 @@ module.exports = {
     envUrls: {
         development: 'http://localhost:8080',
         staging: 'https://hipline.netlify.app',
-        production: 'https://hipline.netlify.app'
+        production: 'https://myhipline.com'
     }
 }
