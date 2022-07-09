@@ -60,16 +60,21 @@
                 <div class="col-xl-2 col-auto">
                     <div class="header-right">
                         <div class="inner">
+
+
                             <div class="header-cart">
-                            <healcode-widget data-version="0.2" data-link-class="healcode-cart-text-link" data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="cart-link" data-inner-html='<i class="far fa-shopping-cart"></i>"'  />
+                                 {% if sections.header.showCart %}
+                            <healcode-widget data-version="0.2" data-link-class="healcode-cart-text-link" data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="cart-link" data-inner-html='<i class="far fa-shopping-cart"></i>"'  />{% endif %}
                                     </div>
                             <!-- Header Login Start -->
 
                             <!-- Header Login End -->
+
                             <!-- Header Social Start -->
                             <div class="header-sociax d-none d-sm-flex">
-                            <healcode-widget data-version="0.2" data-link-class="healcode-login-register-text-link btn btn-primary btn-hover-secondary btn-long" data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="account-link" data-inner-html="Sign Up"  />
-
+                                 {% if sections.header.showLogin %}
+                            <healcode-widget data-version="0.2" data-link-class="{{sections.header.topCtaLink.dataLinkClass}}"  data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="{{sections.header.topCtaLink.dataType}}" data-inner-html="{{sections.header.topCtaLink.buttonTitle}}"/>
+{% endif %}
                                 {# <a href="#"><i class="fab fa-twitter"></i></a>
                                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -95,4 +100,5 @@
         </div>
     </div>
 </div>
+
 <!-- Header Section End -->

@@ -10301,11 +10301,11 @@ only screen and (max-width: 767px) {
     position: relative !important;
 }
 
-.site-mobile-menu>ul>li+li>a {
+.site-mobile-menu>ul>li+li a {
     border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.site-mobile-menu>ul>li>a {
+.site-mobile-menu>ul>li a {
     font-size: 16px;
     font-weight: 500;
     line-height: 1.5;
@@ -10351,7 +10351,7 @@ only screen and (max-width: 767px) {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.site-mobile-menu>ul>li.open>a {
+.site-mobile-menu>ul>li.open a {
     border-bottom-color: rgba(255, 255, 255, 0.15);
 }
 
