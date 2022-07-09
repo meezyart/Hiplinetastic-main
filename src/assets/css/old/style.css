@@ -10297,15 +10297,15 @@ only screen and (max-width: 767px) {
     list-style: none;
 }
 
-.site-mobile-menu>ul>li {
+.site-mobile-menu>ul li {
     position: relative !important;
 }
 
-.site-mobile-menu>ul>li+li a {
+.site-mobile-menu>ul li+li a {
     border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.site-mobile-menu>ul>li a {
+.site-mobile-menu>ul li a {
     font-size: 16px;
     font-weight: 500;
     line-height: 1.5;
@@ -10318,7 +10318,7 @@ only screen and (max-width: 767px) {
     border-bottom: 1px solid transparent;
 }
 
-.site-mobile-menu>ul>li .menu-toggle {
+.site-mobile-menu>ul li .menu-toggle {
     position: absolute;
     top: 11px;
     right: 0;
@@ -10377,8 +10377,8 @@ only screen and (max-width: 767px) {
     position: relative;
 }
 
-.site-mobile-menu .sub-menu li>a,
-.site-mobile-menu .mega-menu li>a {
+.site-mobile-menu .sub-menu li a,
+.site-mobile-menu .mega-menu li a {
     font-size: 15px;
     font-weight: 500;
     line-height: 1.5;
@@ -10399,8 +10399,8 @@ only screen and (max-width: 767px) {
     top: 1px;
 }
 
-.site-mobile-menu .sub-menu li.open>a,
-.site-mobile-menu .mega-menu li.open>a {
+.site-mobile-menu .sub-menu li.open a,
+.site-mobile-menu .mega-menu li.open a {
     color: #FFFFFF;
 }
 
