@@ -3,7 +3,7 @@ const client = require('../../utils/sanityClient.js');
 const filter = `
  *[_type == "choreographers" && !(_id in path('drafts.**'))]{
 
-  'bio':bio.bioBody[0],
+  'bio':bio.bioBody[],
   'bioLink': bio.bioLink.link,
 	'coverImage': coverImages[0].asset->,
 	'alt':coverImages[0].alt,

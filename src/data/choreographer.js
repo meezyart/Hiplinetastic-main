@@ -4,7 +4,7 @@ const filter = `
  *[_type == "choreographers" && !(_id in path('drafts.**'))]{
 _id,
 _type,
-  'bio':bio.bioBody[0],
+  'bio':bio.bioBody[],
   bioLink,
   'coverImage': coverImages.asset->,
   'alt':coverImages[0].alt,
