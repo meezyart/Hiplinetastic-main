@@ -21,7 +21,8 @@
                 <nav class="site-mobile-menu">
                     <ul>
                          <li>
-  <healcode-widget data-version="0.2" data-link-class=""  data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="account-link" data-inner-html='<span class="menu-text">{{sections.header.topCtaLink.buttonTitle}}</span>'/>
+                            <a {% if sections.header.cta%} href="{% if sections.header.cta.link %}{{sections.header.cta.link | url }}{%elseif sections.header.cta.internal%}/{{sections.header.cta.internal  }}{%elseif sections.header.cta.route%}{{sections.header.cta.route}}{% endif %}" {% if sections.header.cta.openInNewTab %}target="_blank"{% endif %} {% endif %} >
+  <span class="menu-text">{{sections.header.cta.title}}</span></a>
                                 </a>
                         </li>
                         <li class="has-children position-static">

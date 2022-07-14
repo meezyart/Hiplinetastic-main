@@ -7,14 +7,11 @@
                 <!-- Header Logo Start -->
                 <div class="col-xl-2 col-auto">
                     <div class="header-logo">
-                        <a href="{{ '/' | absoluteUrl }}">
-                            {% set darkLogo %}{% imageUrl settings.logo.darkLogo.url %}{% endset %}
+                        <a href="{{ '/' | url }}">{% set darkLogo %}{% imageUrl settings.logo.darkLogo.url %}{% endset %}
                             {% set lightLogo %}{% imageUrl settings.logo.lightLogo.url %}{% endset %}
                             <img srcset="{% imageSrcset darkLogo %}" class="dark-logo" data-sizes="auto" alt="Logo">
-                            <img srcset="{% imageSrcset lightLogo %}" class="light-logo" data-sizes="auto" alt="Logo">
-
-                        </a>
-                    </div>
+                            <img srcset="{% imageSrcset lightLogo %}" class="light-logo" data-sizes="auto" alt="Logo"></a>
+                            </div>
                 </div>
                 <!-- Header Logo End -->
 
@@ -57,24 +54,32 @@
                 <!-- Header Main Menu End -->
 
                 <!-- Header Right Start -->
-                <div class="col-xl-2 col-auto">
+                <div class="col-auto">
                     <div class="header-right">
                         <div class="inner">
 
+                            {% if sections.header.showCart %}
+                                <div class="header-cart">
 
-                            <div class="header-cart">
-                                 {% if sections.header.showCart %}
-                            <healcode-widget data-version="0.2" data-link-class="healcode-cart-text-link" data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="cart-link" data-inner-html='<i class="far fa-shopping-cart"></i>"'  />{% endif %}
-                                    </div>
+                                    <healcode-widget data-version="0.2" data-link-class="healcode-cart-text-link" data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="cart-link" data-inner-html='<i class="far fa-shopping-cart"></i>"'/>
+                                </div>
+                            {% endif %}
                             <!-- Header Login Start -->
+                            {% if sections.header.showLogin %}
+                                <div class="header-login">
+                                    <healcode-widget data-version="0.2" data-link-class="healcode-login-register-text-link "  data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="account-link" data-inner-html='<i class="far fa-user-circle"></i>'/>
+                                </div>
 
+                            {% endif %}
                             <!-- Header Login End -->
 
-                            <!-- Header Social Start -->
+                            <!-- Heade
+                            r Social Start -->
                             <div class="header-sociax d-none d-sm-flex">
-                                 {% if sections.header.showLogin %}
-                            <healcode-widget data-version="0.2" data-link-class="healcode-login-register-text-link btn btn-primary btn-hover-secondary"  data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="account-link" data-inner-html="{{sections.header.topCtaLink.buttonTitle}}"/>
-{% endif %}
+                            {% if sections.header.showButton %}
+                                <a {% if sections.header.cta%} href="{% if sections.header.cta.link %}{{sections.header.cta.link | url }}{%elseif sections.header.cta.internal%}/{{sections.header.cta.internal  }}{%elseif sections.header.cta.route%}{{sections.header.cta.route}}{% endif %}" {% if sections.header.cta.openInNewTab %}target="_blank"{% endif %} {% endif %} class="btn btn-primary btn-hover-secondary">{% if sections.header.cta.title %}{{sections.header.cta.title  }}{% endif %}</a>
+
+                                {% endif %}
                                 {# <a href="#"><i class="fab fa-twitter"></i></a>
                                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                                         <a href="#"><i class="fab fa-instagram"></i></a>

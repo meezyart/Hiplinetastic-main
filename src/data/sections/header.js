@@ -2,10 +2,17 @@ const client = require('../../../utils/sanityClient.js')
 
 const filter = `
  *[_type == "sectionsHeader" && !(_id in path('drafts.**'))]{
- 
   'showCart': loginInfo.showCart,
   'showLogin': loginInfo.showLogin,
-  topCtaLink,
+  'showButton': loginInfo.showButton,
+  'cta': topCtaLink{
+          link,
+          route,
+          'linkType': _type,
+          title,
+          openInNewTab,
+          'internal': landingPageRoute->slug.current
+        },
   ...headerMenu->{
     'menu':menuItems[]{
       'linkType': _type,
