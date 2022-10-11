@@ -34,7 +34,7 @@
         Header Sticky
     -----------------------------------*/
     $(window).on('scroll', function() {
-        console.log($window.scrollTop())
+        // console.log($window.scrollTop())
         if ($window.scrollTop() > 350) {
             $('.sticky-header').addClass('is-sticky')
         } else {
@@ -81,13 +81,23 @@
     });
 
 
-    $('.max-popup-close').on('click', function() {
-        var $this = $(this),
-            $popup = $this.closest('#max-popup'),
-            $dialog = $this.parent('.max-popup-dialog');
-        $popup.addClass('close');
-        $dialog.removeClass('fadeInUp').addClass('fadeOutUp');
-    });
+    if (localStorage.getItem('cookieSeen') != 'shown') {
+
+             var $this = $('.max-popup-close'),
+               $popup = $this.closest('#max-popup'),
+               $dialog = $this.parent('.max-popup-dialog')
+             $popup.addClass('close')
+             $dialog.removeClass('fadeInUp').addClass('fadeOutUp')
+      localStorage.setItem('cookieSeen', 'shown')
+    }
+
+    // $('.max-popup-close').on('click', function() {
+    //     var $this = $(this),
+    //         $popup = $this.closest('#max-popup'),
+    //         $dialog = $this.parent('.max-popup-dialog');
+    //     $popup.addClass('close');
+    //     $dialog.removeClass('fadeInUp').addClass('fadeOutUp');
+    // });
 
 
     /* -----------------------------------
@@ -784,7 +794,7 @@
 
         $window.on('scroll', function() {
             var st = $(this).scrollTop();
-            console.log('Check => ~ file: main.js ~ line 781 ~ $window.on ~ st', st, $window.scrollTop())
+            // console.log('Check => ~ file: main.js ~ line 781 ~ $window.on ~ st', st, $window.scrollTop())
             if (st > $lastScrollTop) {
                 $scrollUp.removeClass('show');
             } else {
