@@ -2,7 +2,7 @@
 
 .icon-box {
     position: relative;
-    display: block;
+    display: flex;
 
     padding: 40px 20px 30px;
 
@@ -29,16 +29,16 @@
                 justify-content: center;
                 width: 100%;
                 padding: 0 20px;
-                min-height: 40px; 
-                background-color: transparent;  
+                min-height: 40px;
+                background-color: transparent;
                 border-radius: 5px;
                 color: $secondary-light;
                 transition: $transition;
-    
+
                 & i {
                     font-size: 16px;
                     line-height: 14px;
-    
+
                     margin-left: 14px;
                 }
             }
@@ -46,13 +46,13 @@
 
         &:hover {
             z-index: 1;
-    
+
             background-color: $white;
             box-shadow: none;
-    
+
             & .content {
                 & .link {
-                    background-color: #f8f8f8; 
+                    background-color: #f8f8f8;
                     color: $primary;
                 }
             }
