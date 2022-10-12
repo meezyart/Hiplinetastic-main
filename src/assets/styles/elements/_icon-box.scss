@@ -75,7 +75,7 @@
 
             margin: 0;
 
-            color: $secondary;
+            color: $heading-color;
             &.fz-20{
                 font-size: 20px;
             }
@@ -154,7 +154,7 @@
             font-weight: 600;
             margin: 0;
 
-            color: $secondary;
+            color: $heading-color;
             // Responsive
             @media #{$large-mobile}{
                 font-size: 22px;
