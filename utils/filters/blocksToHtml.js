@@ -34,10 +34,10 @@ const serializers = {
     mainImage: (props) =>
       h('figure', { className: '' }, [
         h('img', {
-        //   dataset: {
-        //       srcset: imageSrcset(props.node.asset),
-        //       sizes: 'auto'
-        //   },
+          //   dataset: {
+          //       srcset: imageSrcset(props.node.asset),
+          //       sizes: 'auto'
+          //   },
           src: imageUrl(props.node.asset),
           alt: props.node.alt
         })
@@ -48,12 +48,12 @@ const serializers = {
   },
   marks: {
     internalLink: (props) => {
-    //   console.log('Check => ~ file: blocksToHtml.js ~ line 51 ~ props', props)
+      //   console.log('Check => ~ file: blocksToHtml.js ~ line 51 ~ props', props)
       return h(
         'a',
         {
           href: getInternalUrl(props.mark.slug, props.mark.dataType),
-          class: props.mark.isButton ? 'btn btn-primary btn-hover-secondary' : ''
+          class: props.mark.isButton ? 'btn btn-primary btn-hover-secondary text-light' : ''
         },
         props.children
       )
@@ -65,7 +65,7 @@ const serializers = {
           href: props.mark.href,
           target: '_blank',
           rel: 'noopener',
-          class: props.mark.isButton ? 'btn btn-primary btn-hover-secondary' : ''
+          class: props.mark.isButton ? 'btn btn-primary btn-hover-secondary text-light' : ''
         },
         props.children
       )
