@@ -1,14 +1,15 @@
 
    <div class="social-inline white">
    {% for itm in social %}
+
  {% if itm._type == 'socialSiteFacebook' %}
-      <a href="#"><i class="fab fa-facebook-square"></i></a>
+      <a href="{{itm.facebookUrl}}"  target="_blank"><i class="fab fa-facebook-square"></i></a>
    {% endif %}
    {% if itm._type == 'socialSiteInstagram' %}
-       <a href="#"><i class="fab fa-instagram"></i></a>
+       <a href="{{itm.instagramUrl}}" target="_blank"><i class="fab fa-instagram"></i></a>
    {% endif %}
    {% if itm._type == 'socialSiteTwitter' %}
-        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="{{itm.twitterUrl}}" target="_blank"><i class="fab fa-twitter"></i></a>
    {% endif %}
    {% endfor %}
 

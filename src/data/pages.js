@@ -122,13 +122,13 @@ const filter = `
           faqItems[]{
             heading,
             mainContent[]{
-        ...,
-        markDefs[]{
-          ...,
-          _type == "internalLink" => {
-            "slug": @.reference->slug.current,
-            "dataType": @.reference->_type
-          }
+            ...,
+            markDefs[]{
+              ...,
+              _type == "internalLink" => {
+                "slug": @.reference->slug.current,
+                "dataType": @.reference->_type
+              }
         }}
           }
       },
@@ -178,9 +178,18 @@ const filter = `
           classMenuSections[]->{
             'classImage':classImage.asset->,
               'classImageCrop':classImage.crop,
-   'classImageHotSpot':classImage.hotspot,
-                classDescription,
+              'classImageHotSpot':classImage.hotspot,
+            classDescription[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug.current,
+            "dataType": @.reference->_type
+          }
+        }},
                 classChoreographers[]->{
+                  _id,
                   fullName,
                   nickname,
 
