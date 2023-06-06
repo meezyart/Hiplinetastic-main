@@ -1,4 +1,8 @@
 <div class="social-inline white">
+    {% if spotifyUrl %}
+    <a href="{{spotifyUrl}}" target="_blank">
+        <i class="fab fa-spotify"></i></a>
+{% endif %}
     {% for itm in social %}
 
         {% if itm._type == 'socialSiteFacebook' %}
@@ -6,6 +10,12 @@
                 <i class="fab fa-facebook-square"></i>
             </a>
         {% endif %}
+
+            {% if itm._type == 'socialSiteTwitter' %}
+        <a href="{{itm.twitterUrl}}" target="_blank">
+            <i class="fab fa-twitter"></i>
+        </a>
+    {% endif %}
         {% if itm._type == 'socialSiteInstagram' %}
             {% if itm.instagramUrl !== undefined %}
             <a href="{{itm.instagramReelUrl}}" target="_blank">
@@ -15,21 +25,17 @@
         {% if itm.instagramReelUrl !== undefined %}
             <a href="{{itm.instagramReelUrl}}" target="_blank">
                 <i class="fa-solid fa-clapperboard"></i>
+
+        <span>View Classes</span>
             </a>
         {% endif %}
     {% endif %}
 
-    {% if itm._type == 'socialSiteTwitter' %}
-        <a href="{{itm.twitterUrl}}" target="_blank">
-            <i class="fab fa-twitter"></i>
-        </a>
-    {% endif %}
+
+
 {% endfor %}
 
-{% if spotifyUrl %}
-    <a href="{{spotifyUrl}}" target="_blank">
-        <i class="fab fa-spotify"></i>
-        <span>Spotify Playlist</span></a>
-{% endif %}
+
+
 
 </div>

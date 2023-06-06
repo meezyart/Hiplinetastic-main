@@ -105,7 +105,9 @@ background: none;
                         color: $white;
                         z-index: 5;
 
-                        & a {text-shadow: 4px 3px 0px #444141;}
+                        & a {
+                            color: $white;
+                            text-shadow: 4px 3px 0px #444141;}
                         @media #{$large-tablet} {
                             top: -5.25rem;
                         }
