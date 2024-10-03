@@ -13,6 +13,7 @@ const filter = `
     'coverImage': coverImages[0].asset->,
 	'alt':coverImages[0].alt,
 	'coverVideo': coverVideos[0].asset->,
+  'dancerVideo': dancerVideoMain.video.asset->playbackId,
 
   },
   classLink,

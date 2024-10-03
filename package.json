@@ -31,6 +31,7 @@
         "@babel/core": "^7.13.14",
         "@babel/plugin-transform-runtime": "^7.13.10",
         "@babel/preset-env": "^7.13.12",
+        "@mux/mux-player": "^3.0.0",
         "@portabletext/to-html": "^1.0.4",
         "@sanity/block-content-to-html": "^2.0.0",
         "@sanity/client": "^2.13.0",

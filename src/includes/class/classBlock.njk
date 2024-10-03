@@ -9,7 +9,7 @@
         </div>
         <div class="info">
             {% if class.price %}
-                <span class="price">Free</span>
+                <span class="price">{{class.price}}</span>
             {% endif %}
 
             {# <span class="date">Dec 23, 2019</span> #}
@@ -31,14 +31,30 @@
 
                     <div class="videoWrapper"  >
                         {% for dancer in class.classChoreographers %}
-                            <video autoplay x-show="activeDancer == {{loop.index}}"  x-ref="dancer-{{loop.index}}"    playsInline
-                                webkit-playsinline="true"
-                                muted
-                                loop>
-                                <source src="{{dancer.coverVideo.url}}" type="video/mp4">
-                                {# <source src="media/shuttle.ogv" type="video/ogg"> #}
-                                Your browser does not support the HTML5 Video element.
-                            </video>
+                       {% if not dancer.dancerVideo %}
+                           <div class="img" x-show="activeDancer == {{loop.index}}" x-ref="dancer-{{loop.index}}" >
+                               <img src="{% if dancer.coverImage %}{% imageUrl dancer.coverImage, 240, 240, dancer.coverImageHotSpot %}{% else %}/assets/images/page-banner/artist-event.jpg{% endif %}" class="lazyload" data-sizes="auto">
+                           </div>
+                       {% else %}
+                           <mux-player
+                               x-show="activeDancer == {{loop.index}}" x-ref="dancer-{{loop.index}}"
+                               stream-type="on-demand"
+                               playback-id={{dancer.dancerVideo}}
+                               loop
+                               muted
+                               webkit-playsinline="true"
+                               autoplay
+                               style="--controls: none;">
+                           </mux-player>
+                           <video autoplay x-show="activeDancer == {{loop.index}}" x-ref="dancer-{{loop.index}}" playsInline
+                               webkit-playsinline="true"
+                               muted
+                               loop>
+                               <source src="https://stream.mux.com/{{dancer.dancerVideo}}.m3u8" type="video/mp4">
+                               Your browser does not support the HTML5 Video element.
+                           </video>
+                       {% endif %}
+
 
                         {% endfor %}
                     </div>
@@ -54,8 +70,11 @@
 
                             {% if class.classChoreographers %}
                                 {% for dancer in class.classChoreographers %}
+                                {% set dcnID = dancer._id | truncate(7, false, '') %}
+
                                     <li>
-                                        <a href="{{'#'}}"
+
+                                        <a disabled
                                         @mouseover="hoverMe({{loop.index}})" @mouseout="loop"
                                         :class="activeDancer == {{loop.index}} ? 'active' : ''">
                                             {% if dancer.nickname %}

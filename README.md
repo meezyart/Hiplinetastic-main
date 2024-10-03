@@ -13,11 +13,14 @@ Now using node v14.15.1 (npm v6.14.8)
 
 ## Getting Started
 
-To install the necessary packages, run this command in the root folder of the site:
-
+To install the necessary packages, run this command in the root folder of the site:\
+conda create --name myhipline  python=3.10
 ```sh
+
+conda activate myhipline
+nvm install 14
 nvm use 14
-npm install
+npm install 14
 ```
 
 ### Commands

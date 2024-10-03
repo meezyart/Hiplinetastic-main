@@ -1,5 +1,6 @@
 const client = require('../../utils/sanityClient.js');
 
+
 const filter = `
  *[_type == "choreographers" && !(_id in path('drafts.**'))]{
 _id,
@@ -9,6 +10,7 @@ _type,
   'coverImage': coverImages.asset->,
   'alt':coverImages[0].alt,
   'coverVideo': coverVideoMain,
+  'dancerVideo': dancerVideoMain.video.asset->playbackId,
   'dancerClassBody':dancerClass.classBody[0],
   "dancerClass": *[_type=='classMenu' && references(^._id)].className,
   fullName,

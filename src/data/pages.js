@@ -196,6 +196,7 @@ const filter = `
                   'coverImage': coverImages.asset->,
                 'alt':coverImages.alt,
                 'coverVideo': coverVideoMain,
+                'dancerVideo': dancerVideoMain.video.asset->playbackId,
 
                 },
                     'classLink': classLink{

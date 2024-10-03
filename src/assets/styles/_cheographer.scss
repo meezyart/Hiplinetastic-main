@@ -91,6 +91,7 @@
             width: 100%;
             z-index: 1;
         }
+
         img,
         video {
             border-radius: 10px;
@@ -106,7 +107,16 @@
             -o-object-fit: cover;
             object-fit: cover;
         }
+
         .video {
+            background: pink;
+            mux-player {
+                mix-blend-mode: multiply;
+
+                video {
+                    mix-blend-mode: multiply;
+                }
+            }
             video {
                 mix-blend-mode: multiply;
             }
@@ -177,6 +187,25 @@
             // row-gap: 0;
         }
     }
+
+    mux-player {
+        // mix-blend-mode: multiply;
+        border-radius: 10px;
+        -webkit-transition: .2s;
+        transition: .2s;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        --controls: none; /* Show controls */
+        --media-object-fit: cover; /* Ensure the video covers the player area */
+        --media-object-position: center; /* Center the video */
+        --controls-backdrop-color: rgba(255, 192, 203, 0.069); /* Semi-transparent backdrop for controls */
+      }
+
+      .img,
     .inline-video {
         border-radius: 10px;
         // min-height: 14rem;
