@@ -4,13 +4,14 @@
 
 /* global Modernizr */
 import Alpine from 'alpinejs'
-import AOS from 'aos'
+// import AOS from 'aos'
 
 
 // import iNoBounce from 'inobounce';
 import 'lazysizes';
 import 'lazysizes/plugins/bgset/ls.bgset';
 import objectFitImages from 'object-fit-images';
+import { initEmbedDialog } from './embedDialog.js'
 // import 'svgxuse';
 import { displaySiteAlert } from '../utilities/display.js';
 
@@ -24,6 +25,8 @@ const modernizrCheck = () => {
 
 
 window.Alpine = Alpine
+
+global.AOS = AOS
 
 const dancerLoop = (danceTotal) => ({
     activeDancer: 1,
@@ -127,6 +130,7 @@ Alpine.data('choreographerBoxes', choreographerBoxes);
 Alpine.data('dancerLoop', dancerLoop);
 
 const init = () => {
+    initEmbedDialog();
     Alpine.start();
     AOS.init({
         offset: 100,
@@ -138,6 +142,7 @@ const init = () => {
         // delay: 100,
         // easing: 'ease'
     })
+AOS.refresh();
 
     // modernizrCheck();
     objectFitImages();

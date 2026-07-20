@@ -21,6 +21,7 @@
     </div>
 
      {%- include "mobile-menu.njk" %}
+     {%- include "partials/embedDialog.njk" %}
      {%- include "theme-scripts.njk" %}
     {%- for script in addtionaljs %}
     <script src="{{ script | url }}"></script>
@@ -35,5 +36,6 @@
             navigator.serviceWorker.register('/service-worker.js')
         }
     </script> #}
+    <script src="{{ '/assets/js/init-aos.js' | url }}"></script>
 </body>
 </html>
