@@ -19,7 +19,7 @@ test('Momence pass cards use progressively enhanced checkout dialogs', () => {
     pageSection: {
       dataType: 'classPassSection',
       passHeadline: 'Passes',
-      passColor: { title: 'hotpink' },
+      passColor: { title: 'hot-pink' },
       passes: [
         {
           passName: 'NEWBIE PASS',

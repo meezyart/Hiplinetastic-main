@@ -6,6 +6,10 @@ const ACCOUNT_URL = 'https://momence.com/sign-in'
 const SCHEDULE_PLUGIN_URL = 'https://momence.com/plugin/host-schedule/host-schedule.js'
 const VIDEO_LIBRARY_PLUGIN_URL = `https://momence.com/video/plugin/${HOST_ID}`
 const VIDEO_LIBRARY_URL = `https://momence.com/video/courses/${HOST_ID}`
+const SLIDING_SCALE_PASS_URLS = [
+  'https://momence.com/m/848243',
+  'https://momence.com/m/848244'
+]
 
 const EXPECTED_PASS_URLS = [
   'https://momence.com/m/768424',
@@ -19,7 +23,8 @@ const EXPECTED_PASS_URLS = [
   'https://momence.com/m/767001',
   'https://momence.com/m/776335',
   `https://momence.com/gcc/${HOST_ID}`,
-  'https://momence.com/m/767010'
+  'https://momence.com/m/767010',
+  ...SLIDING_SCALE_PASS_URLS
 ]
 
 const LEGACY_PATTERN = /healcode-widget|widgets\.mindbodyonline\.com|clients\.mindbodyonline\.com/i
@@ -64,6 +69,15 @@ const auditGeneratedPages = pages => {
   )
   if (missingDialogUrls.length) {
     issues.push(`Passes page is missing popup checkout triggers for ${missingDialogUrls.length} membership destinations`)
+  }
+
+  const slidingScale = pages['sliding-scale/index.html'] || ''
+  const missingSlidingScaleUrls = SLIDING_SCALE_PASS_URLS.filter(url =>
+    !slidingScale.includes(`href="${url}"`) ||
+    !slidingScale.includes(`data-embed-dialog-url="${url}"`)
+  )
+  if (missingSlidingScaleUrls.length) {
+    issues.push(`Sliding Scale page is missing ${missingSlidingScaleUrls.length} approved popup checkout options`)
   }
 
   const hasDialogShell = Object.values(pages).some(html => html.includes('data-embed-dialog'))
@@ -151,6 +165,7 @@ if (require.main === module) run()
 
 module.exports = {
   EXPECTED_PASS_URLS,
+  SLIDING_SCALE_PASS_URLS,
   auditGeneratedPages,
   readGeneratedPages
 }

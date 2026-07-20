@@ -3,7 +3,8 @@ module.exports = {
         projectId: process.env.SANITY_PROJECT_ID || '00prkzk3',
         dataset: process.env.SANITY_DATASET || 'production',
         apiVersion: 'v1',
-        useCdn: true
+        // Static release builds must see newly published Sanity content immediately.
+        useCdn: false
     },
     envUrls: {
         development: '',

@@ -31,7 +31,7 @@ Storefront branch: `codex/momence-integration-spec`
 
 ## Published pass cutover inventory
 
-The Passes page currently references twelve pass records. Every destination below was verified against HIPLINE's public Momence host feed and the public Momence product metadata for host `253441` on 2026-07-20, then published to Sanity in transaction `NNcodpNt49gA5QX6pFGmPK`.
+The Passes page currently references fourteen pass records. The original twelve destinations were verified against HIPLINE's public Momence host feed and the public Momence product metadata for host `253441` on 2026-07-20, then published to Sanity in transaction `NNcodpNt49gA5QX6pFGmPK`. The two fixed-price Sliding Scale passes were subsequently created in Momence and published through Sanity Studio.
 
 | Pass | Sanity document ID | Current status |
 |---|---|---|
@@ -47,6 +47,8 @@ The Passes page currently references twelve pass records. Every destination belo
 | ON DEMAND | `a2905cb2-99ba-4086-ac77-9818992fd46e` | `https://momence.com/m/776335` |
 | GIFT CARDS | `c39a24ce-d220-4b4f-870e-de75a3d9621d` | `https://momence.com/gcc/253441` |
 | CHILDCARE | `6af01e1e-32a9-4fae-b377-aeb983987d10` | `https://momence.com/m/767010` |
+| SLIDING SCALE POP-UP $20 | `e368d9a4-5d07-493e-8f86-5d32ac6a1d17` | `https://momence.com/m/848243` |
+| SLIDING SCALE POP-UP $25 | `3dd4c621-6153-4d38-b5af-0a256b9144ec` | `https://momence.com/m/848244` |
 
 The previously noted `https://momence.com/m/766994` mapping for the 10 Class Bundle was incorrect: Momence identifies product `766994` as the 5 Class Pass. The verified 10 Class product is `766996`.
 
@@ -68,6 +70,8 @@ The Momence `Single class Pop-Up` package (`767001`) now uses native **Customers
 
 The Sliding Scale page's final Mindbody rich-text link in Sanity document `0ea360c9-1268-47b5-a70c-2bf9c71adaf8` was replaced with that Momence destination on 2026-07-20 in transaction `NNcodpNt49gA5QX6pFO5FA`.
 
+Two additional fixed-price Momence packages were then created for direct `$20` and `$25` checkout. Their Sanity pass records are included in dedicated **Sliding Scale Pop-Up** sections on both `/sliding-scale/` and `/passes/`. Both use the shared popup checkout with a new-tab fallback.
+
 ## Generated-output release gate
 
 After each production-content rebuild, run:
@@ -76,7 +80,7 @@ After each production-content rebuild, run:
 npm run verify:momence-cutover
 ```
 
-The command fails unless the generated site has no HealCode or Mindbody output, includes the approved Momence account and Schedule integrations, contains all twelve verified pass destinations, and generates the managed `/on-demand/` page with both the video iframe and hosted fallback. It passed after the Sliding Scale cutover.
+The command fails unless the generated site has no HealCode or Mindbody output, includes the approved Momence account and Schedule integrations, contains all fourteen verified pass destinations, includes both fixed-price Sliding Scale popup options on `/sliding-scale/`, and generates the managed `/on-demand/` page with both the video iframe and hosted fallback.
 
 After Netlify creates a deploy preview, run the same structural release rules against the five required staging routes:
 
@@ -118,9 +122,10 @@ Momence account state inside the checkout iframe is a known non-blocking limitat
 ## Launch gates
 
 - [x] Publish the `settingsMomence` singleton with the values above.
-- [x] Resolve and verify all twelve active pass destinations against HIPLINE's public Momence catalog.
+- [x] Resolve and verify all fourteen active pass destinations against HIPLINE's public Momence catalog.
 - [x] Publish the Momence settings and pass transaction with an authenticated Sanity account.
 - [x] Configure Momence's native `$20`–`$30` customer-selected Pop-Up pricing and replace the Sliding Scale page's remaining Mindbody rich-text link.
+- [x] Publish the fixed `$20` and `$25` Sliding Scale pass records on both `/sliding-scale/` and `/passes/`.
 - [x] Prepare the managed `/on-demand/` page and exact navigation replacement in the guarded cutover transaction.
 - [x] Publish the `/on-demand/` page and navigation replacement with an authenticated Sanity account.
 - [x] Confirm the Video Library response omits `X-Frame-Options` and frame-blocking CSP headers; retain the hosted fallback link for runtime failures.

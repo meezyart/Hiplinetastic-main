@@ -7,7 +7,10 @@ const {
   parsePreviewUrl
 } = require('../scripts/verify-momence-preview')
 
-const { EXPECTED_PASS_URLS } = require('../scripts/verify-momence-cutover')
+const {
+  EXPECTED_PASS_URLS,
+  SLIDING_SCALE_PASS_URLS
+} = require('../scripts/verify-momence-cutover')
 
 const videoPluginUrl = 'https://momence.com/video/plugin/253441'
 const hostedVideoUrl = 'https://momence.com/video/courses/253441'
@@ -39,7 +42,9 @@ const validResponses = () => ({
   '/sliding-scale/': {
     status: 200,
     url: 'https://deploy-preview-42--hipline.netlify.app/sliding-scale/',
-    html: '<a href="https://momence.com/m/123">Sliding Scale</a>'
+    html: SLIDING_SCALE_PASS_URLS.map(url =>
+      `<a href="${url}" data-embed-dialog-url="${url}">Sliding Scale</a>`
+    ).join('')
   }
 })
 

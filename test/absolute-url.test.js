@@ -25,9 +25,10 @@ test('development asset and internal URLs stay on the active local origin', () =
   assert.equal(absoluteUrl('/class-menu/'), '/class-menu/')
 })
 
-test('production URLs remain absolute on myhipline.com', () => {
+test('production page URLs remain absolute while bundled assets stay on the active origin', () => {
   const absoluteUrl = loadAbsoluteUrl('production')
 
+  assert.equal(absoluteUrl('/assets/css/main.css'), '/assets/css/main.css')
   assert.equal(
     absoluteUrl('/class-menu/'),
     'https://myhipline.com/class-menu/'

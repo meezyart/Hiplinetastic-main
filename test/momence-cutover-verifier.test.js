@@ -3,6 +3,7 @@ const test = require('node:test')
 
 const {
   EXPECTED_PASS_URLS,
+  SLIDING_SCALE_PASS_URLS,
   auditGeneratedPages
 } = require('../scripts/verify-momence-cutover')
 
@@ -17,6 +18,9 @@ test('accepts a generated plugin-first Phase 1 release', () => {
       const dialog = url.includes('/m/') ? ` data-embed-dialog-url="${url}"` : ''
       return `<a href="${url}"${dialog}>Buy</a>`
     }).join(''),
+    'sliding-scale/index.html': SLIDING_SCALE_PASS_URLS.map(url =>
+      `<a href="${url}" data-embed-dialog-url="${url}">Buy</a>`
+    ).join(''),
     'on-demand/index.html': `<iframe src="${officialVideoPluginUrl}"></iframe><a href="${hostedVideoUrl}">Open the Video Library</a>`
   }
 
@@ -35,7 +39,8 @@ test('reports legacy output and incomplete Momence release surfaces', () => {
     'Home page is missing the Momence account action',
     'Schedule page is missing the official Momence host-schedule plugin for host 253441',
     `Passes page is missing ${EXPECTED_PASS_URLS.length} approved Momence destinations`,
-    'Passes page is missing popup checkout triggers for 11 membership destinations',
+    `Passes page is missing popup checkout triggers for ${EXPECTED_PASS_URLS.filter(url => url.includes('/m/')).length} membership destinations`,
+    `Sliding Scale page is missing ${SLIDING_SCALE_PASS_URLS.length} approved popup checkout options`,
     'Generated site is missing the shared checkout dialog shell',
     'On-Demand page was not generated'
   ])
@@ -49,6 +54,9 @@ test('rejects an external embed whose fallback exists only elsewhere on the page
       const dialog = url.includes('/m/') ? ` data-embed-dialog-url="${url}"` : ''
       return `<a href="${url}"${dialog}>Buy</a>`
     }).join(''),
+    'sliding-scale/index.html': SLIDING_SCALE_PASS_URLS.map(url =>
+      `<a href="${url}" data-embed-dialog-url="${url}">Buy</a>`
+    ).join(''),
     'services/index.html': '<a href="https://example.com/unrelated">Unrelated</a><section class="external-service"><iframe class="external-service__frame" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe></section>',
     'on-demand/index.html': `<iframe src="${officialVideoPluginUrl}"></iframe><a href="${hostedVideoUrl}">Open the Video Library</a>`
   }
