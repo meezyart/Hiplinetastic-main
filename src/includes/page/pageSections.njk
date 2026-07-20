@@ -32,6 +32,10 @@
       {% include 'class/classPass.njk' %}
     {% elseif pageSection._type == 'classScheduleSection' %}
       {% include 'class/classSchedule.njk' %}
+    {% elseif pageSection._type == 'momenceVideoSection' %}
+      {% include 'class/momenceVideo.njk' %}
+    {% elseif pageSection._type == 'externalServiceSection' %}
+      {% include 'class/externalService.njk' %}
     {% elseif pageSection._type == 'contactSection' %}
       {% include 'contact/contact-sec.njk' %}
     {% endif %}
