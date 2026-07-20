@@ -1,20 +1,21 @@
-const blocksToHtml = require(`@sanity/block-content-to-html`)
+const blocksToHtml = require('@sanity/block-content-to-html')
 
 module.exports = function allBlocksToHtml(data) {
-    if (typeof data === 'object') {
-        if (data._type && data._type === 'text') {
-            return blocksToHtml(data)
-        } else {
-            const entries = Object.entries(data)
-            for (let i = 0; i < entries.length; i++) {
-                const [key, val] = entries[i]
-                data[key] = allBlocksToHtml(val)
-            }
-            return data
-        }
-    } else if (typeof data === 'array') {
+    if (Array.isArray(data)) {
         return data.map(allBlocksToHtml)
-    } else {
+    }
+
+    if (data === null || typeof data !== 'object') {
         return data
     }
+
+    if (data._type && data._type === 'text') {
+        return blocksToHtml(data)
+    }
+
+    const out = {}
+    for (const [key, val] of Object.entries(data)) {
+        out[key] = allBlocksToHtml(val)
+    }
+    return out
 }

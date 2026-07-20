@@ -57,17 +57,19 @@
                 <div class="col-auto">
                     <div class="header-right">
                         <div class="inner">
-
-                            {% if sections.header.showCart %}
+                            {% if sections.header.showCart and momence.giftCardUrl %}
                                 <div class="header-cart">
-
-                                    <healcode-widget data-version="0.2" data-link-class="healcode-cart-text-link" data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="cart-link" data-inner-html='<i class="far fa-shopping-cart"></i>"'/>
+                                    <a href="{{ momence.giftCardUrl | escape }}" target="_blank" rel="noopener noreferrer" aria-label="Purchase a Hipline gift card">
+                                        <i class="far fa-gift" aria-hidden="true"></i>
+                                    </a>
                                 </div>
                             {% endif %}
                             <!-- Header Login Start -->
                             {% if sections.header.showLogin %}
                                 <div class="header-login">
-                                    <healcode-widget data-version="0.2" data-link-class="healcode-login-register-text-link "  data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="account-link" data-inner-html='<i class="far fa-user-circle"></i>'/>
+                                    <a href="{{ momence.accountUrl | escape }}" target="_blank" rel="noopener noreferrer" aria-label="Sign in to your Hipline account">
+                                        <i class="far fa-user-circle" aria-hidden="true"></i>
+                                    </a>
                                 </div>
 
                             {% endif %}

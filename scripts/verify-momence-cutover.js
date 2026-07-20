@@ -24,6 +24,7 @@ const EXPECTED_PASS_URLS = [
 const LEGACY_PATTERN = /healcode-widget|widgets\.mindbodyonline\.com|clients\.mindbodyonline\.com/i
 const MEMBERSHIP_PASS_URLS = EXPECTED_PASS_URLS.filter(url => url.includes('/m/'))
 const EMBED_SANDBOX = 'sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"'
+const EXTERNAL_SERVICE_SECTION_PATTERN = /<section\b(?=[^>]*\bclass="[^"]*\bexternal-service\b[^"]*")[^>]*>[\s\S]*?<\/section>/gi
 
 const auditGeneratedPages = pages => {
   const issues = []
@@ -71,7 +72,16 @@ const auditGeneratedPages = pages => {
 
   const unsafeExternalFrames = Object.entries(pages)
     .filter(([, html]) => html.includes('class="external-service__frame"'))
-    .filter(([, html]) => !html.includes(EMBED_SANDBOX) || !/<a[^>]+href="https:\/\//i.test(html))
+    .filter(([, html]) => {
+      const sections = html.match(EXTERNAL_SERVICE_SECTION_PATTERN) || []
+      const framedSections = sections.filter(section =>
+        section.includes('class="external-service__frame"')
+      )
+
+      return !framedSections.length || framedSections.some(section =>
+        !section.includes(EMBED_SANDBOX) || !/<a[^>]+href="https:\/\//i.test(section)
+      )
+    })
     .map(([file]) => file)
   if (unsafeExternalFrames.length) {
     issues.push(`Universal external embeds are missing sandbox or HTTPS fallback protection in: ${unsafeExternalFrames.join(', ')}`)
@@ -81,7 +91,8 @@ const auditGeneratedPages = pages => {
   if (!onDemand) {
     issues.push('On-Demand page was not generated')
   } else {
-    if (!onDemand.includes(`<iframe src="${VIDEO_LIBRARY_URL}"`)) {
+    const hasVideoLibraryFrame = /<iframe\b[^>]*\bsrc="https:\/\/momence\.com\/video\/courses\/253441"[^>]*>/i.test(onDemand)
+    if (!hasVideoLibraryFrame) {
       issues.push('On-Demand page is missing the Momence Video Library iframe')
     }
     if (!onDemand.includes(`href="${VIDEO_LIBRARY_URL}"`)) {

@@ -1,6 +1,4 @@
-{%- from 'partials/mboWidget.njk' import healcodeWidget -%}
-
-{% macro passBlock(imageClass='',passName='',contentClass='',circleClass='',passPrice=0,bgColor='',color='',mainContent='',passBullets, healcodeClass='',bulletClass='', buttonClass='btn btn-lg mt-30', healcodeType='gift-card-link',buttonTitle='Buy Now',passLink,dataId,mbo={},purchaseUrl='',purchaseProvider='momence',purchaseLabel='',purchasePresentation='popup') %}
+{% macro passBlock(imageClass='',passName='',contentClass='',circleClass='',passPrice=0,bgColor='',color='',mainContent='',passBullets, bulletClass='', buttonClass='btn btn-lg mt-30',buttonTitle='Buy Now',passLink,purchaseUrl='',purchaseProvider='momence',purchaseLabel='',purchasePresentation='popup') %}
     <div class="price-image {{bgColor}} text-white">
         <h4>{{passName}}</h4>
     </div>
@@ -34,15 +32,6 @@
         {% set managedPresentation = purchasePresentation | purchasePresentation(purchaseProvider) %}
         {%- if managedPurchaseUrl -%}
             <a href="{{ managedPurchaseUrl | escape }}" class="btn {{buttonClass}} btn-lg mt-30"{% if managedPresentation == 'popup' %} data-embed-dialog-url="{{ managedPurchaseUrl | escape }}" data-embed-dialog-title="Buy {{ passName | escape }}"{% else %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ purchaseLabel or buttonTitle }}</a>
-        {%- elseif mbo -%}
-            {{ healcodeWidget(
-                dataVersion='0.2',
-                linkClass=healcodeClass ~ ' ' ~ buttonClass,
-                type=healcodeType,
-                innerHtml=buttonTitle,
-                serviceId=dataId
-            ) }}
-
         {%- endif -%}
     </div>
 {%- endmacro -%}
@@ -80,12 +69,7 @@
                                 purchaseLabel=pass.purchaseButtonLabel,
                                 purchasePresentation=pass.purchasePresentation,
                                 bulletClass='text-hot-pink',
-                                buttonClass='btn btn-hot-pink btn-hover-hot-pink-d50 btn-lg mt-30',
-                                mbo=pass.mbo,
-                                dataId=pass.mbo.dataId,
-                                healcodeClass=pass.mbo.dataLinkClass,
-                                healcodeType=pass.mbo.dataType,
-                                buttonTitle=pass.mbo.buttonTitle
+                                buttonClass='btn btn-hot-pink btn-hover-hot-pink-d50 btn-lg mt-30'
                                 )}}
                             {% endif %}
                             {# pink prime #}
@@ -105,12 +89,7 @@
                                 purchaseLabel=pass.purchaseButtonLabel,
                                 purchasePresentation=pass.purchasePresentation,
                                 bulletClass='text-pink-prime',
-                                buttonClass='btn btn-pink-prime btn-hover-pink-prime-d50 btn-lg mt-30',
-                                mbo=pass.mbo,
-                                dataId=pass.mbo.dataId,
-                                healcodeClass=pass.mbo.dataLinkClass,
-                                healcodeType=pass.mbo.dataType,
-                                buttonTitle=pass.mbo.buttonTitle
+                                buttonClass='btn btn-pink-prime btn-hover-pink-prime-d50 btn-lg mt-30'
                                 )}}
 
                             {%- endif -%}
@@ -131,12 +110,7 @@
                                 purchaseLabel=pass.purchaseButtonLabel,
                                 purchasePresentation=pass.purchasePresentation,
                                 bulletClass='text-purple',
-                                buttonClass='btn btn-purple btn-hover-purple-d50 btn-lg mt-30',
-                                mbo=pass.mbo,
-                                dataId=pass.mbo.dataId,
-                                healcodeClass=pass.mbo.dataLinkClass,
-                                healcodeType=pass.mbo.dataType,
-                                buttonTitle=pass.mbo.buttonTitle
+                                buttonClass='btn btn-purple btn-hover-purple-d50 btn-lg mt-30'
                                 )}}
 
                             {%- endif -%}
@@ -157,12 +131,7 @@
                                 purchaseLabel=pass.purchaseButtonLabel,
                                 purchasePresentation=pass.purchasePresentation,
                                 bulletClass='text-seafoam-light-d50',
-                                buttonClass='btn btn-seafoam-light btn-hover-seafoam-light-d50 btn-lg mt-30',
-                                mbo=pass.mbo,
-                                dataId=pass.mbo.dataId,
-                                healcodeClass=pass.mbo.dataLinkClass,
-                                healcodeType=pass.mbo.dataType,
-                                buttonTitle=pass.mbo.buttonTitle
+                                buttonClass='btn btn-seafoam-light btn-hover-seafoam-light-d50 btn-lg mt-30'
                                 )}}
 
                             {% endif %}
@@ -183,12 +152,7 @@
                                 purchaseLabel=pass.purchaseButtonLabel,
                                 purchasePresentation=pass.purchasePresentation,
                                 bulletClass='text-teal-d50',
-                                buttonClass='btn btn-teal btn-hover-teal-d50 btn-lg mt-30',
-                                mbo=pass.mbo,
-                                dataId=pass.mbo.dataId,
-                                healcodeClass=pass.mbo.dataLinkClass,
-                                healcodeType=pass.mbo.dataType,
-                                buttonTitle=pass.mbo.buttonTitle
+                                buttonClass='btn btn-teal btn-hover-teal-d50 btn-lg mt-30'
                                 )}}
 
                             {%- endif -%}
@@ -209,12 +173,7 @@
                                 purchaseLabel=pass.purchaseButtonLabel,
                                 purchasePresentation=pass.purchasePresentation,
                                 bulletClass='text-ceren-orange-d50',
-                                buttonClass='btn btn-ceren-orange btn-hover-ceren-orange-d50 btn-lg mt-30',
-                                mbo=pass.mbo,
-                                dataId=pass.mbo.dataId,
-                                healcodeClass=pass.mbo.dataLinkClass,
-                                healcodeType=pass.mbo.dataType,
-                                buttonTitle=pass.mbo.buttonTitle
+                                buttonClass='btn btn-ceren-orange btn-hover-ceren-orange-d50 btn-lg mt-30'
                                 )}}
 
                             {%- endif -%}

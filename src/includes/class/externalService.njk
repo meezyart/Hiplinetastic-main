@@ -1,6 +1,6 @@
 {% set service = pageSection | externalService(momence) %}
 {% if service %}
-<section class="section section-padding-top section-padding-bottom external-service" aria-labelledby="external-service-heading-{{ pageSection._key | escape }}">
+<section class="section section-padding-top section-padding-bottom external-service"{% if service.heading %} aria-labelledby="external-service-heading-{{ pageSection._key | escape }}"{% else %} aria-label="{{ service.providerLabel }}"{% endif %}>
   <div class="container">
     {% if service.heading %}
       <div class="section-title text-center mb-50">

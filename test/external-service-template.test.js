@@ -1,4 +1,5 @@
 const assert = require('node:assert/strict')
+const fs = require('node:fs')
 const path = require('node:path')
 const test = require('node:test')
 const nunjucks = require('nunjucks')
@@ -77,6 +78,21 @@ test('renders client-managed tier actions without an arbitrary embed', () => {
   assert.doesNotMatch(html, /<iframe/i)
 })
 
+test('labels a heading-less external service without a broken aria reference', () => {
+  const html = env.render('class/externalService.njk', {
+    pageSection: {
+      _key: 'memberPortal',
+      providerLabel: 'Member portal',
+      presentation: 'external-link',
+      fallbackUrl: 'https://example.com/portal'
+    },
+    momence: settings
+  })
+
+  assert.match(html, /<section[^>]+aria-label="Member portal"/)
+  assert.doesNotMatch(html, /aria-labelledby="external-service-heading-memberPortal"/)
+})
+
 test('renders the Momence schedule plugin with a hosted fallback', () => {
   const html = env.render('class/classSchedule.njk', {
     pageSection: {
@@ -98,6 +114,19 @@ test('renders the Momence schedule plugin with a hosted fallback', () => {
 
   assert.match(html, /src="https:\/\/momence\.com\/plugin\/host-schedule\/host-schedule\.js"/)
   assert.match(html, /host_id="253441"/)
+  assert.match(html, /class="container momence-schedule__container"/)
   assert.match(html, /href="https:\/\/momence\.com\/u\/hipline-zNlk68"/)
   assert.match(html, />\s*Open the schedule\s*</)
+})
+
+test('gives the Momence schedule a wider desktop container without widening mobile layouts', () => {
+  const styles = fs.readFileSync(
+    path.resolve(__dirname, '..', 'src', 'assets', 'styles', '_momence-integrations.scss'),
+    'utf8'
+  )
+
+  assert.match(
+    styles,
+    /\.momence-schedule__container\s*\{\s*max-width:\s*1320px;/
+  )
 })

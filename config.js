@@ -6,7 +6,7 @@ module.exports = {
         useCdn: true
     },
     envUrls: {
-        development: 'http://localhost:8080',
+        development: '',
         staging: 'https://hipline.netlify.app',
         production: 'https://myhipline.com'
     }

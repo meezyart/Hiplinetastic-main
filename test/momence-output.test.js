@@ -9,7 +9,7 @@ function readOutput(relativePath) {
   return fs.readFileSync(path.join(root, relativePath), 'utf8')
 }
 
-test('Mindbody runtime is limited to the passes migration page', () => {
+test('Mindbody runtime is removed after pass migration', () => {
   const mindbodyRuntime = 'https://widgets.mindbodyonline.com/javascripts/healcode.js'
 
   assert.doesNotMatch(readOutput('index.html'), new RegExp(mindbodyRuntime))
@@ -17,9 +17,13 @@ test('Mindbody runtime is limited to the passes migration page', () => {
     readOutput(path.join('schedule', 'index.html')),
     new RegExp(mindbodyRuntime)
   )
-  assert.match(
+  assert.doesNotMatch(
     readOutput(path.join('passes', 'index.html')),
     new RegExp(mindbodyRuntime)
+  )
+  assert.doesNotMatch(
+    readOutput(path.join('passes', 'index.html')),
+    /<healcode-widget/i
   )
 })
 
@@ -52,7 +56,7 @@ test('10 Class card never uses the legacy 5 Class Momence destination', () => {
   assert.doesNotMatch(tenClassCard[0], /https:\/\/momence\.com\/m\/766994/)
 })
 
-test('passes page includes the shared checkout dialog shell before content migration', () => {
+test('passes page includes the shared checkout dialog shell', () => {
   const passes = readOutput(path.join('passes', 'index.html'))
 
   assert.match(passes, /data-embed-dialog="" hidden/)

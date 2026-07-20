@@ -18,3 +18,17 @@ test('shared embed dialog exposes the required accessibility hooks', () => {
   assert.match(markup, /data-embed-dialog-body/)
   assert.match(markup, /Open checkout in a new tab/)
 })
+
+test('shared embed dialog uses a reduced-motion-safe opening animation', () => {
+  const styles = fs.readFileSync(
+    path.join(root, 'src', 'assets', 'styles', '_momence-integrations.scss'),
+    'utf8'
+  )
+
+  assert.match(styles, /@keyframes momence-dialog-pop/)
+  assert.match(
+    styles,
+    /\.embed-dialog:not\(\[hidden\]\) \.embed-dialog__panel\s*\{[\s\S]*animation:\s*momence-dialog-pop/
+  )
+  assert.match(styles, /@media \(prefers-reduced-motion: no-preference\)/)
+})

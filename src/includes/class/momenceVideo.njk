@@ -1,0 +1,37 @@
+{% set videoUrl = pageSection.videoLibraryUrl | momenceUrl %}
+{% if not videoUrl %}
+  {% set videoUrl = momence.videoLibraryUrl %}
+{% endif %}
+
+<section class="section section-padding-top section-padding-bottom momence-video" aria-labelledby="momence-video-heading-{{ pageSection._key | escape }}">
+  <div class="container">
+    <div class="section-title text-center mb-50">
+      <h2 id="momence-video-heading-{{ pageSection._key | escape }}">{{ pageSection.heading or 'On-Demand Video Library' }}</h2>
+      {% if pageSection.introduction %}
+        <div class="momence-video__introduction">
+          {{ pageSection.introduction | blocksToHtml | safe }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if videoUrl %}
+      <div class="momence-video__frame-wrap">
+        <iframe
+          class="momence-video__frame"
+          src="{{ videoUrl | escape }}"
+          title="{{ (pageSection.frameTitle or 'Hipline on-demand video library') | escape }}"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="fullscreen"
+        ></iframe>
+      </div>
+      <p class="text-center mt-30">
+        <a class="btn btn-primary btn-hover-secondary" href="{{ videoUrl | escape }}" target="_blank" rel="noopener noreferrer">
+          {{ pageSection.fallbackLabel or 'Open the Video Library' }}
+        </a>
+      </p>
+    {% else %}
+      <p class="text-center">The Video Library is temporarily unavailable.</p>
+    {% endif %}
+  </div>
+</section>
