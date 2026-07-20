@@ -76,6 +76,14 @@ npm run verify:momence-cutover
 
 The command fails unless the generated site has no HealCode or Mindbody output, includes the approved Momence account and Schedule integrations, contains all twelve verified pass destinations, and generates the managed `/on-demand/` page with both the video iframe and hosted fallback. Its current failure is expected only until Sliding Scale is resolved.
 
+After Netlify creates a deploy preview, run the same structural release rules against the five required staging routes:
+
+```bash
+npm run verify:momence-preview -- https://DEPLOY-PREVIEW-URL
+```
+
+This command refuses `myhipline.com`, requires HTTPS, rejects routes that redirect away from the preview host, and does not replace the desktop, mobile, keyboard, or visual review below.
+
 ## Verification evidence
 
 Verification run: 2026-07-20  
@@ -111,6 +119,7 @@ Momence account state inside the checkout iframe is a known non-blocking limitat
 - [x] Publish the `/on-demand/` page and navigation replacement with an authenticated Sanity account.
 - [x] Confirm the Video Library response omits `X-Frame-Options` and frame-blocking CSP headers; retain the hosted fallback link for runtime failures.
 - [ ] Browser-test the published Video Library iframe on staging and production.
+- [ ] Run `npm run verify:momence-preview -- https://DEPLOY-PREVIEW-URL` successfully against the Netlify preview.
 - [ ] Rebuild and confirm no generated output contains `healcode-widget`, `widgets.mindbodyonline.com`, or `clients.mindbodyonline.com`.
 - [ ] Run `npm run verify:momence-cutover` successfully against the production-content build.
 - [x] Remove the temporary HealCode pass fallback and global runtime after all published pass cards use approved URLs.

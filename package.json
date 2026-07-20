@@ -16,7 +16,8 @@
         "clean": "del-cli dist",
         "test": "node --test",
         "test:momence": "node --test test/momence.test.js",
-        "verify:momence-cutover": "node scripts/verify-momence-cutover.js"
+        "verify:momence-cutover": "node scripts/verify-momence-cutover.js",
+        "verify:momence-preview": "node scripts/verify-momence-preview.js"
     },
     "repository": {
         "type": "git",
