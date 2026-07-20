@@ -62,9 +62,11 @@ sanity exec scripts/phase1MomenceCutover.js --with-user-token -- --apply-product
 
 ## Remaining legacy Mindbody content
 
-The Sliding Scale page still contains one Mindbody URL in Sanity document `0ea360c9-1268-47b5-a70c-2bf9c71adaf8`, at `pageSections[1].mainContent[3].markDefs[0].href`. HIPLINE's public Momence schedule and product catalog currently expose only the fixed-price `$30` Pop-Up Class; they do not expose the page's `$20`, `$25`, and `$30` tier choices.
+The Sliding Scale page still contains one Mindbody URL in Sanity document `0ea360c9-1268-47b5-a70c-2bf9c71adaf8`, at `pageSections[1].mainContent[3].markDefs[0].href`. HIPLINE's public Momence schedule and product catalog currently expose only the fixed-price `$30` Pop-Up Class; they do not expose the page's `$20`–`$30` sliding-scale choice.
 
-The client manages the tier mapping in Sanity through **External Service Section → Client-managed actions**. Add up to six labelled, HTTPS buttons (for example, `Tier 1 — $20`, `Tier 2 — $25`, and `Tier 3 — $30`) with the approved Momence destinations. After the actions are configured, replace the legacy Mindbody rich-text link on the Sliding Scale page and verify the generated page has no Mindbody output.
+Momence supports a native **Customers pick price / sliding scale pricing** option for classes and subscriptions. The preferred resolution is to configure the relevant Pop-Up class or class template in Momence with a `$20` lower limit and `$30` upper limit, then publish its approved Momence checkout destination as one labelled action through **External Service Section → Client-managed actions**. This preserves HIPLINE's existing Tier 1 / Tier 2 / Tier 3 guidance while letting the customer choose the exact amount inside Momence checkout. See [Momence's class pricing guidance](https://help.momence.com/en/articles/12027801-settings-restrictions-faq-s-classes).
+
+If HIPLINE deliberately prefers three fixed-price products instead, the same Sanity section supports up to six separately labelled HTTPS actions. In either case, replace the legacy Mindbody rich-text link only after the approved Momence destination or destinations exist, then verify the generated page has no Mindbody output.
 
 ## Generated-output release gate
 
@@ -92,7 +94,7 @@ Sanity Studio commit: `476db79` (`feat: finish Phase 1 Momence editor controls`)
 Node: `v22.23.0`
 
 - `npm run build` — passed against current production Sanity content; Eleventy wrote 47 pages.
-- `npm test` — 35 tests passed, 0 failed.
+- `npm test` — 39 tests passed, 0 failed.
 - `node --test scripts/phase1MomenceCutover.test.js` in the Sanity Studio — 7 tests passed, 0 failed.
 - `npm run build` in the Sanity Studio — passed.
 - Source scan — no storefront template contains the HealCode or Mindbody runtime.
