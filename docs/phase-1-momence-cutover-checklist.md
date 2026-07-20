@@ -97,6 +97,10 @@ Review fixes included before staging:
 - Scoped the external-embed fallback audit to the same rendered section, preventing unrelated HTTPS links from satisfying the safety gate.
 - Removed a duplicate AOS initializer that depended on an untracked deployment asset.
 
+Local browser review on 2026-07-20 covered `/`, `/schedule/`, `/passes/`, `/on-demand/`, and `/sliding-scale/` at desktop and mobile widths. All ten route/viewport combinations returned `200` with no horizontal overflow, broken images, console errors, page errors, or failed first-party requests. The checkout dialog opened from a visible pass action, moved focus to its close control, closed with Escape, and returned focus to the pass action. Momence's current Video Library response rendered successfully but reported that the host has no video courses available; the direct hosted fallback remains visible.
+
+Momence account state inside the checkout iframe is a known non-blocking limitation. Cross-site iframe sessions can be restricted or partitioned by browser third-party storage policy, and the HIPLINE parent page cannot grant Momence access to its authentication cookies. Keep the in-dialog **Open checkout in a new tab** fallback and the header account link so users can establish a normal first-party Momence session without closing the HIPLINE tab. Do not attempt a parent-page storage workaround unless Momence documents support for an embedded Storage Access API flow.
+
 ## Launch gates
 
 - [x] Publish the `settingsMomence` singleton with the values above.
