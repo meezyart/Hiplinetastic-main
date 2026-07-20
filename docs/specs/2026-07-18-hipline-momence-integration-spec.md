@@ -1,8 +1,10 @@
 # Hipline Momence Integration Specification
 
-Status: Draft for review  
-Date: July 18, 2026  
-Systems: Static Hiplinetastic Eleventy storefront, Hipline Sanity Studio, Momence  
+Status: Draft for review
+
+Date: July 18, 2026
+
+Systems: Static Hiplinetastic Eleventy storefront, Hipline Sanity Studio, Momence
 
 ## Problem Statement
 

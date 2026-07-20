@@ -1,7 +1,9 @@
 # HIPLINE Phase 1 Momence Cutover Checklist
 
-Status date: 2026-07-20  
-Release profile: `plugin`  
+Status date: 2026-07-20
+
+Release profile: `plugin`
+
 Storefront branch: `codex/momence-integration-spec`
 
 ## Implemented in code
@@ -86,9 +88,12 @@ This command refuses `myhipline.com`, requires HTTPS, rejects routes that redire
 
 ## Verification evidence
 
-Verification run: 2026-07-20  
-Storefront commit: `e3bee48` (`feat: complete Phase 1 Momence storefront cutover`)  
-Sanity Studio commit: `476db79` (`feat: finish Phase 1 Momence editor controls`)  
+Verification run: 2026-07-20
+
+Storefront commit: `e3bee48` (`feat: complete Phase 1 Momence storefront cutover`)
+
+Sanity Studio commit: `476db79` (`feat: finish Phase 1 Momence editor controls`)
+
 Node: `v22.23.0`
 
 - `npm run build` — passed against current production Sanity content; Eleventy wrote 47 pages.
