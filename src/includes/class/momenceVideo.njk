@@ -1,7 +1,8 @@
-{% set videoUrl = pageSection.videoLibraryUrl | momenceUrl %}
-{% if not videoUrl %}
-  {% set videoUrl = momence.videoLibraryUrl %}
+{% set hostedVideoUrl = pageSection.videoLibraryUrl | momenceUrl %}
+{% if not hostedVideoUrl %}
+  {% set hostedVideoUrl = momence.videoLibraryUrl %}
 {% endif %}
+{% set pluginUrl = momence.videoLibraryPluginUrl %}
 
 <section class="section section-padding-top section-padding-bottom momence-video" aria-labelledby="momence-video-heading-{{ pageSection._key | escape }}">
   <div class="container">
@@ -14,23 +15,26 @@
       {% endif %}
     </div>
 
-    {% if videoUrl %}
+    {% if pluginUrl %}
       <div class="momence-video__frame-wrap">
         <iframe
           class="momence-video__frame"
-          src="{{ videoUrl | escape }}"
+          src="{{ pluginUrl | escape }}"
           title="{{ (pageSection.frameTitle or 'Hipline on-demand video library') | escape }}"
           loading="lazy"
           referrerpolicy="strict-origin-when-cross-origin"
           allow="fullscreen"
         ></iframe>
       </div>
+    {% endif %}
+    {% if hostedVideoUrl %}
       <p class="text-center mt-30">
-        <a class="btn btn-primary btn-hover-secondary" href="{{ videoUrl | escape }}" target="_blank" rel="noopener noreferrer">
+        <a class="btn btn-primary btn-hover-secondary" href="{{ hostedVideoUrl | escape }}" target="_blank" rel="noopener noreferrer">
           {{ pageSection.fallbackLabel or 'Open the Video Library' }}
         </a>
       </p>
-    {% else %}
+    {% endif %}
+    {% if not pluginUrl and not hostedVideoUrl %}
       <p class="text-center">The Video Library is temporarily unavailable.</p>
     {% endif %}
   </div>

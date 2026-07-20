@@ -6,7 +6,8 @@ const {
   auditGeneratedPages
 } = require('../scripts/verify-momence-cutover')
 
-const officialVideoUrl = 'https://momence.com/video/courses/253441'
+const officialVideoPluginUrl = 'https://momence.com/video/plugin/253441'
+const hostedVideoUrl = 'https://momence.com/video/courses/253441'
 
 test('accepts a generated plugin-first Phase 1 release', () => {
   const pages = {
@@ -16,7 +17,7 @@ test('accepts a generated plugin-first Phase 1 release', () => {
       const dialog = url.includes('/m/') ? ` data-embed-dialog-url="${url}"` : ''
       return `<a href="${url}"${dialog}>Buy</a>`
     }).join(''),
-    'on-demand/index.html': `<iframe src="${officialVideoUrl}"></iframe><a href="${officialVideoUrl}">Open the Video Library</a>`
+    'on-demand/index.html': `<iframe src="${officialVideoPluginUrl}"></iframe><a href="${hostedVideoUrl}">Open the Video Library</a>`
   }
 
   assert.deepEqual(auditGeneratedPages(pages), [])
@@ -49,7 +50,7 @@ test('rejects an external embed whose fallback exists only elsewhere on the page
       return `<a href="${url}"${dialog}>Buy</a>`
     }).join(''),
     'services/index.html': '<a href="https://example.com/unrelated">Unrelated</a><section class="external-service"><iframe class="external-service__frame" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe></section>',
-    'on-demand/index.html': `<iframe src="${officialVideoUrl}"></iframe><a href="${officialVideoUrl}">Open the Video Library</a>`
+    'on-demand/index.html': `<iframe src="${officialVideoPluginUrl}"></iframe><a href="${hostedVideoUrl}">Open the Video Library</a>`
   }
 
   assert.deepEqual(auditGeneratedPages(pages), [

@@ -62,3 +62,16 @@ test('passes page includes the shared checkout dialog shell', () => {
   assert.match(passes, /data-embed-dialog="" hidden/)
   assert.match(passes, /Open checkout in a new tab/)
 })
+
+test('On-Demand uses the official Video Library plugin with a hosted fallback', () => {
+  const onDemand = readOutput(path.join('on-demand', 'index.html'))
+
+  assert.match(
+    onDemand,
+    /<iframe[^>]+src="https:\/\/momence\.com\/video\/plugin\/253441"/i
+  )
+  assert.match(
+    onDemand,
+    /<a[^>]+href="https:\/\/momence\.com\/video\/courses\/253441"/i
+  )
+})

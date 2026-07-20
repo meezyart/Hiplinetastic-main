@@ -11,7 +11,7 @@ Storefront branch: `codex/momence-integration-spec`
 - The global Mindbody runtime and HealCode pass fallback have been removed after the approved pass URLs were published.
 - Pass cards use typed managed purchase fields and the shared accessible Momence checkout dialog. Legacy purchase links are not trusted because the previous 10 Class field pointed to Momence's 5 Class product.
 - Sanity has a Momence settings singleton, typed Schedule controls, typed pass purchase fields, and a Momence Video Library page section.
-- The Video Library section uses the existing Hipline page styles around a Momence-hosted iframe and provides a direct hosted fallback link.
+- The Video Library section uses the official Momence plugin iframe at `https://momence.com/video/plugin/253441`, wrapped in the existing Hipline page styles, and provides the hosted courses page as a direct fallback link.
 
 ## Site-level Momence values to publish in Sanity
 
@@ -94,7 +94,7 @@ Sanity Studio commit: `476db79` (`feat: finish Phase 1 Momence editor controls`)
 Node: `v22.23.0`
 
 - `npm run build` — passed against current production Sanity content; Eleventy wrote 47 pages.
-- `npm test` — 39 tests passed, 0 failed.
+- `npm test` — 40 tests passed, 0 failed.
 - `node --test scripts/phase1MomenceCutover.test.js` in the Sanity Studio — 7 tests passed, 0 failed.
 - `npm run build` in the Sanity Studio — passed.
 - Source scan — no storefront template contains the HealCode or Mindbody runtime.
@@ -106,8 +106,9 @@ Review fixes included before staging:
 - Ensured heading-less External Service sections receive an accessible label instead of a broken `aria-labelledby` reference.
 - Scoped the external-embed fallback audit to the same rendered section, preventing unrelated HTTPS links from satisfying the safety gate.
 - Removed a duplicate AOS initializer that depended on an untracked deployment asset.
+- Corrected On-Demand to use the official Video Library plugin URL exposed by HIPLINE's authenticated Momence plugin dashboard; retained the hosted courses URL as its fallback.
 
-Local browser review on 2026-07-20 covered `/`, `/schedule/`, `/passes/`, `/on-demand/`, and `/sliding-scale/` at desktop and mobile widths. All ten route/viewport combinations returned `200` with no horizontal overflow, broken images, console errors, page errors, or failed first-party requests. The checkout dialog opened from a visible pass action, moved focus to its close control, closed with Escape, and returned focus to the pass action. Momence's current Video Library response rendered successfully but reported that the host has no video courses available; the direct hosted fallback remains visible.
+Local browser review on 2026-07-20 covered `/`, `/schedule/`, `/passes/`, `/on-demand/`, and `/sliding-scale/` at desktop and mobile widths. All ten route/viewport combinations returned `200` with no horizontal overflow, broken images, console errors, page errors, or failed first-party requests. The checkout dialog opened from a visible pass action, moved focus to its close control, closed with Escape, and returned focus to the pass action. An authenticated Momence dashboard review then confirmed the exact Schedule plugin already in use, the official Video Library plugin URL now used by On-Demand, and the existing Gift Card destination. Momence's current Video Library preview reports that no videos match its filter; the direct hosted fallback remains visible.
 
 Momence account state inside the checkout iframe is a known non-blocking limitation. Cross-site iframe sessions can be restricted or partitioned by browser third-party storage policy, and the HIPLINE parent page cannot grant Momence access to its authentication cookies. Keep the in-dialog **Open checkout in a new tab** fallback and the header account link so users can establish a normal first-party Momence session without closing the HIPLINE tab. Do not attempt a parent-page storage workaround unless Momence documents support for an embedded Storage Access API flow.
 

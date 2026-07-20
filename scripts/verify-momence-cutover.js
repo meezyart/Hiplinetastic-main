@@ -4,6 +4,7 @@ const path = require('node:path')
 const HOST_ID = '253441'
 const ACCOUNT_URL = 'https://momence.com/sign-in'
 const SCHEDULE_PLUGIN_URL = 'https://momence.com/plugin/host-schedule/host-schedule.js'
+const VIDEO_LIBRARY_PLUGIN_URL = `https://momence.com/video/plugin/${HOST_ID}`
 const VIDEO_LIBRARY_URL = `https://momence.com/video/courses/${HOST_ID}`
 
 const EXPECTED_PASS_URLS = [
@@ -91,9 +92,12 @@ const auditGeneratedPages = pages => {
   if (!onDemand) {
     issues.push('On-Demand page was not generated')
   } else {
-    const hasVideoLibraryFrame = /<iframe\b[^>]*\bsrc="https:\/\/momence\.com\/video\/courses\/253441"[^>]*>/i.test(onDemand)
+    const hasVideoLibraryFrame = new RegExp(
+      `<iframe\\b[^>]*\\bsrc="${VIDEO_LIBRARY_PLUGIN_URL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^>]*>`,
+      'i'
+    ).test(onDemand)
     if (!hasVideoLibraryFrame) {
-      issues.push('On-Demand page is missing the Momence Video Library iframe')
+      issues.push('On-Demand page is missing the official Momence Video Library plugin iframe')
     }
     if (!onDemand.includes(`href="${VIDEO_LIBRARY_URL}"`)) {
       issues.push('On-Demand page is missing the hosted Video Library fallback')

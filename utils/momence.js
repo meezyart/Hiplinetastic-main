@@ -215,23 +215,26 @@ function normalizeScheduleConfig(section = {}, settings = {}) {
 }
 
 function normalizeMomenceSettings(value = {}) {
-  const schedule = normalizeSchedule(value.schedule)
+  const schedule = normalizeSchedule(value.schedule) || {
+    hostId: '',
+    teacherIds: [],
+    locationIds: [],
+    tagIds: [],
+    defaultFilter: 'show-all',
+    locale: 'en'
+  }
 
   return {
     accountUrl:
       normalizeMomenceUrl(value.accountUrl) || 'https://momence.com/sign-in',
     videoLibraryUrl: normalizeMomenceUrl(value.videoLibraryUrl),
+    videoLibraryPluginUrl: schedule.hostId
+      ? `https://momence.com/video/plugin/${schedule.hostId}`
+      : '',
     giftCardUrl: normalizeMomenceUrl(value.giftCardUrl),
     scheduleUrl: normalizeMomenceUrl(value.scheduleUrl),
     allowedEmbedHosts: normalizeAllowedHosts(value.allowedEmbedHosts),
-    schedule: schedule || {
-      hostId: '',
-      teacherIds: [],
-      locationIds: [],
-      tagIds: [],
-      defaultFilter: 'show-all',
-      locale: 'en'
-    }
+    schedule
   }
 }
 

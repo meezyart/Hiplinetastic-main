@@ -9,7 +9,8 @@ const {
 
 const { EXPECTED_PASS_URLS } = require('../scripts/verify-momence-cutover')
 
-const videoUrl = 'https://momence.com/video/courses/253441'
+const videoPluginUrl = 'https://momence.com/video/plugin/253441'
+const hostedVideoUrl = 'https://momence.com/video/courses/253441'
 
 const validResponses = () => ({
   '/': {
@@ -33,7 +34,7 @@ const validResponses = () => ({
   '/on-demand/': {
     status: 200,
     url: 'https://deploy-preview-42--hipline.netlify.app/on-demand/',
-    html: `<iframe src="${videoUrl}"></iframe><a href="${videoUrl}">Open the Video Library</a>`
+    html: `<iframe src="${videoPluginUrl}"></iframe><a href="${hostedVideoUrl}">Open the Video Library</a>`
   },
   '/sliding-scale/': {
     status: 200,
