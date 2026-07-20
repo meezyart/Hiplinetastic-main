@@ -9,6 +9,19 @@
     }
 }
 
+.momence-video__frame-wrap {
+    width: 100%;
+    overflow: hidden;
+}
+
+.momence-video__frame {
+    display: block;
+    width: 100%;
+    min-height: 75vh;
+    border: 0;
+    background: #fff;
+}
+
 .embed-dialog {
     position: fixed;
     z-index: 10000;

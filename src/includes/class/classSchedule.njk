@@ -1,8 +1,12 @@
-
-
 {% macro pageTitle(title="") %}
  {% include 'page/page-title.njk'  %}
 {% endmacro %}
+
+{% set schedule = pageSection | momenceSchedule(momence) %}
+{% set scheduleFallback = pageSection.fallbackUrl | momenceUrl %}
+{% if not scheduleFallback %}
+    {% set scheduleFallback = momence.scheduleUrl | momenceUrl %}
+{% endif %}
 
 {{ pageTitle(pageSection.heading) }}
 
@@ -11,9 +15,33 @@
     <div class="container">
         <div class="row">
             <div class="htmlHolder">
-
-            <healcode-widget data-type={{pageSection.mbo.dataType}} data-widget-partner="object" data-widget-id={{pageSection.mbo.dataWidgetId}} data-widget-version={{pageSection.mbo.dataWidgetVer}} ></healcode-widget>
-
+                {% if pageSection.introduction %}
+                    <div class="momence-schedule__introduction">
+                        {{ pageSection.introduction | blocksToHtml | safe }}
+                    </div>
+                {% endif %}
+                {% if schedule %}
+                    <script
+                        async
+                        type="module"
+                        host_id="{{ schedule.hostId | escape }}"
+                        teacher_ids="{{ schedule.teacherIds | dump | escape }}"
+                        location_ids="{{ schedule.locationIds | dump | escape }}"
+                        tag_ids="{{ schedule.tagIds | dump | escape }}"
+                        default_filter="{{ schedule.defaultFilter | escape }}"
+                        locale="{{ schedule.locale | escape }}"
+                        src="https://momence.com/plugin/host-schedule/host-schedule.js"
+                    ></script>
+                {% else %}
+                    <p class="text-center">The live schedule is temporarily unavailable.</p>
+                {% endif %}
+                {% if scheduleFallback %}
+                    <p class="text-center mt-30">
+                        <a class="btn btn-primary btn-hover-secondary" href="{{ scheduleFallback | escape }}" target="_blank" rel="noopener noreferrer">
+                            {{ pageSection.fallbackLabel or 'Open the schedule' }}
+                        </a>
+                    </p>
+                {% endif %}
             </div>
         </div>
     </div>
