@@ -12,10 +12,16 @@
     {% endif %}
     {% if service.presentation == 'inline' and service.embedUrl %}
       <iframe class="external-service__frame" src="{{ service.embedUrl }}" title="{{ service.frameTitle }}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="--external-service-height: {{ service.desktopHeight }}px; --external-service-mobile-height: {{ service.mobileHeight }}px"></iframe>
-    {% elseif service.presentation == 'popup' and service.embedUrl %}
+    {% elseif service.presentation == 'popup' and service.embedUrl and not service.actions.length %}
       <p class="text-center"><a class="btn btn-primary btn-hover-secondary" href="{{ service.fallbackUrl or service.embedUrl }}" data-embed-dialog-url="{{ service.embedUrl }}" data-embed-dialog-title="{{ service.frameTitle }}">{{ service.actionLabel }}</a></p>
     {% endif %}
-    {% if service.fallbackUrl and service.presentation != 'popup' %}
+    {% if service.actions.length %}
+      <div class="external-service__actions" aria-label="{{ service.providerLabel }} options">
+        {% for action in service.actions %}
+          <a class="btn btn-primary btn-hover-secondary" href="{{ action.url }}" target="_blank" rel="noopener noreferrer">{{ action.label }}</a>
+        {% endfor %}
+      </div>
+    {% elseif service.fallbackUrl and service.presentation != 'popup' %}
       <p class="text-center mt-30"><a class="btn btn-primary btn-hover-secondary" href="{{ service.fallbackUrl }}" target="_blank" rel="noopener noreferrer">{{ service.actionLabel }}</a></p>
     {% endif %}
   </div>

@@ -57,6 +57,26 @@ test('renders popup configuration as a progressively enhanced link', () => {
   assert.match(html, /data-embed-dialog-title="Book with Example Provider"/)
 })
 
+test('renders client-managed tier actions without an arbitrary embed', () => {
+  const html = env.render('class/externalService.njk', {
+    pageSection: {
+      _key: 'slidingScale',
+      providerLabel: 'Momence',
+      actions: [
+        { label: 'Tier 1 — $20', url: 'https://momence.com/m/20' },
+        { label: 'Tier 2 — $25', url: 'https://momence.com/m/25' },
+        { label: 'Tier 3 — $30', url: 'https://momence.com/m/30' }
+      ]
+    },
+    momence: settings
+  })
+
+  assert.match(html, /external-service__actions/)
+  assert.match(html, /href="https:\/\/momence\.com\/m\/20"/)
+  assert.match(html, /Tier 2 — \$25/)
+  assert.doesNotMatch(html, /<iframe/i)
+})
+
 test('renders the Momence schedule plugin with a hosted fallback', () => {
   const html = env.render('class/classSchedule.njk', {
     pageSection: {

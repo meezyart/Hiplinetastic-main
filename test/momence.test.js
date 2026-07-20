@@ -31,6 +31,7 @@ test('normalizes an allowlisted inline external service', () => {
       presentation: 'inline',
       embedUrl: 'https://widgets.example.com/portal',
       fallbackUrl: 'https://example.com/portal',
+      actions: [],
       frameTitle: 'Example member portal',
       actionLabel: 'Open Example Provider',
       desktopHeight: 760,
@@ -56,8 +57,34 @@ test('rejects unapproved frames and keeps a safe external fallback', () => {
       presentation: 'external-link',
       embedUrl: '',
       fallbackUrl: 'https://example.com/booking',
+      actions: [],
       frameTitle: 'Booking',
       actionLabel: 'Open External service',
+      desktopHeight: 720,
+      mobileHeight: 640
+    }
+  )
+})
+
+test('normalizes only labelled secure external service actions', () => {
+  assert.deepEqual(
+    normalizeExternalService({
+      providerLabel: 'Momence',
+      actions: [
+        { label: 'Tier 1 — $20', url: 'https://momence.com/m/20' },
+        { label: '', url: 'https://momence.com/m/25' },
+        { label: 'Tier 2 — $25', url: 'javascript:alert(1)' }
+      ]
+    }),
+    {
+      heading: '',
+      providerLabel: 'Momence',
+      presentation: 'external-link',
+      embedUrl: '',
+      fallbackUrl: '',
+      actions: [{ label: 'Tier 1 — $20', url: 'https://momence.com/m/20' }],
+      frameTitle: 'Momence',
+      actionLabel: 'Open Momence',
       desktopHeight: 720,
       mobileHeight: 640
     }

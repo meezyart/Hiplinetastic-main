@@ -79,12 +79,29 @@ function normalizePurchasePresentation(value, provider = 'momence') {
   return value === 'external-link' ? 'external-link' : 'popup'
 }
 
+function normalizeExternalActions(value) {
+  if (!Array.isArray(value)) return []
+
+  return value
+    .map(action => {
+      const url = normalizeExternalUrl(action && action.url)
+      const label = typeof (action && action.label) === 'string'
+        ? action.label.trim()
+        : ''
+
+      return url && label ? { label, url } : null
+    })
+    .filter(Boolean)
+    .slice(0, 6)
+}
+
 function normalizeExternalService(section = {}, settings = {}) {
   const providerLabel = typeof section.providerLabel === 'string' && section.providerLabel.trim()
     ? section.providerLabel.trim()
     : 'External service'
   const fallbackUrl = normalizeExternalUrl(section.fallbackUrl)
   const embedUrl = normalizeAllowedFrameUrl(section.embedUrl, settings.allowedEmbedHosts)
+  const actions = normalizeExternalActions(section.actions)
   const requestedPresentation = ['inline', 'popup', 'external-link'].includes(section.presentation)
     ? section.presentation
     : 'external-link'
@@ -92,7 +109,7 @@ function normalizeExternalService(section = {}, settings = {}) {
     ? requestedPresentation
     : 'external-link'
 
-  if (!embedUrl && !fallbackUrl) return null
+  if (!embedUrl && !fallbackUrl && !actions.length) return null
 
   return {
     heading: typeof section.heading === 'string' ? section.heading.trim() : '',
@@ -100,6 +117,7 @@ function normalizeExternalService(section = {}, settings = {}) {
     presentation,
     embedUrl,
     fallbackUrl,
+    actions,
     frameTitle: typeof section.frameTitle === 'string' && section.frameTitle.trim()
       ? section.frameTitle.trim()
       : providerLabel,
@@ -218,6 +236,7 @@ function normalizeMomenceSettings(value = {}) {
 }
 
 module.exports = {
+  normalizeExternalActions,
   normalizeExternalService,
   normalizeExternalUrl,
   normalizeMomenceSettings,
