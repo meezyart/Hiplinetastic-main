@@ -9,6 +9,7 @@ const {
 
 const {
   EXPECTED_PASS_URLS,
+  EXPECTED_POPUP_URLS,
   SLIDING_SCALE_PASS_URLS
 } = require('../scripts/verify-momence-cutover')
 
@@ -30,7 +31,7 @@ const validResponses = () => ({
     status: 200,
     url: 'https://deploy-preview-42--hipline.netlify.app/passes/',
     html: EXPECTED_PASS_URLS.map(url => {
-      const dialog = url.includes('/m/') ? ` data-embed-dialog-url="${url}"` : ''
+      const dialog = EXPECTED_POPUP_URLS.includes(url) ? ` data-embed-dialog-url="${url}"` : ''
       return `<a href="${url}"${dialog}>Buy</a>`
     }).join('')
   },

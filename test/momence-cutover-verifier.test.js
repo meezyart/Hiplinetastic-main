@@ -15,7 +15,7 @@ test('accepts a generated plugin-first Phase 1 release', () => {
     'index.html': '<a href="https://momence.com/sign-in">Account</a><div data-embed-dialog hidden></div>',
     'schedule/index.html': '<script src="https://momence.com/plugin/host-schedule/host-schedule.js" host_id="253441"></script>',
     'passes/index.html': EXPECTED_PASS_URLS.map(url => {
-      const dialog = url.includes('/m/') ? ` data-embed-dialog-url="${url}"` : ''
+      const dialog = ` data-embed-dialog-url="${url}"`
       return `<a href="${url}"${dialog}>Buy</a>`
     }).join(''),
     'sliding-scale/index.html': SLIDING_SCALE_PASS_URLS.map(url =>
@@ -39,7 +39,7 @@ test('reports legacy output and incomplete Momence release surfaces', () => {
     'Home page is missing the Momence account action',
     'Schedule page is missing the official Momence host-schedule plugin for host 253441',
     `Passes page is missing ${EXPECTED_PASS_URLS.length} approved Momence destinations`,
-    `Passes page is missing popup checkout triggers for ${EXPECTED_PASS_URLS.filter(url => url.includes('/m/')).length} membership destinations`,
+    `Passes page is missing popup checkout triggers for ${EXPECTED_PASS_URLS.length} approved checkout destinations`,
     `Sliding Scale page is missing ${SLIDING_SCALE_PASS_URLS.length} approved popup checkout options`,
     'Generated site is missing the shared checkout dialog shell',
     'On-Demand page was not generated'
@@ -51,7 +51,7 @@ test('rejects an external embed whose fallback exists only elsewhere on the page
     'index.html': '<a href="https://momence.com/sign-in">Account</a><div data-embed-dialog hidden></div>',
     'schedule/index.html': '<script src="https://momence.com/plugin/host-schedule/host-schedule.js" host_id="253441"></script>',
     'passes/index.html': EXPECTED_PASS_URLS.map(url => {
-      const dialog = url.includes('/m/') ? ` data-embed-dialog-url="${url}"` : ''
+      const dialog = ` data-embed-dialog-url="${url}"`
       return `<a href="${url}"${dialog}>Buy</a>`
     }).join(''),
     'sliding-scale/index.html': SLIDING_SCALE_PASS_URLS.map(url =>

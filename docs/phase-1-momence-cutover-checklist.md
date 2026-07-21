@@ -72,6 +72,8 @@ The Sliding Scale page's final Mindbody rich-text link in Sanity document `0ea36
 
 Two additional fixed-price Momence packages were then created for direct `$20` and `$25` checkout. Their Sanity pass records are included in dedicated **Sliding Scale Pop-Up** sections on both `/sliding-scale/` and `/passes/`. Both use the shared popup checkout with a new-tab fallback.
 
+The existing **GIFT CARDS** pass record now also uses the shared popup presentation. Its Momence destination remains `https://momence.com/gcc/253441`, and the dialog retains the normal new-tab fallback. The top-menu Gift Cards links remain unchanged.
+
 ## Generated-output release gate
 
 After each production-content rebuild, run:
@@ -80,7 +82,7 @@ After each production-content rebuild, run:
 npm run verify:momence-cutover
 ```
 
-The command fails unless the generated site has no HealCode or Mindbody output, includes the approved Momence account and Schedule integrations, contains all fourteen verified pass destinations, includes both fixed-price Sliding Scale popup options on `/sliding-scale/`, and generates the managed `/on-demand/` page with both the video iframe and hosted fallback.
+The command fails unless the generated site has no HealCode or Mindbody output, includes the approved Momence account and Schedule integrations, contains all fourteen verified pass destinations with popup checkout triggers, includes both fixed-price Sliding Scale popup options on `/sliding-scale/`, and generates the managed `/on-demand/` page with both the video iframe and hosted fallback.
 
 After Netlify creates a deploy preview, run the same structural release rules against the five required staging routes:
 
@@ -126,6 +128,7 @@ Momence account state inside the checkout iframe is a known non-blocking limitat
 - [x] Publish the Momence settings and pass transaction with an authenticated Sanity account.
 - [x] Configure Momence's native `$20`–`$30` customer-selected Pop-Up pricing and replace the Sliding Scale page's remaining Mindbody rich-text link.
 - [x] Publish the fixed `$20` and `$25` Sliding Scale pass records on both `/sliding-scale/` and `/passes/`.
+- [x] Publish the Gift Cards pass with popup presentation and retain its new-tab fallback.
 - [x] Prepare the managed `/on-demand/` page and exact navigation replacement in the guarded cutover transaction.
 - [x] Publish the `/on-demand/` page and navigation replacement with an authenticated Sanity account.
 - [x] Confirm the Video Library response omits `X-Frame-Options` and frame-blocking CSP headers; retain the hosted fallback link for runtime failures.

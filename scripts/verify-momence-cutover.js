@@ -28,7 +28,7 @@ const EXPECTED_PASS_URLS = [
 ]
 
 const LEGACY_PATTERN = /healcode-widget|widgets\.mindbodyonline\.com|clients\.mindbodyonline\.com/i
-const MEMBERSHIP_PASS_URLS = EXPECTED_PASS_URLS.filter(url => url.includes('/m/'))
+const EXPECTED_POPUP_URLS = [...EXPECTED_PASS_URLS]
 const EMBED_SANDBOX = 'sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"'
 const EXTERNAL_SERVICE_SECTION_PATTERN = /<section\b(?=[^>]*\bclass="[^"]*\bexternal-service\b[^"]*")[^>]*>[\s\S]*?<\/section>/gi
 
@@ -64,11 +64,11 @@ const auditGeneratedPages = pages => {
     issues.push(`Passes page is missing ${missingPassUrls.length} approved Momence destinations`)
   }
 
-  const missingDialogUrls = MEMBERSHIP_PASS_URLS.filter(url =>
+  const missingDialogUrls = EXPECTED_POPUP_URLS.filter(url =>
     !passes.includes(`data-embed-dialog-url="${url}"`)
   )
   if (missingDialogUrls.length) {
-    issues.push(`Passes page is missing popup checkout triggers for ${missingDialogUrls.length} membership destinations`)
+    issues.push(`Passes page is missing popup checkout triggers for ${missingDialogUrls.length} approved checkout destinations`)
   }
 
   const slidingScale = pages['sliding-scale/index.html'] || ''
@@ -165,6 +165,7 @@ if (require.main === module) run()
 
 module.exports = {
   EXPECTED_PASS_URLS,
+  EXPECTED_POPUP_URLS,
   SLIDING_SCALE_PASS_URLS,
   auditGeneratedPages,
   readGeneratedPages
