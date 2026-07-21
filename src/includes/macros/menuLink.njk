@@ -1,0 +1,3 @@
+{% macro menuLinkAttributes(item) -%}
+href="{% if item.externalUrl %}{{ item.externalUrl | url }}{% else %}{{ ('/' + item.slug) | absoluteUrl }}{% endif %}"{% if item.openInNewTab %} target="_blank" rel="noopener noreferrer"{% endif %}{% if item.openAsPopup and item.externalUrl %} data-embed-dialog-url="{{ item.externalUrl | escape }}" data-embed-dialog-title="Buy {{ item.name | escape }}"{% endif %}
+{%- endmacro %}

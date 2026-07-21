@@ -1,4 +1,11 @@
 const { DateTime } = require('luxon')
+const {
+    normalizeExternalService,
+    normalizeMomenceUrl,
+    normalizePurchasePresentation,
+    normalizePurchaseUrl,
+    normalizeScheduleConfig
+} = require('./momence.js')
 
 module.exports = {
     dateToFormat: function(date, format) {
@@ -21,5 +28,11 @@ module.exports = {
             chars.unshift(['&#', str[i].charCodeAt(), ';'].join(''))
         }
         return chars.join('')
-    }
+    },
+
+    momenceSchedule: normalizeScheduleConfig,
+    momenceUrl: normalizeMomenceUrl,
+    externalService: normalizeExternalService,
+    purchasePresentation: normalizePurchasePresentation,
+    purchaseUrl: normalizePurchaseUrl
 }

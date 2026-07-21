@@ -19,6 +19,7 @@ const filter = `
       'name': title,
       'externalUrl': url,
       openInNewTab,
+      openAsPopup,
       'slug':page->slug.current,
       'slugName': page->title,
       dropdownItems[]{
@@ -26,6 +27,7 @@ const filter = `
         'name': title,
         'externalUrl': url,
         openInNewTab,
+        openAsPopup,
         'slug': page->slug.current,
         'slugName': page->title,
       }},

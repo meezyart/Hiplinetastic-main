@@ -1,0 +1,34 @@
+{% set service = pageSection | externalService(momence) %}
+{% if service %}
+<section class="section section-padding-top section-padding-bottom external-service"{% if service.heading %} aria-labelledby="external-service-heading-{{ pageSection._key | escape }}"{% else %} aria-label="{{ service.providerLabel }}"{% endif %}>
+  <div class="container">
+    {% if service.heading %}
+      <div class="section-title text-center mb-50">
+        <h2 id="external-service-heading-{{ pageSection._key | escape }}">{{ service.heading }}</h2>
+      </div>
+    {% endif %}
+    {% if pageSection.introduction %}
+      <div class="external-service__introduction">{{ pageSection.introduction | blocksToHtml | safe }}</div>
+    {% endif %}
+    {% if service.momencePlugin %}
+      <div class="external-service__plugin" data-provider="momence">
+        {% if service.momencePlugin.containerId %}<div id="{{ service.momencePlugin.containerId | escape }}"></div>{% endif %}
+        <script async type="module" src="{{ service.momencePlugin.src | escape }}"{% for attribute in service.momencePlugin.attributes %} {{ attribute.name }}="{{ attribute.value | escape }}"{% endfor %}></script>
+      </div>
+    {% elseif service.presentation == 'inline' and service.embedUrl %}
+      <iframe class="external-service__frame" src="{{ service.embedUrl }}" title="{{ service.frameTitle }}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="--external-service-height: {{ service.desktopHeight }}px; --external-service-mobile-height: {{ service.mobileHeight }}px"></iframe>
+    {% elseif service.presentation == 'popup' and service.embedUrl and not service.actions.length %}
+      <p class="text-center"><a class="btn btn-primary btn-hover-secondary" href="{{ service.fallbackUrl or service.embedUrl }}" data-embed-dialog-url="{{ service.embedUrl }}" data-embed-dialog-title="{{ service.frameTitle }}">{{ service.actionLabel }}</a></p>
+    {% endif %}
+    {% if service.actions.length %}
+      <div class="external-service__actions" aria-label="{{ service.providerLabel }} options">
+        {% for action in service.actions %}
+          <a class="btn btn-primary btn-hover-secondary" href="{{ action.url }}" target="_blank" rel="noopener noreferrer">{{ action.label }}</a>
+        {% endfor %}
+      </div>
+    {% elseif service.fallbackUrl and service.presentation != 'popup' %}
+      <p class="text-center mt-30"><a class="btn btn-primary btn-hover-secondary" href="{{ service.fallbackUrl }}" target="_blank" rel="noopener noreferrer">{{ service.actionLabel }}</a></p>
+    {% endif %}
+  </div>
+</section>
+{% endif %}

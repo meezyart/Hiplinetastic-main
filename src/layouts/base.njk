@@ -21,6 +21,7 @@
     </div>
 
      {%- include "mobile-menu.njk" %}
+     {%- include "partials/embedDialog.njk" %}
      {%- include "theme-scripts.njk" %}
     {%- for script in addtionaljs %}
     <script src="{{ script | url }}"></script>

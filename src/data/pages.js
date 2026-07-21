@@ -224,6 +224,15 @@ const filter = `
         }},
             }
       },
+      _type == "momenceVideoSection" => {
+            featuredPass->{
+              passName,
+              purchaseProvider,
+              purchaseUrl,
+              purchaseButtonLabel,
+              purchasePresentation
+            }
+      },
       _type == "loveClubSection" => {
             loveClubForm[]->{
               ...,

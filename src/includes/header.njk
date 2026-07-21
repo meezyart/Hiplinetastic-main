@@ -1,3 +1,4 @@
+{% from "macros/menuLink.njk" import menuLinkAttributes %}
 <!-- Header Section Start -->
 <div class="header-section header-shadow sticky-header section">
     <div class="header-inner">
@@ -27,7 +28,7 @@
 
                                 {% for menuItem in sections.header.menu %}
                                     <li {% if menuItem.dropdownItems %} class="has-children"  {% endif %}>
-                                        <a {% if menuItem.externalUrl %} href="{{ menuItem.externalUrl | url }}" {% else %} href="{{('/'+menuItem.slug) | absoluteUrl }}" {% endif %} {% if menuItem.openInNewTab %} target="_blank" {% endif %}>
+                                        <a {{ menuLinkAttributes(menuItem) }}>
                                             <span class="menu-text" >{{ menuItem.name }}</span></a>
                                         <span class="menu-toggle">
                                             <i class="far fa-angle-down"></i>
@@ -36,7 +37,7 @@
                                             <ul class="sub-menu">
                                                 {% for dropMenuItem in menuItem.dropdownItems %}
                                                     <li>
-                                                        <a {% if dropMenuItem.externalUrl %} href="{{  dropMenuItem.externalUrl | url }}" {% else %} href="{{  ('/'+dropMenuItem.slug) | absoluteUrl }}" {% endif %} {% if dropMenuItem.openInNewTab %} target="_blank" {% endif %}>
+                                                        <a {{ menuLinkAttributes(dropMenuItem) }}>
                                                             <span class="menu-tex">{{ dropMenuItem.name }}</span></a>
                                                         <span class="menu-toggle">
                                                             <i class="far fa-angle-down"></i>
@@ -57,17 +58,19 @@
                 <div class="col-auto">
                     <div class="header-right">
                         <div class="inner">
-
-                            {% if sections.header.showCart %}
+                            {% if sections.header.showCart and momence.cartUrl %}
                                 <div class="header-cart">
-
-                                    <healcode-widget data-version="0.2" data-link-class="healcode-cart-text-link" data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="cart-link" data-inner-html='<i class="far fa-shopping-cart"></i>"'/>
+                                    <a href="{{ momence.cartUrl | escape }}" target="_blank" rel="noopener noreferrer" aria-label="Open your Hipline cart">
+                                        <i class="far fa-shopping-cart" aria-hidden="true"></i>
+                                    </a>
                                 </div>
                             {% endif %}
                             <!-- Header Login Start -->
                             {% if sections.header.showLogin %}
                                 <div class="header-login">
-                                    <healcode-widget data-version="0.2" data-link-class="healcode-login-register-text-link "  data-site-id="66740" data-mb-site-id="4561" data-bw-identity-site="false" data-type="account-link" data-inner-html='<i class="far fa-user-circle"></i>'/>
+                                    <a href="{{ momence.accountUrl | escape }}" target="_blank" rel="noopener noreferrer" aria-label="Sign in to your Hipline account">
+                                        <i class="far fa-user-circle" aria-hidden="true"></i>
+                                    </a>
                                 </div>
 
                             {% endif %}
