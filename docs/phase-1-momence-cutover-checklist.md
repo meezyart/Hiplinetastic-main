@@ -72,7 +72,7 @@ The Sliding Scale page's final Mindbody rich-text link in Sanity document `0ea36
 
 Two additional fixed-price Momence packages were then created for direct `$20` and `$25` checkout. Their Sanity pass records are included in dedicated **Sliding Scale Pop-Up** sections on both `/sliding-scale/` and `/passes/`. Both use the shared popup checkout with a new-tab fallback.
 
-The existing **GIFT CARDS** pass record now also uses the shared popup presentation. Its Momence destination remains `https://momence.com/gcc/253441`, and the dialog retains the normal new-tab fallback. The top-menu Gift Cards links remain unchanged.
+The existing **GIFT CARDS** pass record now also uses the shared popup presentation. Its Momence destination remains `https://momence.com/gcc/253441`, and the dialog retains the normal new-tab fallback. Header Menu external links now expose an **Open As Popup?** checkbox in Sanity; it is enabled for Gift Cards and renders the shared checkout dialog from both desktop and mobile navigation while preserving the direct-link/new-tab fallback.
 
 ## Generated-output release gate
 
@@ -119,6 +119,8 @@ Review fixes included before staging:
 
 Local browser review on 2026-07-20 covered `/`, `/schedule/`, `/passes/`, `/on-demand/`, and `/sliding-scale/` at desktop and mobile widths. All ten route/viewport combinations returned `200` with no horizontal overflow, broken images, console errors, page errors, or failed first-party requests. The checkout dialog opened from a visible pass action, moved focus to its close control, closed with Escape, and returned focus to the pass action. An authenticated Momence dashboard review then confirmed the exact Schedule plugin already in use, the official Video Library plugin URL now used by On-Demand, and the existing Gift Card destination. Momence's current Video Library preview reports that no videos match its filter; the direct hosted fallback remains visible.
 
+The Sanity-managed Header Menu Gift Cards popup received an additional local desktop/mobile browser check after publication. Both menu variants opened the live Momence Gift Card checkout in the shared dialog, the close control worked above the mobile navigation layer, and focus returned to the originating Gift Cards link.
+
 Momence account state inside the checkout iframe is a known non-blocking limitation. Cross-site iframe sessions can be restricted or partitioned by browser third-party storage policy, and the HIPLINE parent page cannot grant Momence access to its authentication cookies. Keep the in-dialog **Open checkout in a new tab** fallback and the header account link so users can establish a normal first-party Momence session without closing the HIPLINE tab. Do not attempt a parent-page storage workaround unless Momence documents support for an embedded Storage Access API flow.
 
 ## Launch gates
@@ -129,6 +131,7 @@ Momence account state inside the checkout iframe is a known non-blocking limitat
 - [x] Configure Momence's native `$20`–`$30` customer-selected Pop-Up pricing and replace the Sliding Scale page's remaining Mindbody rich-text link.
 - [x] Publish the fixed `$20` and `$25` Sliding Scale pass records on both `/sliding-scale/` and `/passes/`.
 - [x] Publish the Gift Cards pass with popup presentation and retain its new-tab fallback.
+- [x] Add the Sanity **Open As Popup?** menu-link control and enable it for Header Menu Gift Cards.
 - [x] Prepare the managed `/on-demand/` page and exact navigation replacement in the guarded cutover transaction.
 - [x] Publish the `/on-demand/` page and navigation replacement with an authenticated Sanity account.
 - [x] Confirm the Video Library response omits `X-Frame-Options` and frame-blocking CSP headers; retain the hosted fallback link for runtime failures.

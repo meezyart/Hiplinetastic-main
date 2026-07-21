@@ -1,3 +1,4 @@
+{% from "macros/menuLink.njk" import menuLinkAttributes %}
 <!-- Header Section Start -->
 <div class="header-section header-shadow sticky-header section">
     <div class="header-inner">
@@ -27,7 +28,7 @@
 
                                 {% for menuItem in sections.header.menu %}
                                     <li {% if menuItem.dropdownItems %} class="has-children"  {% endif %}>
-                                        <a {% if menuItem.externalUrl %} href="{{ menuItem.externalUrl | url }}" {% else %} href="{{('/'+menuItem.slug) | absoluteUrl }}" {% endif %} {% if menuItem.openInNewTab %} target="_blank" {% endif %}>
+                                        <a {{ menuLinkAttributes(menuItem) }}>
                                             <span class="menu-text" >{{ menuItem.name }}</span></a>
                                         <span class="menu-toggle">
                                             <i class="far fa-angle-down"></i>
@@ -36,7 +37,7 @@
                                             <ul class="sub-menu">
                                                 {% for dropMenuItem in menuItem.dropdownItems %}
                                                     <li>
-                                                        <a {% if dropMenuItem.externalUrl %} href="{{  dropMenuItem.externalUrl | url }}" {% else %} href="{{  ('/'+dropMenuItem.slug) | absoluteUrl }}" {% endif %} {% if dropMenuItem.openInNewTab %} target="_blank" {% endif %}>
+                                                        <a {{ menuLinkAttributes(dropMenuItem) }}>
                                                             <span class="menu-tex">{{ dropMenuItem.name }}</span></a>
                                                         <span class="menu-toggle">
                                                             <i class="far fa-angle-down"></i>

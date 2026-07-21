@@ -15,12 +15,13 @@ const {
 
 const videoPluginUrl = 'https://momence.com/video/plugin/253441'
 const hostedVideoUrl = 'https://momence.com/video/courses/253441'
+const giftCardMenuLink = '<a href="https://momence.com/gcc/253441" data-embed-dialog-url="https://momence.com/gcc/253441" data-embed-dialog-title="Buy Gift Cards">Gift Cards</a>'
 
 const validResponses = () => ({
   '/': {
     status: 200,
     url: 'https://deploy-preview-42--hipline.netlify.app/',
-    html: '<a href="https://momence.com/sign-in">Account</a><div data-embed-dialog hidden></div>'
+    html: `<a href="https://momence.com/sign-in">Account</a><div data-embed-dialog hidden></div>${giftCardMenuLink}${giftCardMenuLink}`
   },
   '/schedule/': {
     status: 200,

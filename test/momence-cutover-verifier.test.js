@@ -9,20 +9,26 @@ const {
 
 const officialVideoPluginUrl = 'https://momence.com/video/plugin/253441'
 const hostedVideoUrl = 'https://momence.com/video/courses/253441'
+const giftCardMenuLinks = [
+  '<a href="https://momence.com/gcc/253441" data-embed-dialog-url="https://momence.com/gcc/253441" data-embed-dialog-title="Buy Gift Cards">Gift Cards</a>',
+  '<a href="https://momence.com/gcc/253441" data-embed-dialog-url="https://momence.com/gcc/253441" data-embed-dialog-title="Buy Gift Cards">Gift Cards</a>'
+].join('')
+const validHome = `<a href="https://momence.com/sign-in">Account</a><div data-embed-dialog hidden></div>${giftCardMenuLinks}`
+
+const createValidPages = () => ({
+  'index.html': validHome,
+  'schedule/index.html': '<script src="https://momence.com/plugin/host-schedule/host-schedule.js" host_id="253441"></script>',
+  'passes/index.html': EXPECTED_PASS_URLS.map(url =>
+    `<a href="${url}" data-embed-dialog-url="${url}">Buy</a>`
+  ).join(''),
+  'sliding-scale/index.html': SLIDING_SCALE_PASS_URLS.map(url =>
+    `<a href="${url}" data-embed-dialog-url="${url}">Buy</a>`
+  ).join(''),
+  'on-demand/index.html': `<iframe src="${officialVideoPluginUrl}"></iframe><a href="${hostedVideoUrl}">Open the Video Library</a>`
+})
 
 test('accepts a generated plugin-first Phase 1 release', () => {
-  const pages = {
-    'index.html': '<a href="https://momence.com/sign-in">Account</a><div data-embed-dialog hidden></div>',
-    'schedule/index.html': '<script src="https://momence.com/plugin/host-schedule/host-schedule.js" host_id="253441"></script>',
-    'passes/index.html': EXPECTED_PASS_URLS.map(url => {
-      const dialog = ` data-embed-dialog-url="${url}"`
-      return `<a href="${url}"${dialog}>Buy</a>`
-    }).join(''),
-    'sliding-scale/index.html': SLIDING_SCALE_PASS_URLS.map(url =>
-      `<a href="${url}" data-embed-dialog-url="${url}">Buy</a>`
-    ).join(''),
-    'on-demand/index.html': `<iframe src="${officialVideoPluginUrl}"></iframe><a href="${hostedVideoUrl}">Open the Video Library</a>`
-  }
+  const pages = createValidPages()
 
   assert.deepEqual(auditGeneratedPages(pages), [])
 })
@@ -37,6 +43,7 @@ test('reports legacy output and incomplete Momence release surfaces', () => {
   assert.deepEqual(auditGeneratedPages(pages), [
     'Legacy Mindbody or HealCode output remains in: index.html, passes/index.html, schedule/index.html',
     'Home page is missing the Momence account action',
+    'Home page is missing desktop or mobile Gift Cards popup navigation',
     'Schedule page is missing the official Momence host-schedule plugin for host 253441',
     `Passes page is missing ${EXPECTED_PASS_URLS.length} approved Momence destinations`,
     `Passes page is missing popup checkout triggers for ${EXPECTED_PASS_URLS.length} approved checkout destinations`,
@@ -48,20 +55,23 @@ test('reports legacy output and incomplete Momence release surfaces', () => {
 
 test('rejects an external embed whose fallback exists only elsewhere on the page', () => {
   const pages = {
-    'index.html': '<a href="https://momence.com/sign-in">Account</a><div data-embed-dialog hidden></div>',
-    'schedule/index.html': '<script src="https://momence.com/plugin/host-schedule/host-schedule.js" host_id="253441"></script>',
-    'passes/index.html': EXPECTED_PASS_URLS.map(url => {
-      const dialog = ` data-embed-dialog-url="${url}"`
-      return `<a href="${url}"${dialog}>Buy</a>`
-    }).join(''),
-    'sliding-scale/index.html': SLIDING_SCALE_PASS_URLS.map(url =>
-      `<a href="${url}" data-embed-dialog-url="${url}">Buy</a>`
-    ).join(''),
+    ...createValidPages(),
     'services/index.html': '<a href="https://example.com/unrelated">Unrelated</a><section class="external-service"><iframe class="external-service__frame" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe></section>',
-    'on-demand/index.html': `<iframe src="${officialVideoPluginUrl}"></iframe><a href="${hostedVideoUrl}">Open the Video Library</a>`
   }
 
   assert.deepEqual(auditGeneratedPages(pages), [
     'Universal external embeds are missing sandbox or HTTPS fallback protection in: services/index.html'
+  ])
+})
+
+test('requires Gift Cards popup navigation in both desktop and mobile headers', () => {
+  const pages = createValidPages()
+  pages['index.html'] = validHome.replace(
+    giftCardMenuLinks,
+    giftCardMenuLinks.split('</a>')[0] + '</a>'
+  )
+
+  assert.deepEqual(auditGeneratedPages(pages), [
+    'Home page is missing desktop or mobile Gift Cards popup navigation'
   ])
 })

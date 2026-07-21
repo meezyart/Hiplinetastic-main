@@ -32,3 +32,18 @@ test('shared embed dialog uses a reduced-motion-safe opening animation', () => {
   )
   assert.match(styles, /@media \(prefers-reduced-motion: no-preference\)/)
 })
+
+test('shared embed dialog stacks above the mobile navigation', () => {
+  const dialogStyles = fs.readFileSync(
+    path.join(root, 'src', 'assets', 'styles', '_momence-integrations.scss'),
+    'utf8'
+  )
+  const mobileMenuStyles = fs.readFileSync(
+    path.join(root, 'src', 'assets', 'styles', 'header', '_mobile-menu.scss'),
+    'utf8'
+  )
+  const dialogZIndex = Number(dialogStyles.match(/\.embed-dialog\s*\{[\s\S]*?z-index:\s*(\d+)/)[1])
+  const mobileMenuZIndex = Number(mobileMenuStyles.match(/\.site-main-mobile-menu\s*\{[\s\S]*?z-index:\s*(\d+)/)[1])
+
+  assert.ok(dialogZIndex > mobileMenuZIndex)
+})

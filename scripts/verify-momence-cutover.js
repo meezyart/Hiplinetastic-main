@@ -6,6 +6,7 @@ const ACCOUNT_URL = 'https://momence.com/sign-in'
 const SCHEDULE_PLUGIN_URL = 'https://momence.com/plugin/host-schedule/host-schedule.js'
 const VIDEO_LIBRARY_PLUGIN_URL = `https://momence.com/video/plugin/${HOST_ID}`
 const VIDEO_LIBRARY_URL = `https://momence.com/video/courses/${HOST_ID}`
+const GIFT_CARD_URL = `https://momence.com/gcc/${HOST_ID}`
 const SLIDING_SCALE_PASS_URLS = [
   'https://momence.com/m/848243',
   'https://momence.com/m/848244'
@@ -22,7 +23,7 @@ const EXPECTED_PASS_URLS = [
   'https://momence.com/m/766998',
   'https://momence.com/m/767001',
   'https://momence.com/m/776335',
-  `https://momence.com/gcc/${HOST_ID}`,
+  GIFT_CARD_URL,
   'https://momence.com/m/767010',
   ...SLIDING_SCALE_PASS_URLS
 ]
@@ -31,6 +32,7 @@ const LEGACY_PATTERN = /healcode-widget|widgets\.mindbodyonline\.com|clients\.mi
 const EXPECTED_POPUP_URLS = [...EXPECTED_PASS_URLS]
 const EMBED_SANDBOX = 'sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"'
 const EXTERNAL_SERVICE_SECTION_PATTERN = /<section\b(?=[^>]*\bclass="[^"]*\bexternal-service\b[^"]*")[^>]*>[\s\S]*?<\/section>/gi
+const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 const auditGeneratedPages = pages => {
   const issues = []
@@ -46,6 +48,15 @@ const auditGeneratedPages = pages => {
   const home = pages['index.html'] || ''
   if (!home.includes(`href="${ACCOUNT_URL}"`)) {
     issues.push('Home page is missing the Momence account action')
+  }
+
+  const giftCardMenuPattern = new RegExp(
+    `<a\\b(?=[^>]*href="${escapeRegExp(GIFT_CARD_URL)}")(?=[^>]*data-embed-dialog-url="${escapeRegExp(GIFT_CARD_URL)}")(?=[^>]*data-embed-dialog-title="Buy Gift Cards")[^>]*>`,
+    'gi'
+  )
+  const giftCardMenuLinks = home.match(giftCardMenuPattern) || []
+  if (giftCardMenuLinks.length < 2) {
+    issues.push('Home page is missing desktop or mobile Gift Cards popup navigation')
   }
 
   const schedule = pages['schedule/index.html'] || ''
