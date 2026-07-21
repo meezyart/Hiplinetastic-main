@@ -175,6 +175,7 @@ test('normalizeMomenceSettings returns public plugin settings only', () => {
   assert.deepEqual(
     normalizeMomenceSettings({
       accountUrl: 'https://momence.com/sign-in',
+      cartUrl: 'https://momence.com/u/hipline-zNlk68',
       videoLibraryUrl: 'https://momence.com/video/courses/253441',
       giftCardUrl: 'https://momence.com/gcc/253441',
       scheduleUrl: 'https://momence.com/u/hipline-zNlk68',
@@ -189,6 +190,7 @@ test('normalizeMomenceSettings returns public plugin settings only', () => {
     }),
     {
       accountUrl: 'https://momence.com/sign-in',
+      cartUrl: 'https://momence.com/u/hipline-zNlk68',
       videoLibraryPluginUrl: 'https://momence.com/video/plugin/253441',
       videoLibraryUrl: 'https://momence.com/video/courses/253441',
       giftCardUrl: 'https://momence.com/gcc/253441',

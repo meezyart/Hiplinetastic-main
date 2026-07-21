@@ -281,6 +281,7 @@ function normalizeMomenceSettings(value = {}) {
   return {
     accountUrl:
       normalizeMomenceUrl(value.accountUrl) || 'https://momence.com/sign-in',
+    cartUrl: normalizeMomenceUrl(value.cartUrl),
     videoLibraryUrl: normalizeMomenceUrl(value.videoLibraryUrl),
     videoLibraryPluginUrl: schedule.hostId
       ? `https://momence.com/video/plugin/${schedule.hostId}`

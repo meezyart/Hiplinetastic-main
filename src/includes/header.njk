@@ -58,10 +58,10 @@
                 <div class="col-auto">
                     <div class="header-right">
                         <div class="inner">
-                            {% if sections.header.showCart and momence.giftCardUrl %}
+                            {% if sections.header.showCart and momence.cartUrl %}
                                 <div class="header-cart">
-                                    <a href="{{ momence.giftCardUrl | escape }}" target="_blank" rel="noopener noreferrer" aria-label="Purchase a Hipline gift card">
-                                        <i class="far fa-gift" aria-hidden="true"></i>
+                                    <a href="{{ momence.cartUrl | escape }}" target="_blank" rel="noopener noreferrer" aria-label="Open your Hipline cart">
+                                        <i class="far fa-shopping-cart" aria-hidden="true"></i>
                                     </a>
                                 </div>
                             {% endif %}

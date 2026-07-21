@@ -32,3 +32,14 @@ test('On-Demand resolves its editor-selected purchase pass from Sanity', () => {
     /_type == "momenceVideoSection"[\s\S]*featuredPass->/
   )
 })
+
+test('header cart keeps the cart icon and uses its own managed Momence URL', () => {
+  const header = fs.readFileSync(
+    path.resolve(includesRoot, 'header.njk'),
+    'utf8'
+  )
+
+  assert.match(header, /sections\.header\.showCart and momence\.cartUrl/)
+  assert.match(header, /fa-shopping-cart/)
+  assert.doesNotMatch(header, /header-cart[\s\S]{0,500}momence\.giftCardUrl/)
+})
