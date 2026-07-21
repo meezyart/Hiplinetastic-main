@@ -3,6 +3,11 @@
   {% set hostedVideoUrl = momence.videoLibraryUrl %}
 {% endif %}
 {% set pluginUrl = momence.videoLibraryPluginUrl %}
+{% set accountUrl = momence.accountUrl | momenceUrl %}
+{% set featuredPass = pageSection.featuredPass %}
+{% set purchaseProvider = featuredPass.purchaseProvider or 'momence' %}
+{% set purchaseUrl = featuredPass.purchaseUrl | purchaseUrl(purchaseProvider) %}
+{% set purchasePresentation = featuredPass.purchasePresentation | purchasePresentation(purchaseProvider) %}
 
 <section class="section section-padding-top section-padding-bottom momence-video" aria-labelledby="momence-video-heading-{{ pageSection._key | escape }}">
   <div class="container">
@@ -14,6 +19,31 @@
         </div>
       {% endif %}
     </div>
+
+    {% if purchaseUrl or accountUrl %}
+      <div class="momence-video__access text-center">
+        {% if accountUrl %}
+          <p>Already subscribed? Sign in to view your videos.</p>
+        {% endif %}
+        <div class="momence-video__actions">
+          {% if purchaseUrl %}
+            <a
+              class="btn btn-primary btn-hover-secondary"
+              href="{{ purchaseUrl | escape }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              {% if purchasePresentation == 'popup' %}
+                data-embed-dialog-url="{{ purchaseUrl | escape }}"
+                data-embed-dialog-title="Buy {{ featuredPass.passName | escape }}"
+              {% endif %}
+            >{{ featuredPass.purchaseButtonLabel or 'Buy On-Demand' }}</a>
+          {% endif %}
+          {% if accountUrl %}
+            <a class="btn btn-outline-primary" href="{{ accountUrl | escape }}" target="_blank" rel="noopener noreferrer">Sign in</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
 
     {% if pluginUrl %}
       <div class="momence-video__frame-wrap">

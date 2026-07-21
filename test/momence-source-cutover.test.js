@@ -20,3 +20,15 @@ test('storefront templates contain no legacy Mindbody or HealCode runtime', () =
 
   assert.deepEqual(offenders, [])
 })
+
+test('On-Demand resolves its editor-selected purchase pass from Sanity', () => {
+  const pagesQuery = fs.readFileSync(
+    path.resolve(__dirname, '..', 'src', 'data', 'pages.js'),
+    'utf8'
+  )
+
+  assert.match(
+    pagesQuery,
+    /_type == "momenceVideoSection"[\s\S]*featuredPass->/
+  )
+})

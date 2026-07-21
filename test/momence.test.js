@@ -3,12 +3,51 @@ const assert = require('node:assert/strict')
 
 const {
   normalizeExternalService,
+  normalizeMomencePluginSnippet,
   normalizeMomenceSettings,
   normalizeMomenceUrl,
   normalizePurchasePresentation,
   normalizePurchaseUrl,
   normalizeScheduleConfig
 } = require('../utils/momence.js')
+
+test('normalizes an official Momence plugin snippet for a managed section', () => {
+  assert.deepEqual(
+    normalizeMomencePluginSnippet(`
+      <div id="ribbon-appointments"></div>
+      <script async type="module" host_id="253441" board_id="987"
+        src="https://momence.com/plugin/appointments/appointments.js"></script>
+    `),
+    {
+      containerId: 'ribbon-appointments',
+      src: 'https://momence.com/plugin/appointments/appointments.js',
+      attributes: [
+        { name: 'host_id', value: '253441' },
+        { name: 'board_id', value: '987' }
+      ]
+    }
+  )
+})
+
+test('rejects non-Momence and executable plugin attributes', () => {
+  assert.equal(
+    normalizeMomencePluginSnippet(
+      '<script host_id="253441" src="https://evil.test/plugin.js"></script>'
+    ),
+    null
+  )
+
+  assert.deepEqual(
+    normalizeMomencePluginSnippet(
+      '<script host_id="253441" onclick="alert(1)" src="https://momence.com/plugin/appointments/appointments.js"></script>'
+    ),
+    {
+      containerId: '',
+      src: 'https://momence.com/plugin/appointments/appointments.js',
+      attributes: [{ name: 'host_id', value: '253441' }]
+    }
+  )
+})
 
 test('normalizes an allowlisted inline external service', () => {
   assert.deepEqual(

@@ -26,6 +26,23 @@
     overflow: hidden;
 }
 
+.momence-video__access {
+    margin-bottom: 30px;
+    padding: 24px;
+    background: #f7f5ff;
+}
+
+.momence-video__access p {
+    margin-bottom: 16px;
+}
+
+.momence-video__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
 .momence-video__frame {
     display: block;
     width: 100%;

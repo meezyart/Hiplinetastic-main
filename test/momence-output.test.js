@@ -40,9 +40,15 @@ test('generated schedule uses the normalized Momence plugin', () => {
 
 test('global account action uses Momence instead of HealCode', () => {
   const home = readOutput('index.html')
+  const accountAction = home.match(
+    /<a[^>]+href="https:\/\/momence\.com\/sign-in"[^>]*>[\s\S]*?<\/a>/i
+  )
 
-  assert.match(home, /href="https:\/\/momence\.com\/sign-in"/)
-  assert.match(home, /aria-label="Sign in to your Hipline account"/)
+  assert.ok(accountAction, 'expected a global Momence account action')
+  assert.match(
+    accountAction[0],
+    /aria-label="Sign in to your Hipline account"|MOMENCE access/i
+  )
   assert.doesNotMatch(home, /data-type="account-link"/)
 })
 

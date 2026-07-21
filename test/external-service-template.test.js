@@ -5,7 +5,10 @@ const test = require('node:test')
 const nunjucks = require('nunjucks')
 const {
   normalizeExternalService,
+  normalizeMomencePluginSnippet,
   normalizeMomenceUrl,
+  normalizePurchasePresentation,
+  normalizePurchaseUrl,
   normalizeScheduleConfig
 } = require('../utils/momence.js')
 
@@ -13,12 +16,34 @@ const env = nunjucks.configure(path.resolve(__dirname, '..', 'src', 'includes'),
   autoescape: true
 })
 env.addFilter('externalService', normalizeExternalService)
+env.addFilter('momencePlugin', normalizeMomencePluginSnippet)
 env.addFilter('blocksToHtml', () => '')
 env.addFilter('momenceSchedule', normalizeScheduleConfig)
 env.addFilter('momenceUrl', normalizeMomenceUrl)
+env.addFilter('purchasePresentation', normalizePurchasePresentation)
+env.addFilter('purchaseUrl', normalizePurchaseUrl)
 env.addFilter('dump', JSON.stringify)
 
 const settings = { allowedEmbedHosts: ['widgets.example.com'] }
+
+test('renders a sanitized Momence appointments plugin from Sanity', () => {
+  const html = env.render('class/externalService.njk', {
+    pageSection: {
+      _key: 'appointments',
+      heading: 'Book an appointment',
+      providerLabel: 'Momence',
+      momencePluginCode: '<div id="ribbon-appointments"></div><script async type="module" host_id="253441" board_id="987" onclick="alert(1)" src="https://momence.com/plugin/appointments/appointments.js"></script>'
+    },
+    momence: settings
+  })
+
+  assert.match(html, /id="ribbon-appointments"/)
+  assert.match(html, /src="https:\/\/momence\.com\/plugin\/appointments\/appointments\.js"/)
+  assert.match(html, /host_id="253441"/)
+  assert.match(html, /board_id="987"/)
+  assert.doesNotMatch(html, /onclick=/)
+  assert.doesNotMatch(html, /alert\(1\)/)
+})
 
 test('renders an allowlisted inline iframe and external fallback', () => {
   const html = env.render('class/externalService.njk', {
@@ -129,4 +154,32 @@ test('gives the Momence schedule a wider desktop container without widening mobi
     styles,
     /\.momence-schedule__container\s*\{\s*max-width:\s*1320px;/
   )
+})
+
+test('On-Demand offers managed purchase and sign-in actions when the public library is empty', () => {
+  const html = env.render('class/momenceVideo.njk', {
+    pageSection: {
+      _key: 'videoLibrary',
+      heading: 'On-Demand Video Library',
+      featuredPass: {
+        passName: 'ON DEMAND',
+        purchaseProvider: 'momence',
+        purchaseUrl: 'https://momence.com/m/776335',
+        purchaseButtonLabel: 'Buy On-Demand',
+        purchasePresentation: 'popup'
+      }
+    },
+    momence: {
+      accountUrl: 'https://momence.com/sign-in',
+      videoLibraryPluginUrl: 'https://momence.com/video/plugin/253441',
+      videoLibraryUrl: 'https://momence.com/video/courses/253441'
+    }
+  })
+
+  assert.match(html, /Already subscribed\? Sign in to view your videos\./)
+  assert.match(html, /href="https:\/\/momence\.com\/m\/776335"/)
+  assert.match(html, /data-embed-dialog-url="https:\/\/momence\.com\/m\/776335"/)
+  assert.match(html, />\s*Buy On-Demand\s*</)
+  assert.match(html, /href="https:\/\/momence\.com\/sign-in"/)
+  assert.match(html, /<iframe[^>]+src="https:\/\/momence\.com\/video\/plugin\/253441"/i)
 })

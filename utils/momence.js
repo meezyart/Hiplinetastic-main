@@ -95,6 +95,55 @@ function normalizeExternalActions(value) {
     .slice(0, 6)
 }
 
+function normalizeMomencePluginSnippet(markup) {
+  if (typeof markup !== 'string' || !markup.trim()) return null
+
+  const scriptMatch = markup.match(/<script\b([^>]*)>[\s\S]*?<\/script>/i)
+  if (!scriptMatch) return null
+
+  const attributes = []
+  const attributePattern = /\b([a-z][a-z0-9_-]*)\s*=\s*(["'])(.*?)\2/gi
+  let attributeMatch
+  let src = ''
+
+  while ((attributeMatch = attributePattern.exec(scriptMatch[1])) !== null) {
+    const name = attributeMatch[1].toLowerCase()
+    const value = attributeMatch[3].trim()
+
+    if (name === 'src') {
+      src = normalizeMomenceUrl(value)
+      continue
+    }
+
+    if (
+      ['async', 'defer', 'type', 'style', 'class', 'id'].includes(name) ||
+      name.startsWith('on') ||
+      !value ||
+      value.length > 1000 ||
+      /[\u0000-\u001f<>]/.test(value)
+    ) {
+      continue
+    }
+
+    attributes.push({ name, value })
+  }
+
+  if (!src) return null
+
+  const scriptUrl = new URL(src)
+  if (!scriptUrl.pathname.startsWith('/plugin/') || !scriptUrl.pathname.endsWith('.js')) {
+    return null
+  }
+
+  const containerMatch = markup.match(/<div\b[^>]*\bid\s*=\s*(["'])([a-z][a-z0-9_-]{0,80})\1[^>]*>/i)
+
+  return {
+    containerId: containerMatch ? containerMatch[2] : '',
+    src,
+    attributes: attributes.slice(0, 24)
+  }
+}
+
 function normalizeExternalService(section = {}, settings = {}) {
   const providerLabel = typeof section.providerLabel === 'string' && section.providerLabel.trim()
     ? section.providerLabel.trim()
@@ -102,6 +151,7 @@ function normalizeExternalService(section = {}, settings = {}) {
   const fallbackUrl = normalizeExternalUrl(section.fallbackUrl)
   const embedUrl = normalizeAllowedFrameUrl(section.embedUrl, settings.allowedEmbedHosts)
   const actions = normalizeExternalActions(section.actions)
+  const momencePlugin = normalizeMomencePluginSnippet(section.momencePluginCode)
   const requestedPresentation = ['inline', 'popup', 'external-link'].includes(section.presentation)
     ? section.presentation
     : 'external-link'
@@ -109,9 +159,9 @@ function normalizeExternalService(section = {}, settings = {}) {
     ? requestedPresentation
     : 'external-link'
 
-  if (!embedUrl && !fallbackUrl && !actions.length) return null
+  if (!embedUrl && !fallbackUrl && !actions.length && !momencePlugin) return null
 
-  return {
+  const service = {
     heading: typeof section.heading === 'string' ? section.heading.trim() : '',
     providerLabel,
     presentation,
@@ -127,6 +177,10 @@ function normalizeExternalService(section = {}, settings = {}) {
     desktopHeight: normalizeFrameHeight(section.desktopHeight, 720, 320, 1200),
     mobileHeight: normalizeFrameHeight(section.mobileHeight, 640, 320, 1000)
   }
+
+  if (momencePlugin) service.momencePlugin = momencePlugin
+
+  return service
 }
 
 function normalizePurchaseUrl(value, provider = 'momence') {
@@ -243,6 +297,7 @@ module.exports = {
   normalizeExternalService,
   normalizeExternalUrl,
   normalizeMomenceSettings,
+  normalizeMomencePluginSnippet,
   normalizeMomenceUrl,
   normalizePurchasePresentation,
   normalizePurchaseUrl,

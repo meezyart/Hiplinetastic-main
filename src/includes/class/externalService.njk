@@ -10,7 +10,12 @@
     {% if pageSection.introduction %}
       <div class="external-service__introduction">{{ pageSection.introduction | blocksToHtml | safe }}</div>
     {% endif %}
-    {% if service.presentation == 'inline' and service.embedUrl %}
+    {% if service.momencePlugin %}
+      <div class="external-service__plugin" data-provider="momence">
+        {% if service.momencePlugin.containerId %}<div id="{{ service.momencePlugin.containerId | escape }}"></div>{% endif %}
+        <script async type="module" src="{{ service.momencePlugin.src | escape }}"{% for attribute in service.momencePlugin.attributes %} {{ attribute.name }}="{{ attribute.value | escape }}"{% endfor %}></script>
+      </div>
+    {% elseif service.presentation == 'inline' and service.embedUrl %}
       <iframe class="external-service__frame" src="{{ service.embedUrl }}" title="{{ service.frameTitle }}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="--external-service-height: {{ service.desktopHeight }}px; --external-service-mobile-height: {{ service.mobileHeight }}px"></iframe>
     {% elseif service.presentation == 'popup' and service.embedUrl and not service.actions.length %}
       <p class="text-center"><a class="btn btn-primary btn-hover-secondary" href="{{ service.fallbackUrl or service.embedUrl }}" data-embed-dialog-url="{{ service.embedUrl }}" data-embed-dialog-title="{{ service.frameTitle }}">{{ service.actionLabel }}</a></p>
