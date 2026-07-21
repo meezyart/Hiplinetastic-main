@@ -96,18 +96,20 @@ This command refuses `myhipline.com`, requires HTTPS, rejects routes that redire
 
 Verification run: 2026-07-20
 
-Storefront commit: `e3bee48` (`feat: complete Phase 1 Momence storefront cutover`)
+Storefront commit: `f5f0108` (`feat: open managed menu links in checkout popup`)
 
-Sanity Studio commit: `476db79` (`feat: finish Phase 1 Momence editor controls`)
+Sanity Studio commit: `1642ee1` (`feat: manage navigation popups in sanity`)
 
 Node: `v22.23.0`
 
 - `npm run build` — passed against current production Sanity content; Eleventy wrote 47 pages.
-- `npm test` — 40 tests passed, 0 failed.
+- `npm test` — 45 tests passed, 0 failed.
 - `node --test scripts/phase1MomenceCutover.test.js` in the Sanity Studio — 7 tests passed, 0 failed.
 - `npm run build` in the Sanity Studio — passed.
 - Source scan — no storefront template contains the HealCode or Mindbody runtime.
 - `npm run verify:momence-cutover` — passed after the production-content rebuild; no generated HealCode or Mindbody output remains.
+
+The final pre-staging rebuild caught the published Schedule page slug set to the full hosted Momence URL instead of `schedule`. The single incorrect field on Sanity document `ec8db985-13ac-4191-99ff-f3dd95d28727` was restored to `schedule` on 2026-07-20. A fresh production-content build then generated `/schedule/`, `http://localhost:8080/schedule/` returned `200`, the page contained the official host-schedule plugin with host ID `253441`, and `npm run verify:momence-cutover` passed. This correction did not change the Schedule section or its hosted Momence fallback.
 
 Review fixes included before staging:
 
@@ -136,6 +138,7 @@ Momence account state inside the checkout iframe is a known non-blocking limitat
 - [x] Publish the `/on-demand/` page and navigation replacement with an authenticated Sanity account.
 - [x] Confirm the Video Library response omits `X-Frame-Options` and frame-blocking CSP headers; retain the hosted fallback link for runtime failures.
 - [ ] Browser-test the published Video Library iframe on staging and production.
+- [ ] Publish `codex/momence-integration-spec` as a review branch and open a draft PR against `dev`.
 - [ ] Run `npm run verify:momence-preview -- https://DEPLOY-PREVIEW-URL` successfully against the Netlify preview.
 - [x] Rebuild and confirm no generated output contains `healcode-widget`, `widgets.mindbodyonline.com`, or `clients.mindbodyonline.com`.
 - [x] Run `npm run verify:momence-cutover` successfully against the production-content build.
