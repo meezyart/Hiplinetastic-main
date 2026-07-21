@@ -39,7 +39,10 @@ module.exports = class {
         const webpackConfig = {
             mode: isProd ? 'production' : 'development',
             entry: entryPath,
-            output: { path: outputPath },
+            output: {
+                path: outputPath,
+                hashFunction: 'sha256'
+            },
             module: { rules },
             plugins: [envPlugin]
         }
